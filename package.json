@@ -1,0 +1,24 @@
+{
+  "name": "FinalProject",
+  "version": "1.0.0",
+  "description": "Noam Rom and Ben Ari Kutai Suite My Beer App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Basicben/Web-Services-Final-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Basicben/FinalProject/issues"
+  },
+  "homepage": "https://github.com/Basicben/FinalProject",
+  "dependencies": {
+    "express": "^4.12.4",
+    "mongoose": "^4.0.5"
+  }
+}
