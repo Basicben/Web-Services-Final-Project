@@ -21,15 +21,16 @@ suiteApp.controller('masterCntrl', function($scope) {
      
     $scope.connectedUser = null;
     
-    $scope.init = function(){
+    $(document).ready(function(){
         console.log('init');
         $scope.connectedUser = checkLoginState();
-        // GET PAGE WIDTH & HEIGHT
-    }
+    });
 
     $scope.facebookLogin = function(){
         if($scope.connectedUser == null){
-            $scope.connectedUser = facebookLogin()
+            if(facebookLogin() == 'connected'){
+                $scope.connectedUser = makeApiCalls();
+            }
         }
     }
 

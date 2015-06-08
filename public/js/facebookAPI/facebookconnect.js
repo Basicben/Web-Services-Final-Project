@@ -1,3 +1,5 @@
+var User;
+
 // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -8,7 +10,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      makeApiCalls();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       console.log('not_authorized');
@@ -66,15 +68,25 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+// Here we run a very simple test of the Graph API after login is
+// successful.  See statusChangeCallback() for when this call is made.
+var makeApiCalls = function(){
+  console.log('Welcome!  Fetching your information.... ');
+  FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       console.log('response',response);
-    });
-  }
+      Facebook.api('/' + response.id + '/picture?height=38', function (smallResponse) {
+        User.smallProfilePicture = smallResponse.data.url;
+      });
+        Facebook.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
+        User.mediumProfilePicture = mediumResponse.data.url;
+      });
+      User = JSON.stringify(response);
+      console.log('User',User);
+
+  });
+}
+
 var facebookLogin = function(){
   FB.login(function(response) {
     // handle the response
@@ -88,5 +100,5 @@ var facebookLogin = function(){
     // The person is not logged into Facebook, so we're not sure if
     // they are logged into this app or not.
     }
-  }, {scope: 'public_profile,email'});  
+  }, {scope: 'public_profile,email,user_friends,user_hometown,user_location,user_birthday'});  
 }
