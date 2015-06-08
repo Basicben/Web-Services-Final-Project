@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="114d92cf-b77f-41d9-99ad-8e3625106c35" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\dbconnection.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/lib/angular/angular.js" afterPath="$PROJECT_DIR$/public/js/lib/angular/angular.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/dbconnection.js" afterPath="$PROJECT_DIR$/webservices/Database/dbconnection.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Web-Services-Final-Project.iws" />
@@ -50,8 +49,8 @@
       <file leaf-file-name="dbconnection.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webservices/Database/dbconnection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.037671234" vertical-offset="0" max-vertical-offset="584">
-              <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="770">
+              <caret line="0" column="76" selection-start-line="0" selection-start-column="76" selection-end-line="0" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -353,8 +352,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webservices/Database/dbconnection.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.037671234" vertical-offset="0" max-vertical-offset="584">
-          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="770">
+          <caret line="0" column="76" selection-start-line="0" selection-start-column="76" selection-end-line="0" selection-end-column="76" />
           <folding />
         </state>
       </provider>
