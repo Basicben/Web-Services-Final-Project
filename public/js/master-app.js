@@ -32,7 +32,7 @@ suiteApp.controller('masterCntrl', function($scope,$http) {
         $scope.connectedUser = facebookLogin(function(){
             $scope.connectedUser = USER;
             console.log('$scope.connectedUser',$scope.connectedUser);
-            $http.post('http://localhost:3000/userInsert',{user:$scope.connectedUser}).
+            $http.post('https://localhost:3000/userInsert',{user:$scope.connectedUser}).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available
