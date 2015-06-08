@@ -1,4 +1,4 @@
-var User;
+var USER;
 
 // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -73,21 +73,17 @@ var User;
 var makeApiCalls = function(){
   console.log('Welcome!  Fetching your information.... ');
   FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      console.log('response',response);
-      User = JSON.stringify(response);
-      console.log('User',User);
+      USER = response;
       FB.api('/' + response.id + '/picture?height=38', function (smallResponse) {
-        console.log('smallResponse',smallResponse);
-        User.smallProfilePicture = smallResponse.data.url;
+        USER.smallProfilePicture = smallResponse.data.url;
+        FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
+          USER.mediumProfilePicture = mediumResponse.data.url;
+          return USER;
+        });
       });
-      FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
-        console.log('mediumResponse',mediumResponse);
-        User.mediumProfilePicture = mediumResponse.data.url;
-      });
-  });
+      
 
-  console.log('User',User);
+  });
   
 }
 
