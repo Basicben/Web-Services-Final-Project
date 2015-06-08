@@ -77,15 +77,18 @@ var makeApiCalls = function(){
       console.log('response',response);
       User = JSON.stringify(response);
       console.log('User',User);
+      FB.api('/' + response.id + '/picture?height=38', function (smallResponse) {
+        console.log('smallResponse',smallResponse);
+        User.smallProfilePicture = smallResponse.data.url;
+      });
+      FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
+        console.log('mediumResponse',mediumResponse);
+        User.mediumProfilePicture = mediumResponse.data.url;
+      });
   });
-  Facebook.api('/me/picture?height=38', function (response) {
-    console.log('response',response);
-    User.smallProfilePicture = response.data.url;
-  });
-  Facebook.api('/me/picture?height=200', function (response) {
-    console.log('response',response);
-    User.mediumProfilePicture = response.data.url;
-  });
+
+  console.log('User',User);
+  
 }
 
 var facebookLogin = function(){
