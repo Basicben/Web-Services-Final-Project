@@ -7,14 +7,14 @@ suiteApp .config(['$routeProvider','$locationProvider',
             templateUrl: 'templates/signup.html',
             controller: 'signupCntrl'
     }).
-    when('/test', {
-            templateUrl: 'templates/test.html',
-            controller: 'testCntrl'
+    when('/home', {
+            templateUrl: 'templates/home.html',
+            controller: 'homeCntrl'
     }).
     otherwise({
             redirectTo: '/signup'
     });
-    $locationProvider.html5Mode(true)
+    $locationProvider.html5Mode(true);
 }]);
 
 suiteApp.controller('masterCntrl', function($scope) {

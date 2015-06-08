@@ -2,8 +2,8 @@ suiteApp.controller('signupCntrl', function($scope) {
      
     console.log('signupCntrl');
      
-}).controller('testCntrl', function($scope) {
+}).controller('homeCntrl', function($scope) {
      
-    console.log('testCntrl');
+    console.log('homeCntrl');
      
 });
