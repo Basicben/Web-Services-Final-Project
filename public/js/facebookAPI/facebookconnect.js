@@ -68,14 +68,15 @@ window.fbAsyncInit = function() {
 
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
-var makeApiCalls = function(){
+var makeApiCalls = function(callback){
   FB.api('/me', function(response) {
       USER = response;
       FB.api('/' + response.id + '/picture?height=38', function (smallResponse) {
         USER.smallProfilePicture = smallResponse.data.url;
         FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
           USER.mediumProfilePicture = mediumResponse.data.url;
-          console.log('USER',USER);
+          //console.log('USER',USER);
+          callback();
         });
       });
   });
@@ -86,7 +87,7 @@ var facebookLogin = function(callback){
     // handle the response
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      makeApiCalls()
+      makeApiCalls(callback)
     } else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
     } else {
