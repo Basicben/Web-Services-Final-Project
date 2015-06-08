@@ -27,11 +27,10 @@ suiteApp.controller('masterCntrl', function($scope) {
     });
 
     $scope.facebookLogin = function(){
-        if($scope.connectedUser == null){
-            if(facebookLogin() == 'connected'){
-                $scope.connectedUser = makeApiCalls();
-                console.log('$scope.connectedUser',$scope.connectedUser);
-            }
+        if(facebookLogin() == 'connected'){
+            console.log('facebook connected');
+            $scope.connectedUser = makeApiCalls();
+            console.log('$scope.connectedUser',$scope.connectedUser);
         }
     }
 
