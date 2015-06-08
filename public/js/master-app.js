@@ -26,7 +26,7 @@ suiteApp.controller('masterCntrl', function($scope) {
         //$scope.connectedUser = checkLoginState();
     });
 
-    $scope.facebookLogin = function(){
+    $scope.angFacebookLogin = function(){
         if(facebookLogin() == 'connected'){
             console.log('facebook connected');
             $scope.connectedUser = makeApiCalls();

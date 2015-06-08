@@ -1,4 +1,4 @@
-suiteApp.controller('signupCntrl', function($scope) {
+suiteApp.controller('signupCntrl', function($scope,$rootScope) {
      
 
 	/*
@@ -27,7 +27,7 @@ suiteApp.controller('signupCntrl', function($scope) {
 
     console.log('signupCntrl');
      
-}).controller('homeCntrl', function($scope) {
+}).controller('homeCntrl', function($scope,$rootScope) {
      
     console.log('homeCntrl');
      
