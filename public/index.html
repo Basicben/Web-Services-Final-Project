@@ -1,8 +1,25 @@
-<html>
+<html ng-app="suiteApp">
 <head>
-	<title> Final Project </title>
+	<title> Suite my beer </title>
+	<!-- JS -->
+	<script src="js/lib/jquery/jquery-1.11.3.min.js"></script>
+	<script src="js/lib/jquery/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/lib/angular/angular.js"></script>
+	<script src="js/lib/angular/angular-route.min.js"></script>
+
+	<!-- Application Scripts -->
+	<script src="js/master-app.js"></script>
+	<script src="js/controllers.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body>
-	Hello World
+<body ng-controller="masterCntrl">
+
+	<div id="wrapper">
+		<ng-view></ng-view>
+	</div>
+
 </body>
 </html>
