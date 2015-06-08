@@ -1,5 +1,7 @@
 var suiteApp = angular.module('suiteApp',['ngRoute']);
-  
+
+var USER = null;
+
 suiteApp .config(['$routeProvider','$locationProvider',
     function($routeProvider,$locationProvider) {
     $routeProvider.
@@ -27,9 +29,9 @@ suiteApp.controller('masterCntrl', function($scope) {
     });
 
     $scope.angFacebookLogin = function(){
-        console.log('angFacebookLogin');
-        $scope.connectedUser = facebookLogin();
-        console.log('$scope.connectedUser',$scope.connectedUser);
+        $scope.connectedUser = facebookLogin(function(){
+            $scope.connectedUser = USER;
+        });
     }
 
 });
