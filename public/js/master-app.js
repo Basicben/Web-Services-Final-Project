@@ -19,6 +19,16 @@ suiteApp .config(['$routeProvider','$locationProvider',
 
 suiteApp.controller('masterCntrl', function($scope) {
      
-    console.log('masterCntrl');
+    $scope.connectedUser = null;
+    
+    $scope.init = function(){
+        console.log('init');
+        $scope.connectedUser = checkLoginState();
+        // GET PAGE WIDTH & HEIGHT
+    }
+
+    $scope.facebookLogin = function(){
+        $scope.connectedUser == null ? $scope.connectedUser = facebookLogin() : 1=1;
+    }
      
 });

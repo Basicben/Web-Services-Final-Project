@@ -12,10 +12,12 @@
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       console.log('not_authorized');
+      return null;
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       console.log('Please log into Facebook');
+      return null;
     }
   }
 
@@ -73,3 +75,18 @@
       console.log('response',response);
     });
   }
+var facebookLogin = function(){
+  FB.login(function(response) {
+    // handle the response
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      console.log('response',response);
+      return response;
+    } else if (response.status === 'not_authorized') {
+    // The person is logged into Facebook, but not your app.
+    } else {
+    // The person is not logged into Facebook, so we're not sure if
+    // they are logged into this app or not.
+    }
+  }, {scope: 'public_profile,email'});  
+}
