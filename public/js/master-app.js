@@ -27,11 +27,9 @@ suiteApp.controller('masterCntrl', function($scope) {
     });
 
     $scope.angFacebookLogin = function(){
-        if(facebookLogin() == 'connected'){
-            console.log('facebook connected');
-            $scope.connectedUser = makeApiCalls();
-            console.log('$scope.connectedUser',$scope.connectedUser);
-        }
+        console.log('angFacebookLogin');
+        $scope.connectedUser = facebookLogin();
+        console.log('$scope.connectedUser',$scope.connectedUser);
     }
 
 });

@@ -24,7 +24,11 @@ suiteApp.controller('signupCntrl', function($scope,$rootScope) {
 	    };
 	*/
 
-
+	$scope.facebookInsert = function(){
+		console.log('facebookInsert');
+		$scope.$parent.angFacebookLogin();
+		console.log('$scope.$parent.connectedUser',$scope.$parent.connectedUser);
+	}
     console.log('signupCntrl');
      
 }).controller('homeCntrl', function($scope,$rootScope) {
