@@ -10125,7 +10125,7 @@ function $InterpolateProvider() {
      *        escaped the interpolation start/end markers with REVERSE SOLIDUS U+005C (backslash)
      *        characters.</p>
      *      <p>Instead, the result of the attempted script injection is visible, and can be removed
-     *        from the database by an administrator.</p>
+     *        from the Database by an administrator.</p>
      *    </div>
      *  </file>
      * </example>
@@ -24484,7 +24484,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', function($locale, $interp
  *     with the corresponding item in the array by identity. Moving the same object in array would move the DOM
  *     element in the same way in the DOM.
  *
- *     For example: `item in items track by item.id` is a typical pattern when the items come from the database. In this
+ *     For example: `item in items track by item.id` is a typical pattern when the items come from the Database. In this
  *     case the object identity does not matter. Two objects are considered equivalent as long as their `id`
  *     property is same.
  *
