@@ -75,17 +75,16 @@ var makeApiCalls = function(){
   FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       console.log('response',response);
-      Facebook.api('/' + response.id + '/picture?height=38', function (smallResponse) {
-        console.log('smallResponse',smallResponse);
-        User.smallProfilePicture = smallResponse.data.url;
-      });
-        Facebook.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
-          console.log('mediumResponse',mediumResponse);
-          User.mediumProfilePicture = mediumResponse.data.url;
-      });
       User = JSON.stringify(response);
       console.log('User',User);
-
+  });
+  Facebook.api('/me/picture?height=38', function (response) {
+    console.log('response',response);
+    User.smallProfilePicture = response.data.url;
+  });
+  Facebook.api('/me/picture?height=200', function (response) {
+    console.log('response',response);
+    User.mediumProfilePicture = response.data.url;
   });
 }
 

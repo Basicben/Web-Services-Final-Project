@@ -23,7 +23,7 @@ suiteApp.controller('masterCntrl', function($scope) {
     
     $(document).ready(function(){
         console.log('init');
-        $scope.connectedUser = checkLoginState();
+        //$scope.connectedUser = checkLoginState();
     });
 
     $scope.facebookLogin = function(){
