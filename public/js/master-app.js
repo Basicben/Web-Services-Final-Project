@@ -28,7 +28,9 @@ suiteApp.controller('masterCntrl', function($scope) {
     }
 
     $scope.facebookLogin = function(){
-        $scope.connectedUser == null ? $scope.connectedUser = facebookLogin() : 1=1;
+        if($scope.connectedUser == null){
+            $scope.connectedUser = facebookLogin()
+        }
     }
-     
+
 });
