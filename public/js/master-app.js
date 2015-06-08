@@ -31,6 +31,7 @@ suiteApp.controller('masterCntrl', function($scope) {
     $scope.angFacebookLogin = function(){
         $scope.connectedUser = facebookLogin(function(){
             $scope.connectedUser = USER;
+            console.log('$scope.connectedUser',$scope.connectedUser);
         });
     }
 
