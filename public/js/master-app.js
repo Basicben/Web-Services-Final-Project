@@ -19,7 +19,7 @@ suiteApp .config(['$routeProvider','$locationProvider',
     $locationProvider.html5Mode(true);
 }]);
 
-suiteApp.controller('masterCntrl', function($scope) {
+suiteApp.controller('masterCntrl', function($scope,$http) {
      
     $scope.connectedUser = null;
     
