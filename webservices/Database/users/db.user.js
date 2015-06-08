@@ -6,6 +6,12 @@ var user = mongoose.model('UserM',userSchema);
 var conn = mongoose.connection;
 /** **********************************************************/
 
+var userInsert = function(){
+    console.log("insert....");
+
+};
+exports.userInsert = userInsert;
+
 /*****      Connection to the database ( db_suitemybeer ) *****/
 
 conn.on('error',function(err){
