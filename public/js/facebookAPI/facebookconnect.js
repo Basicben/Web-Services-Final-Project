@@ -76,10 +76,12 @@ var makeApiCalls = function(){
       console.log('Successful login for: ' + response.name);
       console.log('response',response);
       Facebook.api('/' + response.id + '/picture?height=38', function (smallResponse) {
+        console.log('smallResponse',smallResponse);
         User.smallProfilePicture = smallResponse.data.url;
       });
         Facebook.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
-        User.mediumProfilePicture = mediumResponse.data.url;
+          console.log('mediumResponse',mediumResponse);
+          User.mediumProfilePicture = mediumResponse.data.url;
       });
       User = JSON.stringify(response);
       console.log('User',User);
