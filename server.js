@@ -1,10 +1,16 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var ngRoute = require('ng-route-it');
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use('/',express.static('./public')).listen(process.env.PORT || 3000);
+
+// ngRoute Config
+ngRoute.ignore( [ '^/api' ] ); 
+app.use( ngRoute.route() );
+
 console.log('listeing on server...');
 
 var addUser = require('./webservices/Database/users/db.user').addUser;
@@ -50,3 +56,4 @@ app.post('/api/userEventInsert',function(req,res){
 	res.send("HERE ");
 });
 
+// *************************** Routing *************************** //

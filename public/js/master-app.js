@@ -31,6 +31,9 @@ var USER = {
 
 suiteApp .config(['$routeProvider','$locationProvider',
     function($routeProvider,$locationProvider) {
+    
+    $locationProvider.html5Mode(true);
+
     $routeProvider.
     when('/', {
             templateUrl: 'templates/signup.html',
@@ -48,11 +51,12 @@ suiteApp .config(['$routeProvider','$locationProvider',
             redirectTo: '/'
     });
 
-    $locationProvider.html5Mode(true);
+    
 }]);
 
 suiteApp.controller('masterCntrl', function($scope,$http) {
      
+     // Connected user object.
     $scope.connectedUser = null;
     
     $(document).ready(function(){

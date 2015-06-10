@@ -1,4 +1,5 @@
-suiteApp.controller('signupCntrl', function($scope,$rootScope) {
+suiteApp
+.controller('signupCntrl', function($scope,$rootScope) {
      
 
 	/*

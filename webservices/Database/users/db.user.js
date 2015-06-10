@@ -1,11 +1,17 @@
+// mongoose connection
+var mongoose = require('mongoose');
+mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
+
+// Require user schema JS file
+var userSchema = require('./db.user.schema').userSchema;
+
+// User Model
+var User = mongoose.model('UserM', userSchema);
+
 /********       Connecting to database + Creating user schema            **************/
 
 /** **********************************************************/
 var addUser = function(userObj) {
-    var mongoose = require('mongoose');
-    mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
-    var userSchema = require('./db.user.schema').userSchema;
-    var user = mongoose.model('UserM', userSchema);
     var conn = mongoose.connection;
     var returnedValue = -1;
 
@@ -17,7 +23,7 @@ var addUser = function(userObj) {
         console.log("Connected to db_suitemybeer........\n");
 
         /**********       Adding new user from facebook to User's collection              **********/
-        var newUser = new user({
+        var newUser = new User({
             FirstName: userObj.first_name,
             LatName: userObj.last_name,
             Email: userObj.email,
@@ -46,6 +52,8 @@ var addUser = function(userObj) {
     return returnedValue;
 
 };
+
+// Exports
 
 exports.addUser = addUser;
 

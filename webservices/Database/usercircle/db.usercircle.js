@@ -1,17 +1,12 @@
 /********       Connecting to database + Creating user schema            **************/
 var mongoose = require('mongoose');
 mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
-var circleSchema = require('./db.circle.schema.js').circleSchema;
-var Circle = mongoose.model('CircleM',circleSchema);
+var userCircleSchema = require('./db.usercircle.schema.js').userCircleSchema;
+var UserCircle = mongoose.model('UserCircleM',userCircleSchema);
 /** **********************************************************/
 
-
-
-/*****      Connection to the database ( db_suitemybeer ) *****/
-
-
-
-var addCircle = function(circleObj){
+var addUserCircle = function(userCircleObj){
+    // Connection to database ( db_suitemybeer )
     var conn = mongoose.connection;
 
     // Rest of code here
@@ -22,15 +17,15 @@ var addCircle = function(circleObj){
     conn.once('open',function(){
         console.log("Connected to db_suitemybeer\n");
 
-        /**********       Adding new Circle from facebook to User's collection              **********/
-        var newCircle = new Circle({
-
-            Title: circleObj.Title,
+        /**********       Adding new UserCircle from facebook to User's collection              **********/
+        var newUserCircle = new UserCircle({
+            UserId: userCircleObj.UserId,
+            CircleId: userCircleObj.CircleId,
         });
 
-        /**     Check if Circle already exist        **/
-        if(newCircle.isNew) {
-            newCircle.save(function (err, doc) {
+        /**     Check if UserCircle already exist        **/
+        if(newUserCircle.isNew) {
+            newUserCircle.save(function (err, doc) {
                 console.log("\n Circle was added to Circle collection " + doc);
             })
         }
