@@ -21,8 +21,6 @@ var addUser = function(userObj) {
 
     var conn = mongoose.connection;
 
-    
-      
     console.log("addUser function");
 
         /**********       Adding new user from facebook to User's collection              **********/
