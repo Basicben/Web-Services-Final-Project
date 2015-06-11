@@ -22,9 +22,10 @@ var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').a
 // User Insert API
 app.post('/api/userInsert',function(req,res){
     var lastId = 0;
-    lastId = addUser(req.body.user);
+    addUser(req.body.user);
 
     // Insert Circles.
+
     // Insert User Circles
 
     res.send("HERE " + lastId);
