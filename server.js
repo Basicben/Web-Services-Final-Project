@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var ngRoute = require('ng-route-it');
 var app = express();
 
-<<<<<<< HEAD
+
 app.use('/',express.static('./public'),function(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -13,7 +13,7 @@ console.log('listeing on server...');
 
 var addUser = require('./webservices/Database/users/db.user').addUser;
 //addUser();
-=======
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use('/',express.static('./public')).listen(process.env.PORT || 3000);
@@ -24,8 +24,7 @@ app.use( ngRoute.route() );
 
 console.log('listeing on server...');
 
-var addUser = require('./webservices/Database/users/db.user').addUser;
->>>>>>> origin/master
+
 
 // User Insert API
 app.post('/api/userInsert',function(req,res){
