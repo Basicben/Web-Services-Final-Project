@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="114d92cf-b77f-41d9-99ad-8e3625106c35" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/circles/db.circle.js" afterPath="$PROJECT_DIR$/webservices/Database/circles/db.circle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/circles/db.circle.schema.js" afterPath="$PROJECT_DIR$/webservices/Database/circles/db.circle.schema.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/users/db.user.js" afterPath="$PROJECT_DIR$/webservices/Database/users/db.user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/users/db.user.schema.js" afterPath="$PROJECT_DIR$/webservices/Database/users/db.user.schema.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.js" afterPath="$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.schema.js" afterPath="$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.schema.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js" afterPath="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Web-Services-Final-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,48 +29,18 @@
       <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1518">
+            <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="1518">
               <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.user.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.js">
+      <file leaf-file-name="db.userfriends.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1154" max-vertical-offset="2068">
-              <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.user.schema.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.schema.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47260273" vertical-offset="10" max-vertical-offset="594">
-              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.userfriendconnection.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="1056">
-              <caret line="3" column="94" selection-start-line="3" selection-start-column="94" selection-end-line="3" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.userfriendconnection.schema.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.schema.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="374">
-              <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+            <state vertical-scroll-proportion="-0.07534247" vertical-offset="330" max-vertical-offset="1364">
+              <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -114,10 +79,10 @@
         <option value="$PROJECT_DIR$/webservices/Database/userevent/db.userevent.js" />
         <option value="$PROJECT_DIR$/webservices/Database/circles/db.circle.js" />
         <option value="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.schema.js" />
-        <option value="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js" />
         <option value="$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.js" />
         <option value="$PROJECT_DIR$/webservices/Database/users/db.user.js" />
         <option value="$PROJECT_DIR$/webservices/Database/users/db.user.schema.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js" />
       </list>
     </option>
   </component>
@@ -225,6 +190,28 @@
               <option name="myItemId" value="Database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userfriends" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web-Services-Final-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Web-Services-Final-Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webservices" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -308,7 +295,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1378" height="744" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -580,14 +567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0924658" vertical-offset="0" max-vertical-offset="858">
-          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webservices/Database/usercategoryfriend/db.usercategoryfriend.schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
@@ -641,26 +620,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/circles/db.circle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1034">
-          <caret line="0" column="56" selection-start-line="0" selection-start-column="56" selection-end-line="0" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="440">
           <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67808217" vertical-offset="660" max-vertical-offset="1364">
-          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -673,9 +636,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="528">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="814">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/circles/db.circle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67808217" vertical-offset="264" max-vertical-offset="1034">
+          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.510274" vertical-offset="670" max-vertical-offset="1584">
+          <caret line="44" column="21" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="1056">
+        <state vertical-scroll-proportion="-0.46234676" vertical-offset="330" max-vertical-offset="1056">
           <caret line="3" column="94" selection-start-line="3" selection-start-column="94" selection-end-line="3" selection-end-column="94" />
           <folding />
         </state>
@@ -683,24 +678,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1518">
+        <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="1518">
           <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.js">
+    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1154" max-vertical-offset="2068">
-          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.schema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47260273" vertical-offset="10" max-vertical-offset="594">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        <state vertical-scroll-proportion="-0.07534247" vertical-offset="330" max-vertical-offset="1364">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
           <folding />
         </state>
       </provider>

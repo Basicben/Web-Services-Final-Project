@@ -11,7 +11,7 @@ var UserFriend = mongoose.model('UserFriendM',userFriendsSchema);
  *
  * @param userFriendObj - object of user's friend from facebook
  * @returns: True - if userFriend was added to UserFriend collection
- *           False - if userFriend was not added or userFriend is already exist in collection
+ *           False - if userFriend wasn't added or userFriend is already exist in collection
  */
 var addUserFriend = function(userFriendObj){
     mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
