@@ -1,12 +1,14 @@
 // mongoose connection
 var mongoose = require('mongoose');
 
-
 // Require user schema JS file
 var userSchema = require('./db.user.schema').userSchema;
 
+// Require for circle functions
+var addCircle = require('./webservices/Database/circles/db.circle').addCircle;
+
 // User Model
-var User = mongoose.model('UserM', userSchema);
+var User = mongoose.model('User', userSchema);
 
 /********       Connecting to database + Creating user schema            **************/
 
@@ -14,8 +16,7 @@ var User = mongoose.model('UserM', userSchema);
 var addUser = function(userObj) {
     mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
     var conn = mongoose.connection;
-    var returnedValue = -1;
-    console.log("inside addUser");
+    console.log("addUser function");
 
     conn.on('error', function (err) {
         console.log('Connection to the database as failed ' + err);
@@ -35,22 +36,32 @@ var addUser = function(userObj) {
             FacebookId: userObj.id,
             Gender: userObj.gender
         });
+
         console.log("New user: ", newUser);
 
-        /**     Check if user already exist        **/
         if (newUser.isNew) {
             newUser.save(function (err, doc) {
                 console.log("\nUser was added to User collection " + doc);
                 // Get User Generated ID
-                returnedValue = newUser._id;
-            })
+                console.log('doc._id',doc._id);
+                
+            });
+
+            addCircle(newUser.HomeTown);
+            addCircle(newUser.Gender);
+
+
         }
 
-        console.log(returnedValue);
+        
+
+        mongoose.disconnect();
+
+        /**     Check if user already exist        **/
+        
     });
 
-    mongoose.disconnect();
-    return returnedValue;
+    
 
 };
 
