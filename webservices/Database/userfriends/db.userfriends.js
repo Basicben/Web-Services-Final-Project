@@ -1,7 +1,7 @@
 /********       Connecting to database + Creating user schema            **************/
 var mongoose = require('mongoose');
 mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
-var userFriendSchema = require('./db.userfriend.schema.js').userFriendSchema;
+var userFriendSchema = require('./db.userfriends.schema').userFriendSchema;
 var UserFriend = mongoose.model('UserFriendM',userFriendSchema);
 /** **********************************************************/
 
@@ -28,7 +28,7 @@ var addUserFriend = function(userFriendObj){
             LastName:userFriendObj.LastName,
             MediumProfilePicture:userFriendObj.MediumProfilePicture,
             HomeTown:userFriendObj.HomeTown,
-            SocialPrivateId:userFriendObj.SocialPrivateId,
+            SocialPrivateId:userFriendObj.SocialPrivateId
         });
 
         /**     Check if Circle already exist        **/
@@ -38,5 +38,5 @@ var addUserFriend = function(userFriendObj){
             })
         }
     });
-
-}
+    mongoose.disconnect();
+};

@@ -8,8 +8,8 @@ var userFriendSchema = new schema({
     LastName: String,
     MediumProfilePicture: String,
     HomeTown: String,
-    SocialPrivateId: Number,
-},{collection: 'Circles'});
+    SocialPrivateId: Number
+},{collection: 'UserFriends'});
 
 //Export
 exports.userFriendSchema = userFriendSchema;

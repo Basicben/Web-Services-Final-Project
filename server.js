@@ -14,10 +14,10 @@ app.use( ngRoute.route() );
 console.log('listenning on server...');
 
 var addUser = require('./webservices/Database/users/db.user').addUser;
-var addUserFriend = require('./webservices/Database/users/db.userfriend').addUserFriend;
-var addCircle = require('./webservices/Database/users/db.circle').addCircle;
-var addUserCircle = require('./webservices/Database/users/db.usercircle').addUserCircle;
-
+/*var addUserFriend = require('./webservices/Database/userfriends/db.userfriends').addUserFriend;
+var addCircle = require('./webservices/Database/circles/db.circle').addCircle;
+var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').addUserCircle;
+*/
 
 // User Insert API
 app.post('/api/userInsert',function(req,res){

@@ -7,7 +7,6 @@ var USER = {
         email: "benari_kutai@yahoo.com",
         first_name: "Ben Ari",
         gender: "male",
-        birthday: "05/25/1989",
         hometown: {
             id: "102184499823699",
             name: "Montreal, Quebec"
@@ -25,7 +24,7 @@ var USER = {
         smallProfilePicture: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p40x40/1610834_10152823206274410_2045878086116312477_n.jpg?oh=a4743f1ef762de4734ed3a7b2434a78e&oe=55E88EC0&__gda__=1442821295_ac942cc9712dc12de7d91f4e23ac7e8c",
         timezone: 3,
         updated_time: "2015-06-05T18:00:17+0000",
-        verified: true,
+        verified: true
 
 };
 
