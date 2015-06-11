@@ -1,13 +1,9 @@
 // mongoose connection
 var mongoose = require('mongoose');
-
-
-
 // Require user schema JS file
 var userSchema = require('./db.user.schema').userSchema;
 // Circle
 var addCircle = require('../circles/db.circle').addCircle;
-
 // User Model
 var User = mongoose.model('UserM', userSchema);
 
@@ -37,14 +33,16 @@ var addUser = function(userObj) {
 
     if (newUser.isNew) {
         newUser.save(function (err, doc) {
-        if(err){
-            console.log("err",err);
-            mongoose.disconnect();
-        }else{
-            console.log("\nUser was added to User collection ");
-            // add circles.
-            addCircle(newUser.HomeTown,doc._id);
-            addCircle(newUser.Gender,doc._id); 
+            if(err){
+                console.log("err",err);
+                mongoose.disconnect();
+                //return false;
+            }else{
+                console.log("\nUser was added to User collection ");
+                // add circles.
+                addCircle(newUser.HomeTown,doc._id);
+                addCircle(newUser.Gender,doc._id); 
+                //return true;
             }                
         });
     }

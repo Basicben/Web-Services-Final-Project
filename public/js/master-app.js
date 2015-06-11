@@ -51,7 +51,7 @@ suiteApp .config(['$routeProvider','$locationProvider',
     });
 }]);
 
-suiteApp.controller('masterCntrl', function($scope,$http) {
+suiteApp.controller('masterCntrl', function($scope,$http,$location) {
      
      // Connected user object.
     $scope.connectedUser = null;
@@ -67,16 +67,22 @@ suiteApp.controller('masterCntrl', function($scope,$http) {
 
         $scope.connectedUser = USER;
         console.log('USER',USER);
-        $http.post('http://localhost:3000/api/userInsert', { user:$scope.connectedUser } ).
+        $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available
-                console.log('Success : data',data);
+                console.log('Success : data', data);
+                // We should get return value of this api function in order to know
+                // if user has signed up or not
+                $location.path('home');
+
               }).
               error(function(data, status, headers, config) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
                 console.log('Error : status');
+                // Redirect user back to login page
+                $location.path('signup');
               });        
 
 
