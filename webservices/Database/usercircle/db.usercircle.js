@@ -4,14 +4,14 @@ var userCircleSchema = require('./db.usercircle.schema').userCircleSchema;
 var UserCircle = mongoose.model('UserCircleM',userCircleSchema);
 /** **********************************************************/
 
-var addUserCircle = function(userCircleObj,userId){
+var addUserCircle = function(userCircleId,userId){
     // Connection to database ( db_suitemybeer )
         console.log("Connected to db_suitemybeer/userCircleTable\n");
         
         /**********       Adding new UserCircle from facebook to User's collection              **********/
         var newUserCircle = new UserCircle({
             UserId: userId,
-            CircleId: userCircleObj._id
+            CircleId: userCircleId
         });
 
         console.log('newUserCircle',newUserCircle);
@@ -22,10 +22,9 @@ var addUserCircle = function(userCircleObj,userId){
                 if(err){
                     console.log("err",err);
                 }else{
-                    console.log("\n UserCircle was added to UserCircle collection " + doc);    
+                    console.log("\nUserCircle was added to UserCircle collection ");    
                 }
-                
-            })
+            });
         }
 };
 

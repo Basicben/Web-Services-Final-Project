@@ -24,11 +24,19 @@ var addCircle = function(circleTitle, userId){
         if(newCircle.isNew){
             newCircle.save(function (err, doc) {
                 if(err){
-                    console.log("err",err);
+                    // Find the specific id
+                    var query = Circle.findOne().where('Title',circleTitle);
+                    query.exec(function(err,doc){
+                        console.log('doc.Id', doc._id);
+                        addUserCircle(doc._id,userId);
+                    });
+
+                    //addUserCircle(newCircle,userId);
                 }else{
                     console.log("\n Circle was added to Circle collection ");
+                    addUserCircle(newCircle._id,userId);
                 }
-                addUserCircle(newCircle,userId);
+                
             });
         }
 

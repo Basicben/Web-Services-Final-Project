@@ -6,10 +6,10 @@ var USER = {
         birthday: "05/25/1989",
         email: "benari_kutai@yahoo.com",
         first_name: "Ben Ari",
-        gender: "male",
+        gender: "Male",
         hometown: {
             id: "102184499823699",
-            name: "Montreal, Quebec"
+            name: "Quebec, Montreal"
         },
         last_name: "Kutai",
         link: "https://www.facebook.com/app_scoped_user_id/10153356515014410/",

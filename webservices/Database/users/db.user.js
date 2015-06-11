@@ -39,6 +39,7 @@ var addUser = function(userObj) {
         newUser.save(function (err, doc) {
         if(err){
             console.log("err",err);
+            mongoose.disconnect();
         }else{
             console.log("\nUser was added to User collection ");
             // add circles.
