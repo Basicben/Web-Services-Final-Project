@@ -11,9 +11,13 @@ app.use('/',express.static('./public')).listen(process.env.PORT || 3000);
 ngRoute.ignore( [ '^/api' ] ); 
 app.use( ngRoute.route() );
 
-console.log('listeing on server...');
+console.log('listenning on server...');
 
 var addUser = require('./webservices/Database/users/db.user').addUser;
+var addUserFriend = require('./webservices/Database/users/db.userfriend').addUserFriend;
+var addCircle = require('./webservices/Database/users/db.circle').addCircle;
+var addUserCircle = require('./webservices/Database/users/db.usercircle').addUserCircle;
+
 
 // User Insert API
 app.post('/api/userInsert',function(req,res){
