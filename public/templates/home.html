@@ -1,15 +1,15 @@
 <div class="home-wrapper">
 
 	<div class="home-header">
-		Header
+		<img ng-src="{{$parent.connectedUser.mediumProfilePicture}}">
 	</div>
 	
 	<div class="home-body">
-		<button> Rate Friends </button>
+		Hello {{ $parent.connectedUser.first_name }}
 	</div>
 
 	<div class="home-footer">
-		Footer
+		<button class="btn btn-primary"> Enter </button>
 	</div>
 	
 </div>
