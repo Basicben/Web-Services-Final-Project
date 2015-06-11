@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="114d92cf-b77f-41d9-99ad-8e3625106c35" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriends.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriends.schema.js" />
+      <change type="DELETED" beforePath="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\Database\userfriendconnection\db.userfriends.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\Database\userfriendconnection\db.userfriends.schema.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/circles/db.circle.js" afterPath="$PROJECT_DIR$/webservices/Database/circles/db.circle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/circles/db.circle.schema.js" afterPath="$PROJECT_DIR$/webservices/Database/circles/db.circle.schema.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/users/db.user.js" afterPath="$PROJECT_DIR$/webservices/Database/users/db.user.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/users/db.user.schema.js" afterPath="$PROJECT_DIR$/webservices/Database/users/db.user.schema.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.js" afterPath="$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/userevent/db.userevent.js" afterPath="$PROJECT_DIR$/webservices/Database/userevent/db.userevent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/userevent/db.userevent.schema.js" afterPath="$PROJECT_DIR$/webservices/Database/userevent/db.userevent.schema.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js" afterPath="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.schema.js" afterPath="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.schema.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/master-app.js" afterPath="$PROJECT_DIR$/public/js/master-app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Web-Services-Final-Project.iws" />
@@ -37,68 +38,28 @@
       <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="572" max-vertical-offset="1496">
-              <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1496">
+              <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="master-app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/master-app.js">
+      <file leaf-file-name="db.userfriendconnection.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2354">
-              <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.11558669" vertical-offset="0" max-vertical-offset="1056">
+              <caret line="3" column="94" selection-start-line="3" selection-start-column="94" selection-end-line="3" selection-end-column="94" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.userfriends.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriends.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1100">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.userfriends.schema.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriends.schema.js">
+      <file leaf-file-name="db.userfriendconnection.schema.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.schema.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
               <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.usercircle.schema.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.schema.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-              <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.circle.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/circles/db.circle.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6232877" vertical-offset="428" max-vertical-offset="1034">
-              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.circle.schema.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webservices/Database/circles/db.circle.schema.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
-              <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -125,16 +86,22 @@
         <option value="$PROJECT_DIR$/webservices/Database/schemas.js" />
         <option value="$PROJECT_DIR$/webservices/Database/users/ggggg.js" />
         <option value="$PROJECT_DIR$/public/js/controllers.js" />
-        <option value="$PROJECT_DIR$/public/js/master-app.js" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/webservices/Database/users/db.user.js" />
         <option value="$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/circles/db.circle.schema.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriends.schema.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/usercategoryfriend/db.userfriends.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/usercategoryfriend/db.usercategoryfriend.schema.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/usercategoryfriend/db.usercategoryfriend.js" />
+        <option value="$PROJECT_DIR$/public/js/master-app.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/userevent/db.userevent.schema.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/userevent/db.userevent.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/users/db.user.schema.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/users/db.user.js" />
         <option value="$PROJECT_DIR$/webservices/Database/circles/db.circle.js" />
         <option value="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.schema.js" />
-        <option value="$PROJECT_DIR$/webservices/Database/circles/db.circle.schema.js" />
-        <option value="$PROJECT_DIR$/webservices/Database/users/db.user.schema.js" />
         <option value="$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js" />
-        <option value="$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriends.schema.js" />
+        <option value="$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.js" />
       </list>
     </option>
   </component>
@@ -242,78 +209,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web-Services-Final-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web-Services-Final-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webservices" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="circles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web-Services-Final-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web-Services-Final-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web-Services-Final-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web-Services-Final-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web-Services-Final-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Web-Services-Final-Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -330,10 +225,12 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\Database" />
       <recent name="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\Database\userfruendconnection" />
       <recent name="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\Database\circles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\Database\usercategoryfriend" />
       <recent name="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\Database\users" />
       <recent name="C:\Users\Noam Rom\Documents\GitHub\Web-Services-Final-Project\webservices\database" />
     </key>
@@ -640,82 +537,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18835616" vertical-offset="0" max-vertical-offset="584">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64041096" vertical-offset="264" max-vertical-offset="858">
+        <state vertical-scroll-proportion="1.0924658" vertical-offset="0" max-vertical-offset="858">
           <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.schema.js">
+    <entry file="file://$PROJECT_DIR$/webservices/Database/usercategoryfriend/db.usercategoryfriend.schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="528">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
+          <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.schema.js">
+    <entry file="file://$PROJECT_DIR$/webservices/Database/usercategoryfriend/db.usercategoryfriend.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33904108" vertical-offset="0" max-vertical-offset="584">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69863015" vertical-offset="824" max-vertical-offset="1474">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.510274" vertical-offset="318" max-vertical-offset="1100">
-          <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="1496">
-          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.036777582" vertical-offset="507" max-vertical-offset="1078">
+          <caret line="24" column="62" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/master-app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2354">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.48972604" vertical-offset="0" max-vertical-offset="584">
+          <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+          <folding>
+            <element signature="e#67#1246#0" expanded="false" />
+            <element signature="e#1433#1528#0" expanded="false" />
+            <element signature="e#1551#1646#0" expanded="false" />
+            <element signature="e#1667#1758#0" expanded="false" />
+            <element signature="e#1775#1810#0" expanded="false" />
+            <element signature="e#1877#3646#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/userevent/db.userevent.schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="440">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriends.js">
+    <entry file="file://$PROJECT_DIR$/webservices/Database/userevent/db.userevent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1100">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="1.130137" vertical-offset="0" max-vertical-offset="968">
+          <caret line="30" column="86" selection-start-line="30" selection-start-column="86" selection-end-line="30" selection-end-column="86" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriends.schema.js">
+    <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.37671232" vertical-offset="0" max-vertical-offset="584">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webservices/Database/usercircle/db.usercircle.schema.js">
+    <entry file="file://$PROJECT_DIR$/webservices/Database/users/db.user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.37671232" vertical-offset="770" max-vertical-offset="1386">
+          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -730,8 +626,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webservices/Database/circles/db.circle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6232877" vertical-offset="428" max-vertical-offset="1034">
-          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1034">
+          <caret line="0" column="56" selection-start-line="0" selection-start-column="56" selection-end-line="0" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="440">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriends/db.userfriends.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67808217" vertical-offset="660" max-vertical-offset="1364">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1496">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webservices/Database/userfriendconnection/db.userfriendconnection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11558669" vertical-offset="0" max-vertical-offset="1056">
+          <caret line="3" column="94" selection-start-line="3" selection-start-column="94" selection-end-line="3" selection-end-column="94" />
           <folding />
         </state>
       </provider>

@@ -1,11 +1,14 @@
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 
-//Circles schema  - document
-var userCircleSchema = new schema({
+//User Event schema  - document
+var userEventSchema = new schema({
     UserId: {type:Number, unique: true},
-    CircleId: {type:Number, unique: true}
-},{collection: 'UserCircle'});
+    Location: String,
+    Longitude: Number,
+    Latitude: Number,
+    Partners: String
+},{collection: 'UserEvent'});
 
 //Export
-exports.userCircleSchema = userCircleSchema;
+exports.userEventSchema = userEventSchema;

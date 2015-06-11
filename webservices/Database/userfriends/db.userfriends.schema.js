@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 
-//Circles schema  - document
-var userFriendSchema = new schema({
+//User's Friends schema  - document
+var userFriendsSchema = new schema({
     FirstName: String,
     LastName: String,
     MediumProfilePicture: String,
@@ -11,4 +11,4 @@ var userFriendSchema = new schema({
 },{collection: 'UserFriends'});
 
 //Export
-exports.userFriendSchema = userFriendSchema;
+exports.userFriendSchema = userFriendsSchema;

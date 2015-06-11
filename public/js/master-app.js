@@ -49,8 +49,6 @@ suiteApp .config(['$routeProvider','$locationProvider',
     otherwise({
             redirectTo: '/'
     });
-
-    
 }]);
 
 suiteApp.controller('masterCntrl', function($scope,$http) {

@@ -1,7 +1,6 @@
 // mongoose connection
 var mongoose = require('mongoose');
 
-
 // Require user schema JS file
 var userSchema = require('./db.user.schema').userSchema;
 
@@ -22,7 +21,7 @@ var addUser = function(userObj) {
     });
 
     conn.once('open', function () {
-        console.log("Connected to db_suitemybeer........\n");
+        console.log("Connected to db_suitemybeer/users\n");
 
         /**********       Adding new user from facebook to User's collection              **********/
         var newUser = new User({
@@ -45,17 +44,14 @@ var addUser = function(userObj) {
                 returnedValue = newUser._id;
             })
         }
-
         console.log(returnedValue);
     });
 
     mongoose.disconnect();
     return returnedValue;
-
 };
 
 // Exports
-
 exports.addUser = addUser;
 
 

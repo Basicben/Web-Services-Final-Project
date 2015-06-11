@@ -1,12 +1,12 @@
-/********       Connecting to database + Creating user schema            **************/
+/********       Connecting to database + Creating user event schema            **************/
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
-var userCircleSchema = require('./db.usercircle.schema.js').userCircleSchema;
-var UserCircle = mongoose.model('UserCircleM',userCircleSchema);
+var userEventSchema = require('./db.userevent.schema').userCircleSchema;
+var UserEvent = mongoose.model('UserEventM',userEventSchema);
 /** **********************************************************/
 
-var addUserCircle = function(userCircleObj){
+var addUserEvent = function(userEventObj){
     // Connection to database ( db_suitemybeer )
+    mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
     var conn = mongoose.connection;
 
     // Rest of code here
@@ -15,20 +15,25 @@ var addUserCircle = function(userCircleObj){
     });
 
     conn.once('open',function(){
-        console.log("Connected to db_suitemybeer\n");
+        console.log("Connected to db_suitemybeer/userevent\n");
 
-        /**********       Adding new UserCircle from facebook to User's collection              **********/
-        var newUserCircle = new UserCircle({
-            UserId: userCircleObj.UserId,
-            CircleId: userCircleObj.CircleId,
+        /**********       Adding new UserEvent from facebook to User's collection              **********/
+        var newUserEvent = new UserEvent({
+            UserId: userEventObj.UserId,
+            Location: userEventObj.Location,
+            Longitude: userEventObj.Longitude,
+            Latitude: userEventObj.Latitude,
+            Partners: userEventObj.Partners
         });
 
-        /**     Check if UserCircle already exist        **/
-        if(newUserCircle.isNew) {
-            newUserCircle.save(function (err, doc) {
-                console.log("\n Circle was added to Circle collection " + doc);
+        /**     Adding UserEvent      **/
+            newUserEvent.save(function (err, doc) {
+                console.log("\n User event was added to UserEvent collection " + doc);
             })
-        }
     });
 
-}
+};
+
+// Exports
+
+exports.addUserEvent = addUserEvent;

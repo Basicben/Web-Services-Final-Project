@@ -1,4 +1,4 @@
-/********       Connecting to database + Creating user schema            **************/
+/********       Connecting to database + Creating Circle schema            **************/
 var mongoose = require('mongoose');
 var circleSchema = require('./db.circle.schema').circleSchema;
 var Circle = mongoose.model('CircleM',circleSchema);
