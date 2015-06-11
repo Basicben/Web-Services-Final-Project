@@ -7,8 +7,12 @@ var userSchema = new schema({
     FirstName: String,
     LatName: String,
     Email: {type:  String, unique: true},
-    ProfilePic: String,
-    HomeTown: String
+    MediumProfilePic: String,
+    SmallProfilePic: String,
+    HomeTown: String,
+    FacebookId: Number,
+    Gender: String,
+   
 },{collection: 'Users'});
 
 //Circles schema  - document
