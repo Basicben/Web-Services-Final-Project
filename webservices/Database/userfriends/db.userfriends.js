@@ -27,7 +27,7 @@ var addUserFriend = function(userFriendObj){
         console.log("Connected to db_suitemybeer/userFriendsTable\n");
 
         //Check if friend exist already in the database
-       query = UserFriend.find({SocialPrivateId: userFriendObj.SocialPrivateId });
+       query = UserFriend.find().where('SocialPrivateId',userFriendObj.SocialPrivateId);
 
         /**********       Adding new UserFriend from facebook to User's collection              **********/
             if(query == null){//If friend does not exist, add him
