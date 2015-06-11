@@ -3,7 +3,7 @@ var schema = mongoose.Schema;
 
 //Circles schema  - document
 var circleSchema = new schema({
-    Title: String
+    Title: {type: String, unique: true}
 },{collection: 'Circles'});
 
 //Export

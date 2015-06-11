@@ -2,6 +2,8 @@
 var mongoose = require('mongoose');
 var circleSchema = require('./db.circle.schema').circleSchema;
 var Circle = mongoose.model('CircleM',circleSchema);
+// User Circle
+var addUserCircle = require('../usercircle/db.usercircle').addUserCircle;
 /** **********************************************************/
 
 
@@ -10,31 +12,29 @@ var Circle = mongoose.model('CircleM',circleSchema);
 
 
 
-var addCircle = function(circleObj){
-    mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
-    var conn = mongoose.connection;
-
-    // Rest of code here
-    conn.on('error',function(err){
-        console.log('connection error' + err);
-    });
-
-    conn.once('open',function(){
-        console.log("Connected to db_suitemybeer\n");
+var addCircle = function(circleTitle, userId){
+        
 
         /**********       Adding new Circle from facebook to User's collection              **********/
         var newCircle = new Circle({
-            Title: circleObj.Title
+            Title: circleTitle
         });
 
         /**     Check if Circle already exist        **/
-        if(newCircle.isNew) {
+        if(newCircle.isNew){
             newCircle.save(function (err, doc) {
-                console.log("\n Circle was added to Circle collection " + doc);
-            })
+                if(err){
+                    console.log("err",err);
+                }else{
+                    console.log("\n Circle was added to Circle collection ");
+                }
+                addUserCircle(newCircle,userId);
+            });
         }
-    });
-    mongoose.disconnect();
+
+        
+
+        
 };
 
 // Exports
