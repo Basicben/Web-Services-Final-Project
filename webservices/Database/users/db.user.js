@@ -58,6 +58,4 @@ var addUser = function(userObj) {
 
 exports.addUser = addUser;
 
-/*****      Connection to the database ( db_suitemybeer ) *****/
-
 

@@ -1,7 +1,6 @@
 /********       Connecting to database + Creating user schema            **************/
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
-var circleSchema = require('./db.circle.schema.js').circleSchema;
+var circleSchema = require('./db.circle.schema').circleSchema;
 var Circle = mongoose.model('CircleM',circleSchema);
 /** **********************************************************/
 
@@ -12,6 +11,7 @@ var Circle = mongoose.model('CircleM',circleSchema);
 
 
 var addCircle = function(circleObj){
+    mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
     var conn = mongoose.connection;
 
     // Rest of code here
@@ -24,8 +24,7 @@ var addCircle = function(circleObj){
 
         /**********       Adding new Circle from facebook to User's collection              **********/
         var newCircle = new Circle({
-
-            Title: circleObj.Title,
+            Title: circleObj.Title
         });
 
         /**     Check if Circle already exist        **/
@@ -35,5 +34,9 @@ var addCircle = function(circleObj){
             })
         }
     });
+    mongoose.disconnect();
+};
 
-}
+// Exports
+
+exports.addCircle = addCircle;
