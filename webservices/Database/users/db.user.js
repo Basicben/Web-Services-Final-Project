@@ -7,10 +7,9 @@ var addCircle = require('../circles/db.circle').addCircle;
 // User Model
 var User = mongoose.model('UserM', userSchema);
 
-/********       Connecting to database + Creating user schema            **************/
-
-/** **********************************************************/
-var addUser = function(userObj) {
+// Add user function
+var addUser = function(userObj,callback) {
+    // Connect if not connected already
     if(!mongoose.connection.readyState){
         mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");    
     }
@@ -19,7 +18,7 @@ var addUser = function(userObj) {
 
     console.log("addUser function");
 
-        /**********       Adding new user from facebook to User's collection              **********/
+        // Adding new user from facebook to User's collection
     var newUser = new User({
         FirstName: userObj.first_name,
         LastName: userObj.last_name,
@@ -34,25 +33,26 @@ var addUser = function(userObj) {
     if (newUser.isNew) {
         newUser.save(function (err, doc) {
             if(err){
-                console.log("err",err);
-                mongoose.disconnect();
-                //return false;
+                if(err.code == 11000){
+                    // If here, the problem is a duplicated user (Email)
+                    var query = User.findOne().where('Email',newUser.Email);
+                    query.exec(function(err,user){
+                        callback(user);
+                    });
+                }else{
+                    mongoose.disconnect();   
+                    callback(null);
+                }
+                
             }else{
                 console.log("\nUser was added to User collection ");
                 // add circles.
                 addCircle(newUser.HomeTown,doc._id);
-                addCircle(newUser.Gender,doc._id); 
-                //return true;
+                addCircle(newUser.Gender,doc._id);
+                callback(newUser);
             }                
         });
     }
-
-        
-
-        /**     Check if user already exist        **/
-        
-
-    
 
 };
 

@@ -21,11 +21,12 @@ var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').a
 
 // User Insert API
 app.post('/api/userInsert',function(req,res){
-    var isSign = false;
 
-    isSign = addUser(req.body.user);
-
-    res.send("booom");
+    addUser(req.body.user,function(newUser){
+        // Callback function.
+        res.json(newUser);
+    });
+    
 });
 
 // User Friends Insert API

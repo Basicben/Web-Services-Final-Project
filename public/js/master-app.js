@@ -4,7 +4,7 @@ var USER = {
 
         id: "10153356515014410",
         birthday: "05/25/1989",
-        email: "benari_kutai@yahoo.com",
+        email: "benari13242_kutai@yahoo.com",
         first_name: "Ben Ari",
         gender: "Male",
         hometown: {
@@ -65,16 +65,20 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         console.log('add user from fb');
 
-        $scope.connectedUser = USER;
         console.log('USER',USER);
         $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available
                 console.log('Success : data', data);
-                // We should get return value of this api function in order to know
                 // if user has signed up or not
-                $location.path('home');
+                if(data == null){
+                    $location.path('signup');
+                }else{
+                    $scope.connectedUser = data;
+                    $location.path('home');
+                    console.log('$scope.connectedUser',$scope.connectedUser);
+                }
 
               }).
               error(function(data, status, headers, config) {
