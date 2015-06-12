@@ -1,4 +1,4 @@
-// mongoose connection
+// mongoose Connection
 var mongoose = require('mongoose');
 // Require user schema JS file
 var userSchema = require('./db.user.schema').userSchema;
@@ -43,7 +43,10 @@ var addUser = function(userObj,callback) {
                     mongoose.disconnect();   
                     callback(null);
                 }
-                
+            
+                console.log("err",err);
+                mongoose.disconnect();
+                //return false;
             }else{
                 console.log("\nUser was added to User collection ");
                 // add circles.
