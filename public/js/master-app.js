@@ -42,6 +42,10 @@ suiteApp .config(['$routeProvider','$locationProvider',
             templateUrl: 'templates/signup.html',
             controller: 'signupCntrl'
     }).
+    when('/welcome', {
+            templateUrl: 'templates/welcome.html',
+            controller: 'welcomeCntrl'
+    }).
     when('/home', {
             templateUrl: 'templates/home.html',
             controller: 'homeCntrl'
@@ -76,8 +80,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
                     $location.path('signup');
                 }else{
                     $scope.connectedUser = data;
-                    $location.path('home');
-                    console.log('$scope.connectedUser',$scope.connectedUser);
+                    $location.path('welcome');
                 }
 
               }).

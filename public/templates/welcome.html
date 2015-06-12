@@ -1,0 +1,15 @@
+<div class="welcome-wrapper">
+
+	<div class="welcome-header">
+		<img ng-src="{{$parent.connectedUser.MediumProfilePicture}}">
+	</div>
+	
+	<div class="welcome-body">
+		Hello {{ $parent.connectedUser.FirstName }}
+	</div>
+
+	<div class="welcome-footer">
+		<button class="btn btn-primary" ng-click="enterApp()"> Enter </button>
+	</div>
+	
+</div>
