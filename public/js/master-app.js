@@ -2,7 +2,7 @@ var suiteApp = angular.module('suiteApp',['ngRoute']);
 
 var USER = 
 
-{
+/*{
 
         id: "10153356515014410",
         birthday: "05/25/1989",
@@ -28,7 +28,7 @@ var USER =
         updated_time: "2015-06-05T18:00:17+0000",
         verified: true
 
-};
+};*/
 
 suiteApp .config(['$routeProvider','$locationProvider',
     function($routeProvider,$locationProvider) {
@@ -73,7 +73,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         console.log('window.location.origin',window.location.origin);
 
-        /*
+        /**/
         facebookLogin(function(){
             console.log('USER',USER);
             $http.post(window.location.origin + '/api/userInsert', { user:USER } ).
@@ -98,9 +98,9 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
                 // Redirect user back to login page
                 $location.path('signup');
               });       
-        });*/
+        });/**/
 
-        /* API CALL IN LOCALHOST */
+        /* API CALL IN LOCALHOST
         $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
