@@ -22,7 +22,7 @@ var addUser = function(userObj,callback) {
 
         // Adding new user from facebook to User's collection
     var newUser = new User({
-        FirstName: userObj.first_name ? == null ? null : userObj.first_name,
+        FirstName: userObj.first_name == null ? null : userObj.first_name,
         LastName: userObj.last_name == null ? null : userObj.last_name,
         Email: userObj.email == null ? null : userObj.email,
         MediumProfilePicture: userObj.mediumProfilePicture,
