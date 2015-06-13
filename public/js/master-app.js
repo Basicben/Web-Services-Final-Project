@@ -71,8 +71,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         console.log('USER',USER);
 
-        console.log('$location.url()',$location.url());
-        console.log('$location.path()',$location.path());
+        console.log('window.location.origin',window.location.origin);
 
         $http.post('https://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
