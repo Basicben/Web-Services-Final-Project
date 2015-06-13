@@ -70,7 +70,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
         console.log('add user from fb');
 
         console.log('USER',USER);
-        $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
+        $http.post('https://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available
