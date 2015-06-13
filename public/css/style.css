@@ -1,3 +1,13 @@
+#wrapper{
+  width: 980px;
+  display: block;
+  margin:0 auto;
+}
+
+.clear{
+  clear: both;
+}
+
 /**** Start Of iPhone Screens ***/
 
 /* ----------- iPhone 4 and 4S ----------- */

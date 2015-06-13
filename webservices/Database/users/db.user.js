@@ -40,12 +40,10 @@ var addUser = function(userObj,callback) {
                         callback(user);
                     });
                 }else{
-                    mongoose.disconnect();   
                     callback(null);
                 }
             
                 console.log("err",err);
-                mongoose.disconnect();
                 //return false;
             }else{
                 console.log("\nUser was added to User collection ");
