@@ -75,7 +75,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         facebookLogin(function(){
             console.log('USER',USER);
-            $http.post(window.location.origin+'/api/userInsert', { user:USER } ).
+            $http.post(window.location.origin + '/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available
@@ -83,6 +83,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
                 // if user has signed up or not
                 if(data == null){
                     $location.path('signup');
+                    console.log('data',data);
                 }else{
                     $scope.connectedUser = data;
                     $location.path('welcome');
