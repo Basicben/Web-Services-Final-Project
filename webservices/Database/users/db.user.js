@@ -18,16 +18,18 @@ var addUser = function(userObj,callback) {
 
     console.log("addUser function");
 
+
+
         // Adding new user from facebook to User's collection
     var newUser = new User({
-        FirstName: userObj.first_name,
-        LastName: userObj.last_name,
-        Email: userObj.email,
+        FirstName: userObj.first_name ? == null ? null : userObj.first_name,
+        LastName: userObj.last_name == null ? null : userObj.last_name,
+        Email: userObj.email == null ? null : userObj.email,
         MediumProfilePicture: userObj.mediumProfilePicture,
         SmallProfilePicture: userObj.smallProfilePicture,
-        HomeTown: userObj.hometown.name,
-        FacebookId: userObj.id,
-        Gender: userObj.gender
+        HomeTown: userObj.hometown == null ? null  : userObj.hometown.name,
+        Gender: userObj.gender == null ? null : userObj.gender,
+        FacebookId: userObj.id
     });
 
     if (newUser.isNew) {
