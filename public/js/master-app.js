@@ -1,6 +1,8 @@
 var suiteApp = angular.module('suiteApp',['ngRoute']);
 
-var USER = {
+var USER = null;
+
+/*{
 
         id: "10153356515014410",
         birthday: "05/25/1989",
@@ -26,7 +28,7 @@ var USER = {
         updated_time: "2015-06-05T18:00:17+0000",
         verified: true
 
-};
+};*/
 
 suiteApp .config(['$routeProvider','$locationProvider',
     function($routeProvider,$locationProvider) {
@@ -69,10 +71,34 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         console.log('add user from fb');
 
-        console.log('USER',USER);
-
         console.log('window.location.origin',window.location.origin);
 
+        facebookLogin(function(){
+            console.log('USER',USER);
+            $http.post(window.location.origin+'/api/userInsert', { user:USER } ).
+              success(function(data, status, headers, config) {
+                // this callback will be called asynchronously
+                // when the response is available
+                console.log('Success : data', data);
+                // if user has signed up or not
+                if(data == null){
+                    $location.path('signup');
+                }else{
+                    $scope.connectedUser = data;
+                    $location.path('welcome');
+                }
+
+              }).
+              error(function(data, status, headers, config) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('Error : status', status);
+                // Redirect user back to login page
+                $location.path('signup');
+              });       
+        });
+
+        /* API CALL IN LOCALHOST
         $http.post(window.location.origin+'/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
@@ -94,23 +120,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
                 // Redirect user back to login page
                 $location.path('signup');
               });        
-
-
-        /*$scope.connectedUser = facebookLogin(function(){
-            $scope.connectedUser = USER;
-            console.log('$scope.connectedUser',$scope.connectedUser);
-            $http.post('https://localhost:3000/userInsert',{user:$scope.connectedUser}).
-              success(function(data, status, headers, config) {
-                // this callback will be called asynchronously
-                // when the response is available
-                console.log('Success : data',data);
-              }).
-              error(function(data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('Error : status',status,'headers',headers);
-              });
-        });*/
+        */
     }
 
 });
