@@ -94,7 +94,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
                 }else{
                     $scope.connectedUser = data;
                     // Get All user's friends. and insert to DB.
-                    getUserFriendsFromFB(data.friends,function(friendsList){
+                    getUserFriendsFromFB(USER.friends,function(friendsList){
                         console.log('success',friendsList);
 
                         $http.post(window.location.origin + '/api/userFriendsInsert', { friends:friendsList } ).
