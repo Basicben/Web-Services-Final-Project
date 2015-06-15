@@ -66,6 +66,7 @@ window.fbAsyncInit = function() {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+var i=0;
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 var makeApiCalls = function(callback){
@@ -85,17 +86,17 @@ var makeApiCalls = function(callback){
             // Run through all of user's friends and get their data one by one
             // Push each friend to an array.
             // eventually, this array should go all the way to the DB.
-            var i=0;
+            
             while(i < friendResponse.data.length){
               FB.api('/' + friendResponse.data[i].id , function(userfriend) {
                 USER.friends[i] = userfriend;
+                // If and only if we're in the last iteration, call the callback function
                 if(i == friendResponse.data.length - 1){
                   console.log('USER.friends',USER.friends);
                   console.log('USER',USER);
                   callback();
                 }
                 i++;
-                // If and only if we're in the last iteration, call the callback function
               });
             }
 
