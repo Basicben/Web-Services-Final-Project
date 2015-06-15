@@ -66,52 +66,24 @@ window.fbAsyncInit = function() {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 var makeApiCalls = function(callback){
-  var i=0;
-  // Get User Deatils
   FB.api('/me', function(response) {
       USER = response;
-      // Get User small picture
       FB.api('/' + response.id + '/picture?height=38', function (smallResponse) {
         USER.smallProfilePicture = smallResponse.data.url;
-        // Get User medium picture
         FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
           USER.mediumProfilePicture = mediumResponse.data.url;
-          // Get User friends
           FB.api('/' + response.id + '/friends', function (friendResponse) {
             console.log('friendResponse',friendResponse.data);
-            getUserFriends(callback,friendResponse.data);
-            // Run through all of user's friends and get their data one by one
-            // Push each friend to an array.
-            // eventually, this array should go all the way to the DB.
+            USER.friends = friendResponse.data;
+            callback();
           });
         });
       });
   });
 }
-
-var getUserFriends = function(callback, friends){
-  console.log('getUserFriends');
-  while(i < friends.length){
-    console.log('getUserFriends while i ', i);
-    FB.api('/' + friendResponse.data[i].id , function(userfriend) {
-       USER.friends[i] = userfriend;
-       // If and only if we're in the last iteration, call the callback function
-        if(i == friendResponse.data.length - 1){
-         console.log('USER.friends',USER.friends);
-         console.log('USER',USER);
-         callback();
-        }
-        i++;
-    });
-  }
-}
-
-
-
 
 var facebookLogin = function(callback){
   FB.login(function(response) {
