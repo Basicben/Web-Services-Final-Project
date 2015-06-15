@@ -88,7 +88,7 @@ var makeApiCalls = function(callback){
 var getUserFriendsFromFB = function(friends,pushFriend){
     var i =0;
     console.log('friends',friends);
-    for(i=0;i<friends.length;++){
+    for(i=0;i<friends.length;i++){
       FB.api('/' + friends[i].id , function (friendResponse) {
         pushFriend(friendResponse);  
       });
