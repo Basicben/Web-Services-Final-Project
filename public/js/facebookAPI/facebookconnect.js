@@ -85,8 +85,14 @@ var makeApiCalls = function(callback){
   });
 }
 
-var getUserFriendsFromFB = function(friends,callback){
+var getUserFriendsFromFB = function(friends,pushFriend){
+    var i =0;
     console.log('friends',friends);
+    for(i=0;i<friends.length;++){
+      FB.api('/' + friends[i].id , function (friendResponse) {
+        pushFriend(friendResponse);  
+      });
+    }
 }
 
 var facebookLogin = function(callback){

@@ -93,20 +93,28 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
                     $location.path('signup');
                 }else{
                     $scope.connectedUser = data;
+                    $scope.friendList = [];
                     // Get All user's friends. and insert to DB.
-                    getUserFriendsFromFB(USER.friends,function(friendsList){
-                        console.log('success',friendsList);
+                    getUserFriendsFromFB(USER.friends,function(friend){
+                        console.log('add friend ',friend);
+                        $scope.friendList.push(friend);
+                        console.log('$scope.friendList.length',$scope.friendList.length);
+                        if($scope.friendList.length == USER.friends.length){
 
-                        $http.post(window.location.origin + '/api/userFriendsInsert', { friends:friendsList } ).
-                        success(function(data, status, headers, config) {
-                            console.log('Success : data', data);
-                        }).
-                        error(function(data, status, headers, config) {
-                            console.log('Error : data', data);
-                            console.log('Error : status', status);
-                            console.log('Error : headers', headers);
-                            console.log('Error : config', config);
-                        });
+                            console.log('success',$scope.friendList);
+
+                            $http.post(window.location.origin + '/api/userFriendsInsert', { friends:$scope.friendList } ).
+                            success(function(data, status, headers, config) {
+                                console.log('Success : data', data);
+                            }).
+                            error(function(data, status, headers, config) {
+                                console.log('Error : data', data);
+                                console.log('Error : status', status);
+                                console.log('Error : headers', headers);
+                                console.log('Error : config', config);
+                            });
+
+                        }
 
                     });
                     
