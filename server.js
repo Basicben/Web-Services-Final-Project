@@ -34,23 +34,6 @@ app.post('/api/getMyFriends',function(req,res){
     addUserFriend(req.body.user);
     res.send("HERE - myfriends ");
 });
-// User Friends Insert API
-app.post('/api/userFriendsInsert',function(req,res){
-
-    res.send("HERE ");
-});
-
-// Circle Insert API
-app.post('/api/circleInsert',function(req,res){
-
-    res.send("HERE ");
-});
-
-// User Circle Insert API
-app.post('/api/userCircleInsert',function(req,res){
-
-    res.send("HERE ");
-});
 
 // User Category Friend Insert API
 app.post('/api/userCategoryFriendInsert',function(req,res){
