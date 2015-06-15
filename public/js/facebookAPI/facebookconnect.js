@@ -86,22 +86,7 @@ var makeApiCalls = function(callback){
 }
 
 var getUserFriendsFromFB = function(friends,callback){
-    var i = 0;
-    var friendsList = [];
-    for(i; i<friends.length;i++){
-      FB.api('/' + friends[i].id , function(user) {
-        console.log('user',user);
-        friendsList[i] = user;
-        console.log('friendsList length',friendsList.length);
-        //callback(user);
-      });
-    }
-
-    while( friendsList.length != friends.length ) ;
-
-    console.log('exit while loop');
-    callback(friendsList);
-
+    console.log('friends',friends);
 }
 
 var facebookLogin = function(callback){
