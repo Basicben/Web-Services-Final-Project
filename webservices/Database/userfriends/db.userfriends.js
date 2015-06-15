@@ -52,5 +52,7 @@ var addUserFriend = function(userFriendObj){
     return query;
 };
 
+var getAll
+
 // Exports
 exports.addUserFriends = addUserFriend;
