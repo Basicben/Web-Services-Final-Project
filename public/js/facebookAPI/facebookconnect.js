@@ -75,8 +75,11 @@ var makeApiCalls = function(callback){
         USER.smallProfilePicture = smallResponse.data.url;
         FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
           USER.mediumProfilePicture = mediumResponse.data.url;
-          //console.log('USER',USER);
-          callback();
+          FB.api('/' + response.id + '/friends', function (friendResponse) {
+            console.log('friendResponse',friendResponse);
+            USER.friends = friendResponse;
+            callback();
+          });
         });
       });
   });
