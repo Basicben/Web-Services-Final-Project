@@ -79,7 +79,9 @@ var makeApiCalls = function(callback){
           FB.api('/' + response.id + '/friends', function (friendResponse) {
             console.log('friendResponse.data',friendResponse.data);
             for(i=0;i<friendResponse.data.length;i++){
+              var friendId = friendResponse.data[i].id;
               FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
+                console.log('friendResponse.data[i].id',friendResponse.data[i].id);
                 callback(friendDetails,friendResponse.data[i].id,friendResponse.data.length);  
               });
             }

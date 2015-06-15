@@ -108,7 +108,9 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
             console.log('add friend ',friend);
             $scope.friendList.push(friend);
             var lastIndex = $scope.friendList.length -1;
+            console.log('lastIndex',lastIndex);
             $scope.friendList[lastIndex].id = friendFBId;
+            console.log('$scope.friendList',$scope.friendList);
             console.log('$scope.friendList.length',$scope.friendList.length);
             if($scope.friendList.length == listLength){
                 USER.friendsList = $scope.friendList;
