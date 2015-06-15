@@ -69,16 +69,32 @@ window.fbAsyncInit = function() {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 var makeApiCalls = function(callback){
+  // Get User Deatils
   FB.api('/me', function(response) {
       USER = response;
+      // Get User small picture
       FB.api('/' + response.id + '/picture?height=38', function (smallResponse) {
         USER.smallProfilePicture = smallResponse.data.url;
+        // Get User medium picture
         FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
           USER.mediumProfilePicture = mediumResponse.data.url;
+          // Get User friends
           FB.api('/' + response.id + '/friends', function (friendResponse) {
-            console.log('friendResponse',friendResponse);
-            USER.friends = friendResponse;
-            callback();
+            console.log('friendResponse',friendResponse.data);
+            USER.friends = [];
+            for(var i = 0; i < friendResponse.data.length; i++){
+              FB.api('/' + friendResponse.data[i].id , function(userfriend) {
+                console.log('userfriend',userfriend);
+                USER.friends.push(userfriend);
+              });
+            }
+
+            if(i==friendResponse.data.length){
+              USER.friends = friendResponse;
+              console.log('USER.friends',USER.friends);
+              callback();
+            }
+
           });
         });
       });
