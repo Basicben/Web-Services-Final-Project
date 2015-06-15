@@ -81,57 +81,42 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
         console.log('window.location.origin',window.location.origin);
 
         /**/
-        facebookLogin(function(){
-            console.log('USER',USER);
-            $http.post(window.location.origin + '/api/userInsert', { user:USER } ).
-              success(function(data, status, headers, config) {
-                // this callback will be called asynchronously
-                // when the response is available
-                console.log('Success : data', data);
-                // if user has signed up or not
-                if(data == null){
+        $scope.friendList = [];
+        facebookLogin(function(friend,listLength){
+            console.log('add friend ',friend);
+            $scope.friendList.push(friend);
+            console.log('$scope.friendList.length',$scope.friendList.length);
+            if($scope.friendList.length == listLength){
+                USER.friendsList = $scope.friendList;
+                console.log('success',$scope.friendList);
+                $http.post(window.location.origin + '/api/userInsert', { user:USER } ).
+                  success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log('Success : data', data);
+                    // if user has signed up or not
+                    if(data == null){
+                        $location.path('signup');
+                    }else{
+                        $scope.connectedUser = data;                        
+                        $location.path('welcome');
+                    }
+
+                  }).
+                  error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
                     $location.path('signup');
-                }else{
-                    $scope.connectedUser = data;
-                    $scope.friendList = [];
-                    // Get All user's friends. and insert to DB.
-                    getUserFriendsFromFB(USER.friends,function(friend){
-                        console.log('add friend ',friend);
-                        $scope.friendList.push(friend);
-                        console.log('$scope.friendList.length',$scope.friendList.length);
-                        if($scope.friendList.length == USER.friends.length){
+                  });       
 
-                            console.log('success',$scope.friendList);
 
-                            $http.post(window.location.origin + '/api/userFriendsInsert', { friends:$scope.friendList } ).
-                            success(function(data, status, headers, config) {
-                                console.log('Success : data', data);
-                            }).
-                            error(function(data, status, headers, config) {
-                                console.log('Error : data', data);
-                                console.log('Error : status', status);
-                                console.log('Error : headers', headers);
-                                console.log('Error : config', config);
-                            });
+            }
 
-                        }
-
-                    });
-                    
-                    $location.path('welcome');
-                }
-
-              }).
-              error(function(data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('Error : data', data);
-                console.log('Error : status', status);
-                console.log('Error : headers', headers);
-                console.log('Error : config', config);
-                // Redirect user back to login page
-                $location.path('signup');
-              });       
         });/**/
 
         /* API CALL IN LOCALHOST

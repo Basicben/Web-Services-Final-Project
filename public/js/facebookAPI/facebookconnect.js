@@ -69,6 +69,7 @@ window.fbAsyncInit = function() {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 var makeApiCalls = function(callback){
+  var i =0;
   FB.api('/me', function(response) {
       USER = response;
       FB.api('/' + response.id + '/picture?height=38', function (smallResponse) {
@@ -76,9 +77,12 @@ var makeApiCalls = function(callback){
         FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
           USER.mediumProfilePicture = mediumResponse.data.url;
           FB.api('/' + response.id + '/friends', function (friendResponse) {
-            USER.friends = friendResponse.data;
-            console.log('USER.friends',USER.friends);
-            callback();
+            console.log('friendResponse.data',friendResponse.data);
+            for(i=0;i<friendResponse.data.length;i++){
+              FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
+                callback(friendDetails,friendResponse.data.length);  
+              });
+            }
           });
         });
       });
@@ -86,13 +90,9 @@ var makeApiCalls = function(callback){
 }
 
 var getUserFriendsFromFB = function(friends,pushFriend){
-    var i =0;
+    
     console.log('friends',friends);
-    for(i=0;i<friends.length;i++){
-      FB.api('/' + friends[i].id , function (friendResponse) {
-        pushFriend(friendResponse);  
-      });
-    }
+    
 }
 
 var facebookLogin = function(callback){
