@@ -33,8 +33,8 @@ var addUserFriend = function(userFriendList){
                 FirstName: userFriendList[i].first_name == null ? null : userFriendList[i].first_name,
                 LastName: userFriendList[i].last_name == null ? null : userFriendList[i].last_name,
                 Email: userFriendList[i].email == null ? null : userFriendList[i].email,
-                MediumProfilePicture: userFriendList[i].mediumProfilePicture,
-                SmallProfilePicture: userFriendList[i].smallProfilePicture,
+                MediumProfilePicture: userFriendList[i].mediumProfilePicture == null ? null : userFriendList[i].mediumProfilePicture,
+                SmallProfilePicture: userFriendList[i].smallProfilePicture == null ? null : userFriendList[i].smallProfilePicture,
                 HomeTown: userFriendList[i].hometown == null ? null  : userFriendList[i].hometown.name,
                 Gender: userFriendList[i].gender == null ? null : userFriendList[i].gender,
                 FacebookId: userFriendList[i].id
