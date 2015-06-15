@@ -52,6 +52,10 @@ suiteApp .config(['$routeProvider','$locationProvider',
             templateUrl: 'templates/home.html',
             controller: 'homeCntrl'
     }).
+    when('/myfriends', {
+           templateUrl: 'templates/myfriends.html',
+           controller: 'myFriendsCntrl'
+    }).
     otherwise({
             redirectTo: '/'
     });
@@ -67,6 +71,9 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
         //$scope.connectedUser = checkLoginState();
     });
 
+    $scope.changeURL = function(url){
+        $location.path(url);
+    };
     $scope.angFacebookLogin = function(){
 
         console.log('add user from fb');
