@@ -35,7 +35,6 @@ var addUserFriend = function(userFriendList){
                         SmallProfilePicture: friendTemp.smallProfilePicture == null ? null : friendTemp.smallProfilePicture,
                         HomeTown: friendTemp.hometown == null ? null  : friendTemp.hometown.name,
                         Gender: friendTemp.gender == null ? null : friendTemp.gender,
-                        FacebookId: friendTemp.id
                     });
                     /**     Saving new userFriend to UserFriends collection       **/
                     newUserFriend.save(function (err, doc) {
