@@ -91,9 +91,25 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
                 // if user has signed up or not
                 if(data == null){
                     $location.path('signup');
-                    console.log('data',data);
                 }else{
                     $scope.connectedUser = data;
+                    // Get All user's friends. and insert to DB.
+                    getUserFriendsFromFB(data.friends,function(friendsList){
+                        console.log('success',friendsList);
+
+                        $http.post(window.location.origin + '/api/userFriendsInsert', { friends:friendsList } ).
+                        success(function(data, status, headers, config) {
+                            console.log('Success : data', data);
+                        }).
+                        error(function(data, status, headers, config) {
+                            console.log('Error : data', data);
+                            console.log('Error : status', status);
+                            console.log('Error : headers', headers);
+                            console.log('Error : config', config);
+                        });
+
+                    });
+                    
                     $location.path('welcome');
                 }
 
