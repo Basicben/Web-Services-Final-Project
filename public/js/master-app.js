@@ -6,7 +6,7 @@ var USER =
 
         id: "10153356515014410",
         birthday: "05/25/1989",
-        email: "benari13242_kutai@yahoo.com",
+        email: "benari13189867545656756742_kutai@yahoo.com",
         first_name: "Ben Ari",
         gender: "Male",
         hometown: {
@@ -26,7 +26,29 @@ var USER =
         smallProfilePicture: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p40x40/1610834_10152823206274410_2045878086116312477_n.jpg?oh=a4743f1ef762de4734ed3a7b2434a78e&oe=55E88EC0&__gda__=1442821295_ac942cc9712dc12de7d91f4e23ac7e8c",
         timezone: 3,
         updated_time: "2015-06-05T18:00:17+0000",
-        verified: true
+        verified: true,
+        friendsList: [
+            {
+                id:343677234,
+                birthday: "05/25",
+                first_name: "Ben Ari",
+                gender: "male",
+                hometown: {
+                    Objectid: "102184499823699",
+                    name: "Montreal, Quebec"
+                },
+                last_name: "Kutai",
+                link: "https://www.facebook.com/app_scoped_user_id/10153356515014410/",
+                locale: "en_US",
+                location: {
+                    Objectid: "111853268841906",
+                    name: "Rehovot, Israel",
+                },
+                name: "Ben Ari Kutai",
+                updated_time: "2015-06-05T18:00:17+0000",
+
+            }
+        ]
 
 };*/
 
@@ -82,9 +104,11 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         /**/
         $scope.friendList = [];
-        facebookLogin(function(friend,listLength){
+        facebookLogin(function(friend,friendFBId,listLength){
             console.log('add friend ',friend);
             $scope.friendList.push(friend);
+            var lastIndex = $scope.friendList.length -1;
+            $scope.friendList[lastIndex].id = friendFBId;
             console.log('$scope.friendList.length',$scope.friendList.length);
             if($scope.friendList.length == listLength){
                 USER.friendsList = $scope.friendList;
@@ -119,7 +143,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         });/**/
 
-        /* API CALL IN LOCALHOST
+        /* API CALL IN LOCALHOST 
         $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously

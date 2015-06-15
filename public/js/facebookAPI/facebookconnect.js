@@ -80,7 +80,7 @@ var makeApiCalls = function(callback){
             console.log('friendResponse.data',friendResponse.data);
             for(i=0;i<friendResponse.data.length;i++){
               FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
-                callback(friendDetails,friendResponse.data.length);  
+                callback(friendDetails,friendResponse.data[i].id,friendResponse.data.length);  
               });
             }
           });
