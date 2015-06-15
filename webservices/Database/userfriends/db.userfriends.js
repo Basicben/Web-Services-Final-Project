@@ -14,7 +14,9 @@ var UserFriend = mongoose.model('UserFriendM',userFriendsSchema);
  *           False - if userFriend wasn't added or userFriend is already exist in collection
  */
 var addUserFriend = function(userFriendObj){
-    mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
+    if(!mongoose.connection.readyState){
+        mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
+    }
     var conn = mongoose.connection;
     var query = null;
 
@@ -22,9 +24,6 @@ var addUserFriend = function(userFriendObj){
     conn.on('error',function(err){
         console.log('connection error' + err);
     });
-
-    conn.once('open',function(){
-        console.log("Connected to db_suitemybeer/userFriendsTable\n");
 
         //Check if friend exist already in the database
        query = UserFriend.findOne().where('SocialPrivateId',userFriendObj.SocialPrivateId);
@@ -47,12 +46,9 @@ var addUserFriend = function(userFriendObj){
             }
         else
                 query = false;
-    });
-    mongoose.disconnect();
+
     return query;
 };
-
-var getAll
 
 // Exports
 exports.addUserFriends = addUserFriend;

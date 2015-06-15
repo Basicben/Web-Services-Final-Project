@@ -24,7 +24,7 @@ suiteApp
     }
      
 })
-    .controller('myFriendsCntrl', function($scope,$rootScope) {
+    .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
 
         console.log('myFriendsCntrl');
         $(document).ready(function(){
