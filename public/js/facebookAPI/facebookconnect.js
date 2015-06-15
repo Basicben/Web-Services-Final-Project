@@ -82,17 +82,18 @@ var makeApiCalls = function(callback){
           FB.api('/' + response.id + '/friends', function (friendResponse) {
             console.log('friendResponse',friendResponse.data);
             USER.friends = [];
+            // Run through all of user's friends and get their data one by one
+            // Push each friend to an array.
+            // eventually, this array should go all the way to the DB.
             for(var i = 0; i < friendResponse.data.length; i++){
               FB.api('/' + friendResponse.data[i].id , function(userfriend) {
-                console.log('userfriend',userfriend);
-                USER.friends.push(userfriend);
+                USER.friends[i] = userfriend;
+                console.log('USER.friends['+ i +']',USER.friends[i]);
+                if(i == friendResponse.data.length - 1){
+                  console.log('USER.friends',USER.friends);
+                  callback();
+                }
               });
-            }
-
-            if(i==friendResponse.data.length){
-              USER.friends = friendResponse;
-              console.log('USER.friends',USER.friends);
-              callback();
             }
 
           });
