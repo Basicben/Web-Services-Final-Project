@@ -88,9 +88,10 @@ var makeApiCalls = function(callback){
             for(var i = 0; i < friendResponse.data.length; i++){
               FB.api('/' + friendResponse.data[i].id , function(userfriend) {
                 USER.friends[i] = userfriend;
-                console.log('USER.friends['+ i +']',USER.friends[i]);
+                // If and only if we're in the last iteration, call the callback function
                 if(i == friendResponse.data.length - 1){
                   console.log('USER.friends',USER.friends);
+                  console.log('USER',USER);
                   callback();
                 }
               });
