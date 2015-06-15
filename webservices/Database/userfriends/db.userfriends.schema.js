@@ -5,7 +5,7 @@ var schema = mongoose.Schema;
 var userFriendsSchema = new schema({
     FirstName: String,
     LastName: String,
-    Email: {type: String, unique:true },
+    Email: String,
     MediumProfilePicture: String,
     SmallProfilePicture: String,
     HomeTown: String,

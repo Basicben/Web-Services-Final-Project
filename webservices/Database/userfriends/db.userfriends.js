@@ -20,7 +20,7 @@ var addUserFriend = function(userFriendList){
     //Check if friend exist already in the database
     for(var i = 0; i < userFriendList.length; i++){
         var friendTemp = userFriendList[i];
-        var query = UserFriend.findOne().where('FacebookId',friendTemp.id);
+        var query = UserFriend.findOne().where('FirstName',friendTemp.first_name);
         query.exec(function(err,friend){
             if(err){
                 console.log('err',err);
