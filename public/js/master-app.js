@@ -88,7 +88,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
             console.log('$scope.friendList.length',$scope.friendList.length);
             if($scope.friendList.length == listLength){
                 USER.friendsList = $scope.friendList;
-                console.log('success',$scope.friendList);
+                console.log('success',USER);
                 $http.post(window.location.origin + '/api/userInsert', { user:USER } ).
                   success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
