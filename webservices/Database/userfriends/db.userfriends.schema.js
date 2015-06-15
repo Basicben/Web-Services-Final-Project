@@ -5,9 +5,12 @@ var schema = mongoose.Schema;
 var userFriendsSchema = new schema({
     FirstName: String,
     LastName: String,
+    Email: {type: String, unique:true },
     MediumProfilePicture: String,
+    SmallProfilePicture: String,
     HomeTown: String,
-    SocialPrivateId: Number
+    FacebookId: Number,
+    Gender: String
 },{collection: 'UserFriends'});
 
 //Export

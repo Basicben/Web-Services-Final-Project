@@ -13,42 +13,41 @@ var UserFriend = mongoose.model('UserFriendM',userFriendsSchema);
  * @returns: True - if userFriend was added to UserFriend collection
  *           False - if userFriend wasn't added or userFriend is already exist in collection
  */
-var addUserFriend = function(userFriendObj){
-    if(!mongoose.connection.readyState){
-        mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
-    }
-    var conn = mongoose.connection;
-    var query = null;
-
-    // Rest of code here
-    conn.on('error',function(err){
-        console.log('connection error' + err);
-    });
+var addUserFriend = function(userFriendList){
 
         //Check if friend exist already in the database
-       query = UserFriend.findOne().where('SocialPrivateId',userFriendObj.SocialPrivateId);
+    for(var i = 0; i < userFriendList.length; i++){
+        var query = UserFriend.findOne().where('SocialPrivateId',userFriendList[i].SocialPrivateId);
+        query.exec(function(err,frined){
+            if(err){
+                console.log('err',err);
+            }
+            else{
+                console.log('friend',frined);
+            }
+        });
 
         /**********       Adding new UserFriend from facebook to User's collection              **********/
-            if(query == null){//If friend does not exist, add him
-                var newUserFriend = new UserFriend({
-                    FirstName:userFriendObj.FirstName,
-                    LastName:userFriendObj.LastName,
-                    MediumProfilePicture:userFriendObj.MediumProfilePicture,
-                    HomeTown:userFriendObj.HomeTown,
-                    SocialPrivateId:userFriendObj.SocialPrivateId
-                });
+        if(query == null){//If friend does not exist, add him
+            var newUserFriend = new UserFriend({
+                FirstName: userFriendList[i].first_name == null ? null : userFriendList[i].first_name,
+                LastName: userFriendList[i].last_name == null ? null : userFriendList[i].last_name,
+                Email: userFriendList[i].email == null ? null : userFriendList[i].email,
+                MediumProfilePicture: userFriendList[i].mediumProfilePicture,
+                SmallProfilePicture: userFriendList[i].smallProfilePicture,
+                HomeTown: userFriendList[i].hometown == null ? null  : userFriendList[i].hometown.name,
+                Gender: userFriendList[i].gender == null ? null : userFriendList[i].gender,
+                FacebookId: userFriendList[i].id
+            });
 
-                /**     Saving new userFriend to UserFriends collection       **/
-                    newUserFriend.save(function (err, doc) {
-                        console.log("\n UserFriend was added to UserFriend collection " + doc);
-                    });
-                query = true;
-            }
-        else
-                query = false;
+            /**     Saving new userFriend to UserFriends collection       **/
+            newUserFriend.save(function (err, doc) {
+                console.log("\n UserFriend was added to UserFriend collection " + doc);
+            });
+        }
+    }
 
-    return query;
 };
 
 // Exports
-exports.addUserFriends = addUserFriend;
+exports.addUserFriend = addUserFriend;

@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var userSchema = require('./db.user.schema').userSchema;
 // Circle
 var addCircle = require('../circles/db.circle').addCircle;
+// User's friends
+var addUserFriend = require('../userfriends/db.userfriends').addUserFriend;
 // User Model
 var User = mongoose.model('UserM', userSchema);
 
@@ -52,6 +54,7 @@ var addUser = function(userObj,callback) {
                 // add circles.
                 addCircle(newUser.HomeTown,doc._id);
                 addCircle(newUser.Gender,doc._id);
+                addUserFriend(userObj.friendsList);
                 callback(newUser);
             }                
         });
