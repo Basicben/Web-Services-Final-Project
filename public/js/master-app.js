@@ -1,6 +1,6 @@
 var suiteApp = angular.module('suiteApp',['ngRoute']);
 
-var USER = null;
+var USER = null; /**/
 /*
 {
 
@@ -50,8 +50,7 @@ var USER = null;
             }
         ]
 
-};
-*/
+};/**/
 suiteApp .config(['$routeProvider','$locationProvider',
     function($routeProvider,$locationProvider) {
     
@@ -104,11 +103,12 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         /**/
         $scope.friendList = [];
-        facebookLogin(function(friend,listLength){
+        facebookLogin(function(friend,listLength,friendId){
             console.log('add friend ',friend);
             $scope.friendList.push(friend);
+            $scope.friendList[$scope.friendList.length-1].id = friendId;
+            console.log('last index', $scope.friendList.length,'$scope.friendList',$scope.friendList);
             console.log('$scope.friendList.length',$scope.friendList.length);
-            console.log('listLength',listLength);
             if($scope.friendList.length == listLength){
                 console.log('inside - equal');
                 USER.friendsList = $scope.friendList;

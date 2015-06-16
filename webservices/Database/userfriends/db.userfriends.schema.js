@@ -9,7 +9,8 @@ var userFriendsSchema = new schema({
     MediumProfilePicture: String,
     SmallProfilePicture: String,
     HomeTown: String,
-    Gender: String
+    Gender: String,
+    FacebookId: Number
 },{collection: 'UserFriends'});
 
 //Export
