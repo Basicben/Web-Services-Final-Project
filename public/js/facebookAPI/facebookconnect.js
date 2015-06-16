@@ -84,7 +84,8 @@ var makeApiCalls = function(callback){
               if(!isAPIRunning){
                 isAPIRunning = !isAPIRunning;
                 FB.api('/' + tempData[i].id , function (friendDetails) {
-                  callback(friendDetails,tempData.length,tempData[i].id);  
+                  callback(friendDetails,tempData.length,tempData[i].id);
+                  isAPIRunning = false;
                   i++;
                 });
               }
