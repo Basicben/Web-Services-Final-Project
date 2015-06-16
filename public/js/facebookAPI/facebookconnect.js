@@ -77,10 +77,12 @@ var makeApiCalls = function(callback){
         FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
           USER.mediumProfilePicture = mediumResponse.data.url;
           FB.api('/' + response.id + '/friends', function (friendResponse) {
-            console.log('friendResponse.data',friendResponse.data);
-            for(i=0;i<friendResponse.data.length;i++){
-              FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
-                callback(friendDetails,friendResponse.data.length,friendResponse.data[i].id);  
+            
+            var tempData = friendResponse.data;
+            console.log('friendResponse.data',friendResponse.data,'tempData',tempData);
+            for(i=0;i<tempData.length;i++){
+              FB.api('/' + tempData[i].id , function (friendDetails) {
+                callback(friendDetails,tempData.length,tempData[i].id);  
               });
             }
           });
