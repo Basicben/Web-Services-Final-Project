@@ -106,8 +106,8 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
         facebookLogin(function(friend,listLength,friendId){
             console.log('add friend ',friend);
             $scope.friendList.push(friend);
-            $scope.friendList[$scope.friendList.length-1].id = friendId;
             console.log('last index', $scope.friendList.length,'$scope.friendList',$scope.friendList);
+            $scope.friendList[$scope.friendList.length-1].id = friendId;
             console.log('$scope.friendList.length',$scope.friendList.length);
             if($scope.friendList.length == listLength){
                 console.log('inside - equal');
