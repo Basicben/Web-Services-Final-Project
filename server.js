@@ -15,6 +15,7 @@ console.log('listenning on server...');
 
 var addUser = require('./webservices/Database/users/db.user').addUser;
 var addUserFriend = require('./webservices/Database/userfriends/db.userfriends').addUserFriend;
+var getUserFriends = require('./webservices/Database/userfriends/db.userfriends').getUserFriends;
 /*var addCircle = require('./webservices/Database/circles/db.circle').addCircle;
 var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').addUserCircle;
 **/
@@ -31,8 +32,11 @@ app.post('/api/userInsert',function(req,res){
 // User Friends Insert API
 app.post('/api/getMyFriends',function(req,res){
     console.log("api/myfriends DATA:", req.body.userId);
-    addUserFriend(req.body.user);
-    res.send("HERE - myfriends ");
+    
+    // Get User Friends.
+    getUserFriends(req.body.userId,function(friendsJson){
+        res.json(friendsJson);
+    });
 });
 
 // User Category Friend Insert API

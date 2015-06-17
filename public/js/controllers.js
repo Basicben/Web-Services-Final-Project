@@ -1,4 +1,5 @@
 suiteApp
+    // Signup Controller
     .controller('signupCntrl', function($scope,$rootScope) {
 
 	$scope.facebookInsert = function(){
@@ -8,11 +9,13 @@ suiteApp
     console.log('signupCntrl');
      
 })
+    // Home Controller
     .controller('homeCntrl', function($scope,$rootScope) {
      
     console.log('homeCntrl');
      
 })
+    // Welcome Controller
     .controller('welcomeCntrl', function($scope,$rootScope,$location) {
      
     console.log('welcomeCntrl');
@@ -24,6 +27,7 @@ suiteApp
     }
      
 })
+    // myFriends Controller 
     .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
 
         console.log('myFriendsCntrl');

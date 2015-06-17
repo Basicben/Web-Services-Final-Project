@@ -48,13 +48,14 @@ var addUserFriendConnection = function(friendConnectionId,userId){
 //This func receive all user's friends
 var getAllUserFriends = function(userId,callback){
 
-    var query = UserFriendConnection.find().where('_id',userId);
-    query.exec(function(err,userId){
-        if(!err){
-            callback(userId);
+    var query = UserFriendConnection.find().where('UserId',userId);
+    query.exec(function(err,friends){
+        if(err){
+            console.log('err in getAllUserFriends/query bug', err);
         }
         else{
-            console.log('err in getAllUserFriends/query bug', err);
+            console.log('Connection - friends',friends);
+            callback(friends);
         }
     });
 };

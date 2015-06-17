@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var userFriendsSchema = require('./db.userfriends.schema').userFriendSchema;
 var UserFriend = mongoose.model('UserFriendM',userFriendsSchema);
 var addUserFriendConnection = require('../userfriendconnection/db.userfriendconnection').addUserFriendConnection;
+var getAllUserFriends = require('../userfriendconnection/db.userfriendconnection').getAllUserFriends;
 /** **********************************************************/
 
 
@@ -62,5 +63,37 @@ var addUserFriend = function(userFriendList,UserId){
 
 };
 
+var getUserFriends = function(userId,callback){
+
+    console.log('getUserFriends function. UserId : ',userId);
+    getAllUserFriends(userId,function(friendsList){
+        console.log('UserFriend - friendsList',friendsList);
+
+        // Make a For each statement to run all over friendsList
+        // make a query for each friend in friendsList array and
+        // bring all of his information from UserFriend DB.
+
+        /*var query = UserFriend.findOne().where('FirstName',friendTemp.first_name);
+        query.exec(function(err,friends){
+            if(err){
+                console.log('err',err);
+            }else{
+                console.log('friends',friends);
+
+                if(friends == null){
+                    // If no friends, return null
+                    callback(null);
+                }else{
+                    callback(friends);              
+                }
+                
+            }
+        });*/
+    });
+    
+
+}
+
 // Exports
 exports.addUserFriend = addUserFriend;
+exports.getUserFriends = getUserFriends;
