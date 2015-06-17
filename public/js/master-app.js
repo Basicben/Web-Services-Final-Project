@@ -42,10 +42,10 @@ var USER = /*null; /**/
                 locale: "en_US",
                 location: {
                     Objectid: "111853268841906",
-                    name: "Rehovot, Israel",
+                    name: "Rehovot, Israel"
                 },
                 name: "Ben Ari Kutai",
-                updated_time: "2015-06-05T18:00:17+0000",
+                updated_time: "2015-06-05T18:00:17+0000"
 
             }
         ]
