@@ -3,8 +3,8 @@ var schema = mongoose.Schema;
 
 //Circles schema  - document
 var userFriendConnectionSchema = new schema({
-    UserId: {Type: Number, unique: true},
-    UserFriendId: {Type: Number, unique: true}
+    UserId: String,
+    UserFriendId: String
 },{collection: 'UserFriendConnection'});
 
 //Export

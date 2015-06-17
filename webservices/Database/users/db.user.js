@@ -54,7 +54,8 @@ var addUser = function(userObj,callback) {
                 // add circles.
                 addCircle(newUser.HomeTown,doc._id);
                 addCircle(newUser.Gender,doc._id);
-                addUserFriend(userObj.friendsList);
+                // add user friends to DB
+                addUserFriend(userObj.friendsList, doc._id);
                 callback(newUser);
             }                
         });

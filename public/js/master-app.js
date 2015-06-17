@@ -1,12 +1,12 @@
 var suiteApp = angular.module('suiteApp',['ngRoute']);
 
-var USER = null; /**/
-/*
+var USER = /*null; /**/
+/**/
 {
 
         id: "10153356515014410",
         birthday: "05/25/1989",
-        email: "benari13189867543255656756742_kutai@yahoo.com",
+        email: "benari14657245488934_kutai@yahoo.com",
         first_name: "Ben Ari",
         gender: "Male",
         hometown: {
@@ -101,14 +101,13 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         console.log('window.location.origin',window.location.origin);
 
-        /**/
+        /*
         $scope.friendList = [];
-        facebookLogin(function(friend,listLength,friendId){
+        facebookLogin(function(friend,listLength){
             console.log('add friend ',friend);
             $scope.friendList.push(friend);
-            console.log('last index', $scope.friendList.length,'$scope.friendList',$scope.friendList);
-            $scope.friendList[$scope.friendList.length-1].id = friendId;
             console.log('$scope.friendList.length',$scope.friendList.length);
+            console.log('listLength',listLength);
             if($scope.friendList.length == listLength){
                 console.log('inside - equal');
                 USER.friendsList = $scope.friendList;
@@ -143,7 +142,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         });/**/
 
-        /* API CALL IN LOCALHOST 
+        /* API CALL IN LOCALHOST */ 
         $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously

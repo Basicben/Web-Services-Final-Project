@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var userFriendsSchema = require('./db.userfriends.schema').userFriendSchema;
 var UserFriend = mongoose.model('UserFriendM',userFriendsSchema);
+var addUserFriendConnection = require('../userfriendconnection/db.userfriendconnection').addUserFriendConnection;
 /** **********************************************************/
 
 
@@ -13,7 +14,7 @@ var UserFriend = mongoose.model('UserFriendM',userFriendsSchema);
  * @returns: True - if userFriend was added to UserFriend collection
  *           False - if userFriend wasn't added or userFriend is already exist in collection
  */
-var addUserFriend = function(userFriendList){
+var addUserFriend = function(userFriendList,UserId){
 
     console.log('add user friend userFriendList',userFriendList);
 
@@ -41,9 +42,16 @@ var addUserFriend = function(userFriendList){
                     newUserFriend.save(function (err, doc) {
                         if(err){
                             console.log('err',err);
+                        }else{
+                            console.log("\n UserFriend was added to UserFriend collection " + doc);    
+                            addUserFriendConnection(doc._id,UserId);
                         }
-                        console.log("\n UserFriend was added to UserFriend collection " + doc);
                     });
+                }else{
+                    // if user already exists
+                    console.log('EXISTSSS : friend',friend);
+                    addUserFriendConnection(friend._id,UserId);
+                    //addUserFriendConnection(doc._id,UserId);
                 }
             }
         });

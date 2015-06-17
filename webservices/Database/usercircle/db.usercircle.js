@@ -13,19 +13,25 @@ var addUserCircle = function(userCircleId,userId){
             UserId: userId,
             CircleId: userCircleId
         });
-
-        console.log('newUserCircle',newUserCircle);
-
         /**     Check if UserCircle already exist    **/
-        if(newUserCircle.isNew) {
-            newUserCircle.save(function (err, doc) {
-                if(err){
-                    console.log("err",err);
-                }else{
-                    console.log("\nUserCircle was added to UserCircle collection ");    
+        var query = UserCircle.findOne().where({'UserId':userId,'CircleId':userCircleId});
+        query.exec(function(err,userCircle){
+            if(err){
+                console.log('err',err);
+            }else{
+                if(userCircle == null){
+                   newUserCircle.save(function (err, doc) {
+                        if(err){
+                            console.log("err",err);
+                        }else{
+                            console.log("\nUserCircle was added to UserCircle collection ");    
+                        }
+                    }); 
                 }
-            });
-        }
+                
+            }
+        });
+
 };
 
 exports.addUserCircle = addUserCircle;
