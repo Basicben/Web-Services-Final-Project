@@ -14,7 +14,6 @@ app.use( ngRoute.route() );
 console.log('listenning on server...');
 
 var addUser = require('./webservices/Database/users/db.user').addUser;
-var addUserFriend = require('./webservices/Database/userfriends/db.userfriends').addUserFriend;
 var getUserFriends = require('./webservices/Database/userfriends/db.userfriends').getUserFriends;
 var getAllCategories = require('./webservices/Database/categories/db.categories').getAllCategories;
 /*var addCircle = require('./webservices/Database/circles/db.circle').addCircle;
@@ -45,6 +44,14 @@ app.post('/api/getMyFriends',function(req,res){
 app.post('/api/getCategories',function(req,res){
     getAllCategories(function(categoriesJson){
         res.json(categoriesJson);
+    });
+});
+
+// User Category Friend Insert API
+app.post('/api/getMyUncategorizedFriends',function(req,res){
+    // Get User Friends.
+    getUserFriends(req.body.userId,function(friendsJson){
+        res.json(friendsJson);
     });
 });
 

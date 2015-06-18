@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<!--  Presenting all user friends with their categories  -->
+<div class="suitmyfriends-wrapper">
 
-</body>
-</html>
+    <div class="suitmyfriends-header">
+        <h1>Suit My Friends</h1>
+    </div>
+
+    <!--  Presenting all user's friends, sorted by categories  -->
+    <div class="suitmyfriends-body">
+        <div class="friendPictureSection">
+            <p>Friends picture are :</p>
+            <ul>
+                <li>
+                    <img ng-src=" {{friendList[friendIndex].MediumProfilePicture}}">
+                </li>
+            </ul>
+        </div>
+        <div class="categoriesSection">
+            <p>Categories are :</p>
+            <ul>
+                <li ng-repeat="category in categoryList">
+                    {{category}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="myfriends-footer">
+        <div class="footer-navbar">
+            <button class="btn btn-primary" ng-click="enterApp()"> Enter </button>
+        </div>
+        <div class="clear"> </div>
+    </div>
+
+</div>
