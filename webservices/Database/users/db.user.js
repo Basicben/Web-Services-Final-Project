@@ -34,33 +34,30 @@ var addUser = function(userObj,callback) {
         FacebookId: userObj.id
     });
 
-    if (newUser.isNew) {
-        newUser.save(function (err, doc) {
-            if(err){
-                if(err.code == 11000){
-                    // If here, the problem is a duplicated user (Email)
-                    var query = User.findOne().where('Email',newUser.Email);
-                    query.exec(function(err,user){
-                        callback(user);
-                    });
-                }else{
-                    callback(null);
-                }
-            
-                console.log("err",err);
-                //return false;
+    var query = User.findOne().where('Email',newUser.Email);
+    query.exec(function(err,user){
+        if(err){
+            console.log('err',err);
+        }else{
+            if(user == null){
+                newUser.save(function (err, doc) {
+                    if(err){                    
+                        console.log("err",err);
+                    }else{
+                        console.log("\nUser was added to User collection ");
+                        // add circles.
+                        addCircle(newUser.HomeTown,doc._id);
+                        addCircle(newUser.Gender,doc._id);
+                        // add user friends to DB
+                        addUserFriend(userObj.friendsList, doc._id);
+                        callback(newUser);
+                    }                
+                });
             }else{
-                console.log("\nUser was added to User collection ");
-                // add circles.
-                addCircle(newUser.HomeTown,doc._id);
-                addCircle(newUser.Gender,doc._id);
-                // add user friends to DB
-                addUserFriend(userObj.friendsList, doc._id);
-                callback(newUser);
-            }                
-        });
-    }
-
+                callback(user);
+            }
+        }
+    });
 };
 
 // Exports

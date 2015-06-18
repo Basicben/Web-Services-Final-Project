@@ -1,7 +1,7 @@
 var suiteApp = angular.module('suiteApp',['ngRoute']);
 
-var USER = null; /**/
-/*
+var USER = /*null; /**/
+/**/
 {
 
         id: "10153356515014410",
@@ -47,6 +47,17 @@ var USER = null; /**/
                 name: "Ben Ari Kutai",
                 updated_time: "2015-06-05T18:00:17+0000"
 
+            },
+            {
+                birthday: "03/01",
+                first_name: "Noam",
+                gender: "male",
+                id: "10153947428804863",
+                last_name: "Rom",
+                link: "https://www.facebook.com/app_scoped_user_id/10153947428804863/",
+                locale: "en_US",
+                name: "Noam Rom",
+                updated_time: "2014-12-30T10:56:34+0000",
             }
         ]
 
@@ -105,7 +116,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         console.log('window.location.origin',window.location.origin);
 
-        /**/
+        /*
         $scope.friendList = [];
         facebookLogin(function(friendList){
             
@@ -138,7 +149,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         });/**/
 
-        /* API CALL IN LOCALHOST
+        /* API CALL IN LOCALHOST */
         $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
