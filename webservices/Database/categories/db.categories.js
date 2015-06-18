@@ -1,7 +1,7 @@
 /********       Connecting to database + Creating Circle schema            **************/
 var mongoose = require('mongoose');
 var categorySchema = require('./db.categories.schema.js').categorySchema;
-var Category = mongoose.model('CircleM',categorySchema);
+var Category = mongoose.model('CategoryM',categorySchema);
 
 /** **********************************************************/
 

@@ -8,7 +8,22 @@
 
     <!--  Presenting all user's friends, sorted by categories  -->
     <div class="myfriends-body">
-
+        <div class="categoriesSection">
+            <p>Categories are :</p>
+            <ul>
+                <li ng-repeat="x in categoryList">
+                    {{x}}
+                </li>
+            </ul>
+        </div>
+        <div class="friendsSection">
+            <p>Friends are :</p>
+            <ul>
+                <li ng-repeat="x in friendList">
+                    {{x}}
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="myfriends-footer">
