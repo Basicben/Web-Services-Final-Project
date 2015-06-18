@@ -25,8 +25,7 @@ var addUserFriend = function(userFriendList,UserId){
     console.log('add user friend userFriendList',userFriendList);
 
     //Check if friend exist already in the database
-    for(var i = 0; i < userFriendList.length; i++){
-        var friendTemp = userFriendList[i];
+    userFriendList.forEach(function(friendTemp){
         var query = UserFriend.findOne().where('FirstName',friendTemp.first_name);
         query.exec(function(err,friend){
             if(err){
@@ -61,10 +60,7 @@ var addUserFriend = function(userFriendList,UserId){
                 }
             }
         });
-
-        /**********       Adding new UserFriend from facebook to User's collection              **********/
-        
-    }
+    });
 
 };
 
@@ -82,6 +78,7 @@ var getUserFriends = function(userId,callback){
             var query = UserFriend.findOne().where('_id',friend.UserFriendId);
             query.exec(function(err,user){
                 if(err){
+                    // Display error if any
                     console.log('err',err);
                 }else{                    
                     if(user != null){
@@ -91,10 +88,15 @@ var getUserFriends = function(userId,callback){
                             if(err){
                                 console.log('err',err);
                             }else{
+                                // Make user an object 
                                 var u = user.toObject();
+                                // Make a new CATEGORY attribute to user.
                                 u.categories = category;
+                                // Push user to friends array.
                                 friends.push(u);
                                 console.log('friend has been pushed to friends array',friends);
+                                // If and only if friends array has the same length than the original
+                                // make a callback.
                                 if(friends.length == friendsList.length){
                                     callback(friends);                    
                                 }
