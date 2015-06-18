@@ -1,7 +1,7 @@
 var suiteApp = angular.module('suiteApp',['ngRoute']);
 
-var USER = null; /**/
-/*
+var USER = /*null; /**/
+/**/
 {
 
         id: "10153356515014410",
@@ -116,7 +116,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         console.log('window.location.origin',window.location.origin);
 
-        /**/
+        /*
         $scope.friendList = [];
         facebookLogin(function(friendList){
             
@@ -149,7 +149,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         });/**/
 
-        /* API CALL IN LOCALHOST 
+        /* API CALL IN LOCALHOST */
         $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
