@@ -26,10 +26,14 @@ var addUserFriend = function(userFriendList,UserId){
 
     //Check if friend exist already in the database
     userFriendList.forEach(function(friendTemp){
+        console.log('here', friendTemp);
         var query = UserFriend.findOne().where('FirstName',friendTemp.first_name);
         query.exec(function(err,friend){
             if(err){
                 console.log('err',err);
+                if(err.code == 11000){
+                    
+                }
             }
             else{
                 if(friend == null){//If friend does not exist, add him
