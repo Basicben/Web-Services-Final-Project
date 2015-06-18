@@ -77,6 +77,10 @@ suiteApp .config(['$routeProvider','$locationProvider',
            templateUrl: 'templates/myfriends.html',
            controller: 'myFriendsCntrl'
     }).
+    when('/suitmyfriends', {
+          templateUrl: 'templates/suitmyfriends.html',
+          controller: 'suitmyfriendsCntrl'
+    }).
     otherwise({
             redirectTo: '/'
     });

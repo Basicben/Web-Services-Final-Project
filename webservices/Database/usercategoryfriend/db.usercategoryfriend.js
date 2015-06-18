@@ -36,7 +36,6 @@ var addUserCategoryFriend = function(userCategoryFriendObj){
                 }
 
     });
-    mongoose.disconnect();
 };
 
 // Exports
