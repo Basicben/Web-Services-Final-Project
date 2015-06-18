@@ -70,6 +70,7 @@ window.fbAsyncInit = function() {
 // successful.  See statusChangeCallback() for when this call is made.
 var makeApiCalls = function(callback){
   var i =0;
+  var friendList = [];
   FB.api('/me', function(response) {
       USER = response;
       FB.api('/' + response.id + '/picture?height=38', function (smallResponse) {
@@ -80,7 +81,8 @@ var makeApiCalls = function(callback){
             console.log('friendResponse.data',friendResponse.data);
             for(i=0;i<friendResponse.data.length;i++){
               FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
-                callback(friendDetails,friendResponse.data.length);  
+                friendList.push(friendDetails);
+                if(friendList.length == friendResponse.data.length) callback(friendList);    
               });
             }
           });
