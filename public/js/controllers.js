@@ -99,17 +99,25 @@ suiteApp
         $scope.friendList = [];
         $scope.categoryList = [];
 
-        $(document).on("pagecreate",".friendPictureSection",function(){
-            $("ul li")
-                .on("swipeleft",function(){
+        $(document).wipetouch({
+            tapToClick: true, // if user taps the screen, triggers a click event
+            wipeLeft: function() {
+                console.log("wipeLeft");
+                if($scope.friendIndex < $scope.friendList.length){
+                    $scope.$apply();
                     $scope.friendIndex++;
-                    console.log("swipeleft")
-                })
-                .on("swiperightt",function(){
-                    console.log("swiperightt")
+                    console.log("$scope.friendIndex", $scope.friendIndex);
+                }
+            },
+            wipeRight: function() {
+                console.log("wipeRight");
+                if($scope.friendIndex < $scope.friendList.length){
+                    $scope.$apply();
                     $scope.friendIndex++;
-                })
-        });
+                    console.log("$scope.friendIndex", $scope.friendIndex);
+                }
+            }
+                });
 
         console.log('suitmyfriendsCntrl');
         $(document).ready(function(){
