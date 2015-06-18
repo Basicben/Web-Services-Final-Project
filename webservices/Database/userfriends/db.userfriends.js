@@ -64,8 +64,6 @@ var addUserFriend = function(userFriendList,UserId){
 };
 
 var getUserFriends = function(userId,callback){
-
-    console.log('getUserFriends function. UserId : ',userId);
     getAllUserFriends(userId,function(friendsList){
         console.log('UserFriend - friendsList',friendsList);
 
@@ -73,25 +71,26 @@ var getUserFriends = function(userId,callback){
         // make a query for each friend in friendsList array and
         // bring all of his information from UserFriend DB.
 
-        /*var query = UserFriend.findOne().where('FirstName',friendTemp.first_name);
-        query.exec(function(err,friends){
-            if(err){
-                console.log('err',err);
-            }else{
-                console.log('friends',friends);
-
-                if(friends == null){
-                    // If no friends, return null
-                    callback(null);
-                }else{
-                    callback(friends);              
+        var friends = [];
+        friendsList.forEach(function(friend){
+            console.log('friend',friend);
+            var query = UserFriend.findOne().where('_id',friend.UserFriendId);
+            query.exec(function(err,temp){
+                if(err){
+                    console.log('err',err);
+                }else{                    
+                    if(temp != null){
+                        friends.push(temp);
+                        console.log('friend has been pushed to friends array',friends);
+                        if(friends.length == friendsList.length){
+                            console.log('friends',friends);
+                            callback(friends);                    
+                        }
+                    }
                 }
-                
-            }
-        });*/
+            });
+        });
     });
-    
-
 }
 
 // Exports

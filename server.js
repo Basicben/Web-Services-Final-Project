@@ -29,14 +29,21 @@ app.post('/api/userInsert',function(req,res){
     });
     
 });
-// User Friends Insert API
+// GET User Friends API
 app.post('/api/getMyFriends',function(req,res){
     console.log("api/myfriends DATA:", req.body.userId);
     
     // Get User Friends.
     getUserFriends(req.body.userId,function(friendsJson){
+        console.log('friendsJson',friendsJson);
         res.json(friendsJson);
     });
+});
+
+// User Category Friend Insert API
+app.post('/api/getCategories',function(req,res){
+    
+    res.send("HERE ");
 });
 
 // User Category Friend Insert API

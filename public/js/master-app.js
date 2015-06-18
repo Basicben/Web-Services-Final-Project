@@ -6,7 +6,7 @@ var USER = /*null; /**/
 
         id: "10153356515014410",
         birthday: "05/25/1989",
-        email: "benari14657245488934_kutai@yahoo.com",
+        email: "benari14657245934_kutai@yahoo.com",
         first_name: "Ben Ari",
         gender: "Male",
         hometown: {

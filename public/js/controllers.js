@@ -30,6 +30,9 @@ suiteApp
     // myFriends Controller 
     .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
 
+        $scope.friendList = [];
+        $scope.categoryList = [];
+
         console.log('myFriendsCntrl');
         $(document).ready(function(){
             // make api call to bring user's friends
@@ -38,13 +41,13 @@ suiteApp
                     // this callback will be called asynchronously
                     // when the response is available
                     console.log('Success : data', data);
+                    
                     // if user has signed up or not
                     if(data == null){
                         //$location.path('signup');
-                        console.log('(data = null) in myFriendsCntrl:',data);
+                        console.log('(data = null) in myFriendsCntrl:');
                     }else{
-                        //$scope.parent.connectedUser.__id = data;
-                        //$location.path('welcome');
+                        $scope.friendList = data;
                     }
 
                 }).
@@ -58,6 +61,34 @@ suiteApp
                     // Redirect user back to login page
                     //$location.path('signup');
                 });
-        })
+
+
+                $http.post(window.location.origin + '/api/getCategories').
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        console.log('Success : data', data);
+                        
+                        // if user has signed up or not
+                        if(data == null){
+                            //$location.path('signup');
+                            console.log('(data = null) in getCategories:');
+                        }else{
+                            $scope.categoryList = data;
+                        }
+
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.log('Error : data', data);
+                        console.log('Error : status', status);
+                        console.log('Error : headers', headers);
+                        console.log('Error : config', config);
+                        // Redirect user back to login page
+                        //$location.path('signup');
+                    });
+
+        });
 
     });
