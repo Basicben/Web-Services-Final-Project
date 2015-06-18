@@ -1,6 +1,6 @@
 suiteApp
-    // Signup Controller
-    .controller('signupCntrl', function($scope,$rootScope) {
+// Signup Controller
+.controller('signupCntrl', function($scope,$rootScope) {
 
 	$scope.facebookInsert = function(){
 		$scope.$parent.angFacebookLogin();
@@ -9,14 +9,14 @@ suiteApp
     console.log('signupCntrl');
      
 })
-    // Home Controller
-    .controller('homeCntrl', function($scope,$rootScope) {
+// Home Controller
+.controller('homeCntrl', function($scope,$rootScope) {
      
     console.log('homeCntrl');
      
 })
-    // Welcome Controller
-    .controller('welcomeCntrl', function($scope,$rootScope,$location) {
+// Welcome Controller
+.controller('welcomeCntrl', function($scope,$rootScope,$location) {
      
     console.log('welcomeCntrl');
 
@@ -28,7 +28,7 @@ suiteApp
      
 })
     // myFriends Controller 
-    .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
+.controller('myFriendsCntrl', function($scope,$rootScope,$http) {
 
         $scope.friendList = [];
         $scope.categoryList = [];
@@ -91,9 +91,9 @@ suiteApp
 
         });
 
-    })
+})
     // suitMyFriends Controller
-    .controller('suitmyfriendsCntrl', function($scope,$rootScope,$http) {
+.controller('suitmyfriendsCntrl', function($scope,$rootScope,$http) {
 
         $scope.friendIndex = 0;
         $scope.friendList = [];
@@ -169,5 +169,48 @@ suiteApp
 
         });
 
+})
+.controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
+
+    $scope.autoComplete = {
+        value: null,
+        details: {},
+        options: {
+            types: 'address'
+            //,country: 'ca'
+        }
+    };
+
+    $scope.autoCompleteTemplate = '';
+
+    // Watch for Landmark input.
+    $scope.$watch('autoComplete.details', function (n, o) {
+        $scope.autoComplete.value = n;
+        console.log('$scope.autoComplete',$scope.autoComplete);
+        $scope.markers.mainMarker.lat = n.geometry.location[0];
+        $scope.markers.mainMarker.lng = n.geometry.location[1];
+        $scope.markers.mainMarker.focus = true;
+        $scope.markers.mainMarker.message = '';
+        $scope.markers.mainMarker.draggable = false;
     });
+
+
+    angular.extend($scope, {
+        osloCenter: {
+            lat: 59.91,
+            lng: 10.75,
+            zoom: 12
+        },
+        markers: {
+            mainMarker: {}
+        },
+        defaults: {
+            scrollWheelZoom: false
+        }
+    });
+    
+    console.log('inviteFriendsCntrl');
+     
+});
+
 

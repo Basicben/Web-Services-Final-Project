@@ -1,4 +1,4 @@
-var suiteApp = angular.module('suiteApp',['ngRoute']);
+var suiteApp = angular.module('suiteApp',['ngRoute','ngAutocomplete','leaflet-directive']);
 
 var USER = /*null; /**/
 /**/
@@ -6,7 +6,7 @@ var USER = /*null; /**/
 
         id: "10153356515014410",
         birthday: "05/25/1989",
-        email: "benari14657245934_kutai@yahoo.com",
+        email: "benari14645934_kutai@yahoo.com",
         first_name: "Ben Ari",
         gender: "Male",
         hometown: {
@@ -91,6 +91,10 @@ suiteApp .config(['$routeProvider','$locationProvider',
     when('/suitmyfriends', {
           templateUrl: 'templates/suitmyfriends.html',
           controller: 'suitmyfriendsCntrl'
+    }).
+    when('/invitefriends', {
+          templateUrl: 'templates/invitefriends.html',
+          controller: 'inviteFriendsCntrl'
     }).
     otherwise({
             redirectTo: '/'

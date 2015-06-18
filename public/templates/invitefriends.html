@@ -1,0 +1,46 @@
+<style type="text/css">
+	
+	.invite-header{
+		text-align: center;
+		width: 100%;
+		margin-top: 15px;
+	}
+
+	.invite-header{
+		font-size: 45px;
+	}
+
+	.invite-body{
+		width: 100%;
+		text-align: center;
+		height: 35px;
+		margin-top: 15px;
+	}
+
+	.map-size{
+		width: 100%;
+		height: 400px;
+	}
+
+</style>
+
+<div class="invite-wrapper">
+
+	<div class="invite-header">
+		<span> Invite Friends </span>
+	</div>
+	
+	<div class="invite-body">
+		<div>
+			<input id="WhereInput" type="text" ng-autocomplete ng-model="autoCompleteTemplate" options="autoComplete.options" details="autoComplete.details" ng-cloak class="form-control inph left" placeholder="ex: New York" />	
+		</div>
+		<div class="map-size">
+			<leaflet class="map-size" markers="markers" center="osloCenter"></leaflet>	
+		</div>
+	</div>
+
+	<div class="invite-footer">
+		
+	</div>
+	
+</div>
