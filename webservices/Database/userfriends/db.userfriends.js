@@ -1,7 +1,12 @@
 /********       Connecting to database + Creating userFriends schema            **************/
 var mongoose = require('mongoose');
+
 var userFriendsSchema = require('./db.userfriends.schema').userFriendSchema;
+var userCategoryFriendSchema = require('../usercategoryfriend/db.usercategoryfriend.schema').userCategoryFriendSchema;
+
 var UserFriend = mongoose.model('UserFriendM',userFriendsSchema);
+var UserCategoryFriend = mongoose.model('UserCategoryFriendM',userCategoryFriendSchema);
+
 var addUserFriendConnection = require('../userfriendconnection/db.userfriendconnection').addUserFriendConnection;
 var getAllUserFriends = require('../userfriendconnection/db.userfriendconnection').getAllUserFriends;
 /** **********************************************************/
@@ -73,19 +78,28 @@ var getUserFriends = function(userId,callback){
 
         var friends = [];
         friendsList.forEach(function(friend){
-            console.log('friend',friend);
+            // Find All friends details.
             var query = UserFriend.findOne().where('_id',friend.UserFriendId);
-            query.exec(function(err,temp){
+            query.exec(function(err,user){
                 if(err){
                     console.log('err',err);
                 }else{                    
-                    if(temp != null){
-                        friends.push(temp);
-                        console.log('friend has been pushed to friends array',friends);
-                        if(friends.length == friendsList.length){
-                            console.log('friends',friends);
-                            callback(friends);                    
-                        }
+                    if(user != null){
+                        // Attach user's friends categories to JSON.
+                        var query2 = UserCategoryFriend.find().where({ 'UserId':userId, 'FriendUserId':user._id });
+                        query2.exec(function(err,category){
+                            if(err){
+                                console.log('err',err);
+                            }else{
+                                var u = user.toObject();
+                                u.categories = category;
+                                friends.push(u);
+                                console.log('friend has been pushed to friends array',friends);
+                                if(friends.length == friendsList.length){
+                                    callback(friends);                    
+                                }
+                            }
+                        });
                     }
                 }
             });
