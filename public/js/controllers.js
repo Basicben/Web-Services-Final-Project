@@ -103,9 +103,10 @@ suiteApp
             $("ul li")
                 .on("swipeleft",function(){
                     $scope.friendIndex++;
+                    console.log("swipeleft")
                 })
                 .on("swiperightt",function(){
-
+                    console.log("swiperightt")
                     $scope.friendIndex++;
                 })
         });
@@ -145,7 +146,6 @@ suiteApp
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    console.log('Success : data', data);
 
                     // if user has signed up or not
                     if(data == null){

@@ -50,6 +50,7 @@ app.post('/api/getCategories',function(req,res){
 // User Category Friend Insert API
 app.post('/api/getMyUncategorizedFriends',function(req,res){
     // Get User Friends.
+    console.log("api/getMyUncategorizedFriends DATA:", req.body.userId);
     getUserFriends(req.body.userId,function(friendsJson){
         res.json(friendsJson);
     });
