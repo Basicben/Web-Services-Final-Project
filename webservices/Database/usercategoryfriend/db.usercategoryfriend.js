@@ -1,31 +1,24 @@
-/********       Connecting to database + Creating user schema            **************/
+/********       Connecting to database + Creating UserCategoryFriend schema            **************/
 var mongoose = require('mongoose');
 var userCategoryFriendSchema = require('./db.usercategoryfriend.schema').userCategoryFriendSchema;
-var UserCategoryFriend = mongoose.model('UserFriendM',userCategoryFriendSchema);
+var UserCategoryFriend = mongoose.model('UserCategoryFriendM',userCategoryFriendSchema);
 /** **********************************************************/
 
 
-/*****      Connection to the database ( db_suitemybeer ) *****/
-
-
 var addUserCategoryFriend = function(userCategoryFriendObj){
-    mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
+
+    // Connect if not connected already
+    if(!mongoose.connection.readyState){
+        mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");
+    }
+
     var conn = mongoose.connection;
-
-    // Rest of code here
-    conn.on('error',function(err){
-        console.log('connection error' + err);
-    });
-
-    conn.once('open',function(){
-        console.log("Connected to db_suitemybeer/userCategoryFriendTable\n");
-
 
         /**********       Adding new UserFriendCategory from app to User category friend collection    **********/
             var newUserCategoryFriend = new UserCategoryFriend({
                 UserId: userCategoryFriendObj.UserId,
-                FriendUserId: userCategoryFriendObj.FriendUserId,
-                CategoryId: userCategoryFriendObj.CategoryId
+                FriendId: userCategoryFriendObj.FriendId,
+                Categories: userCategoryFriendObj.Categories
             });
 
                 /**     Check if UserFriendCategory already exist        **/
@@ -35,7 +28,6 @@ var addUserCategoryFriend = function(userCategoryFriendObj){
                     })
                 }
 
-    });
 };
 
 

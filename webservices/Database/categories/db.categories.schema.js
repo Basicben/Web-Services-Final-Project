@@ -5,9 +5,7 @@ var schema = mongoose.Schema;
 var categorySchema = new schema({
     Title: {type: String, unique: true},
     Picture: String,
-    UserId: String,
-    FriendUserId: String,
-    CategoryId: String
+    IsSelected: Boolean
 },{collection: 'Categories'});
 
 //Export

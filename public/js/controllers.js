@@ -112,9 +112,24 @@ suiteApp
  ***************************/
 .controller('suitmyfriendsCntrl', function($scope,$rootScope,$http) {
 
+        /**
+         * TODO list:
+         * fix the friend index problem ( categoriazedFriend.FriendId)
+         * MONGO bug : friendId isn't mach the right person
+         *
+         * Make api call to Insert user category friend only if obj.length > 0
+         */
+
+        console.log('suitmyfriendsCntrl');
+
         $scope.friendIndex = 0;
         $scope.friendList = [];
         $scope.categoryList = [];
+        $scope.categoriazedFriend = {
+            UserId:$scope.$parent.connectedUser._id,
+            FriendId:0,
+            Categories:[]
+        };
 
         //Wipe function
         $("#friendPictureSection").wipetouch({
@@ -123,31 +138,85 @@ suiteApp
                 console.log("wipeLeft");
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
-                    $scope.$apply();
-                    console.log("wipeLeft + index = " + $scope.friendIndex);
                 }
                 else{
-                    console.log("wipeLeft + $scope.friendIndex = 0");
                     $scope.friendIndex = 0;
-                    $scope.$apply();
                 }
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+                $scope.disSelectAllCategories();
+                $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                $scope.$apply();
+
+
             },
             wipeRight: function() {
                 console.log("wipeRight");
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
-                    $scope.$apply();
-                    console.log("wipeRight + index = " + $scope.friendIndex);
                 }
                 else{
-                    console.log("$scope.friendIndex = 0");
                     $scope.friendIndex = 0;
-                    $scope.$apply();
                 }
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+                $scope.disSelectAllCategories();
+                $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                $scope.$apply();
             }
         });
 
-        console.log('suitmyfriendsCntrl');
+        //Pushing selected categories to a new obj.array
+        $scope.selectCategory = function(category,index){
+
+            //push into a new array the ID of the category and the userFriendId
+            category.IsSelected = !category.IsSelected;
+            console.log(category.IsSelected + " " + index);
+
+            // if selected is true -> push to array.
+            // if false, delete this category from array.
+            if(category.IsSelected){
+                $scope.categoriazedFriend.Categories.push(category);
+            }
+            else{
+                $scope.categoriazedFriend.Categories.splice($scope.categoriazedFriend.Categories.indexOf(category),1);
+            }
+
+        };
+
+        //Disselect all categories
+        $scope.disSelectAllCategories = function(){
+            angular.forEach($scope.categoryList, function(value){
+                if(value.IsSelected){
+                    value.IsSelected = false;
+                }
+            });
+            $scope.$apply();
+        };
+
+        //Sending the new object(categoriazedFriends[userId,friendId,categories]) to server
+        $scope.sendObjOfUserCategoryFriend = function(obj){
+            $http.post(window.location.origin + '/api/userCategoryFriendInsert',{ categoriazedFriend: obj }).
+                success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log('Success at sendObjOfUserCategoryFriend : ', data);
+
+                    // if user has signed up or not
+                    if(data == null){
+                        console.log('(data = null) in /api/userCategoryFriendInsert:');
+                    }
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
+                    //$location.path('signup');
+                });
+        };
+
         $(document).ready(function(){
 
             // make api call to bring user's friends
@@ -162,6 +231,10 @@ suiteApp
                         console.log('(data = null) in suitmyfriendsCntrl:');
                     }else{
                         $scope.friendList = data;
+
+                        // this happens only in the first time --> receiving data of the user's friends and
+                        // categoriazedFriends.friendId will get the first friend id
+                        $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                     }
 
                 }).

@@ -4,8 +4,8 @@ var schema = mongoose.Schema;
 //Circles schema  - document
 var userCategoryFriendSchema = new schema({
     UserId: String,
-    FriendUserId: String,
-    CategoryId: String
+    FriendId: String,
+    Categories: [String]
 },{collection: 'UserCategoryFriend'});
 
 //Export

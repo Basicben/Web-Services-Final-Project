@@ -16,6 +16,7 @@ console.log('listenning on server...');
 var addUser = require('./webservices/Database/users/db.user').addUser;
 var getUserFriends = require('./webservices/Database/userfriends/db.userfriends').getUserFriends;
 var getAllCategories = require('./webservices/Database/categories/db.categories').getAllCategories;
+var addUserCategoryFriend = require('./webservices/Database/usercategoryfriend/db.usercategoryfriend').addUserCategoryFriend;
 /*var addCircle = require('./webservices/Database/circles/db.circle').addCircle;
 var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').addUserCircle;
 **/
@@ -40,14 +41,14 @@ app.post('/api/getMyFriends',function(req,res){
     });
 });
 
-// User Category Friend Insert API
+// GET  all Categories API
 app.post('/api/getCategories',function(req,res){
     getAllCategories(function(categoriesJson){
         res.json(categoriesJson);
     });
 });
 
-// User Category Friend Insert API
+// GET Uncategorized Friends API
 app.post('/api/getMyUncategorizedFriends',function(req,res){
     // Get User Friends.
     console.log("api/getMyUncategorizedFriends DATA:", req.body.userId);
@@ -58,8 +59,10 @@ app.post('/api/getMyUncategorizedFriends',function(req,res){
 
 // User Category Friend Insert API
 app.post('/api/userCategoryFriendInsert',function(req,res){
-
-    res.send("HERE ");
+    // Get User Category Friend
+    console.log("api/userCategoryFriendInsert DATA:", req.body.categoriazedFriend);
+    addUserCategoryFriend(req.body.categoriazedFriend);
+    res.json(req.body.categoriazedFriend);
 });
 
 // User Event Insert API

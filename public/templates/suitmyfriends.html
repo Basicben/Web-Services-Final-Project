@@ -1,4 +1,12 @@
 <!--  Presenting all user friends with their categories  -->
+<style>
+
+    .redText{
+
+        color:red;
+    }
+</style>
+
 <div class="suitmyfriends-wrapper">
 
     <div class="suitmyfriends-header">
@@ -19,7 +27,7 @@
             <p>Categories are :</p>
             <ul>
                 <li ng-repeat="category in categoryList">
-                    <button onclick="">{{category}}</button>
+                    <div ng-class="{redText : category.IsSelected == true}" ng-click="selectCategory(category,$index)">{{category}}</div>
                 </li>
             </ul>
         </div>
