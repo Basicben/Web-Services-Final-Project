@@ -285,6 +285,15 @@ suiteApp
 
 .controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
 
+
+    $scope.invitation = {
+        name: null,
+        placeName: null,
+        friends:null,
+    }
+
+
+
     $scope.autoComplete = {
         value: null,
         details: {},
@@ -331,7 +340,79 @@ suiteApp
             scrollWheelZoom: false
         }
     });
+
+    $scope.sendInvitation = function(){
+
+        $scope.$parent.changeURL('selectfriends');
+    }
      
+}).controller('selectFriendsCntrl', function($scope,$rootScope,$http){
+
+    // Array contains category types.
+    $scope.circleList = [];
+    // Array contains friend list.
+    $scope.friendList = [];
+    // Array contains selected friends we would like to send the invitation to.
+    $scope.selectedFriends = [];
+
+
+    $(document).ready(function(){
+
+            // make api call to bring user's friends
+            $http.post(window.location.origin + '/api/getMyFriends', { userId: $scope.$parent.connectedUser._id } ).
+                success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+
+                    // if user has signed up or not
+                    if(data == null){
+                        console.log('(data = null) in suitmyfriendsCntrl:');
+                    }else{
+                        $scope.friendList = data;
+
+                        console.log('$scope.friendList',$scope.friendList);
+                    }
+
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
+                    //$location.path('signup');
+                });
+
+
+                $http.post(window.location.origin + '/api/getFriendsCircles', { userId: $scope.$parent.connectedUser._id } ).
+                success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+
+                    // if user has signed up or not
+                    if(data == null){
+                        console.log('(data = null) in suitmyfriendsCntrl:');
+                    }else{
+                        console.log('data',data);
+                    }
+
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
+                    //$location.path('signup');
+                });
+
+
+    console.log('selectFriendsCntrl');
+    });
 });
 
 
