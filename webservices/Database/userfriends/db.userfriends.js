@@ -92,6 +92,7 @@ var getUserFriends = function(userId,callback){
                             if(err){
                                 console.log('err',err);
                             }else{
+                                console.log('UserCategoryFriend UserCategoryFriend UserCategoryFriend\n',category);
                                 // Make user an object 
                                 var u = user.toObject();
                                 // Make a new CATEGORY attribute to user.

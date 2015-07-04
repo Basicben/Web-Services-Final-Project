@@ -27,6 +27,9 @@
 		font-size: 25px;
 		color:#edbdcb;
 	}
+    .pointer{
+        cursor: pointer;
+    }
 
 </style>
 
@@ -37,13 +40,13 @@
 	</div>
 	
 	<div class="home-body">
-		<button ng-click="$parent.changeURL('invitefriends')" class="btn btn-primary"> Invite Friends </button>
+		<button ng-click="$parent.changeURL('invitefriends')" class="btn btn-primary pointer"> Invite Friends </button>
 	</div>
 
 	<div class="home-footer">
 		<div class="footer-navbar">
-			<div ng-click="$parent.changeURL('myfriends')"> <span>My Friends</span> </div>
-			<div  ng-click="$parent.changeURL('suitmyfriends')"> <span>Suite My Friends</span> </div>
+			<div ng-click="$parent.changeURL('myfriends')" class="pointer"> <span>My Friends</span> </div>
+			<div  ng-click="$parent.changeURL('suitmyfriends')" class="pointer"> <span>Suite My Friends</span> </div>
 		</div>
 		<div class="clear"> </div>
 	</div>

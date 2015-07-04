@@ -1,5 +1,7 @@
 suiteApp
-// Signup Controller
+/***************************
+ *  SignUp Controller
+ ***************************/
 .controller('signupCntrl', function($scope,$rootScope) {
 
 	$scope.facebookInsert = function(){
@@ -9,13 +11,19 @@ suiteApp
     console.log('signupCntrl');
      
 })
-// Home Controller
+
+/***************************
+ *  Home Controller
+ ***************************/
 .controller('homeCntrl', function($scope,$rootScope) {
      
     console.log('homeCntrl');
      
 })
-// Welcome Controller
+
+/***************************
+ *  Welcome Controller
+ ***************************/
 .controller('welcomeCntrl', function($scope,$rootScope,$location) {
      
     console.log('welcomeCntrl');
@@ -27,11 +35,17 @@ suiteApp
     }
      
 })
-    // myFriends Controller 
+
+/***************************
+ *  myFriends Controller
+ ***************************/
 .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
 
         $scope.friendList = [];
         $scope.categoryList = [];
+        $scope.nullsCategoriesToBottom = function(obj) {
+            return (angular.isDefined(obj.categories) ? -1 : 0);
+        };
 
         console.log('myFriendsCntrl');
         $(document).ready(function(){
@@ -92,32 +106,46 @@ suiteApp
         });
 
 })
-    // suitMyFriends Controller
+
+/***************************
+ *  suitMyFriends Controller
+ ***************************/
 .controller('suitmyfriendsCntrl', function($scope,$rootScope,$http) {
 
         $scope.friendIndex = 0;
         $scope.friendList = [];
         $scope.categoryList = [];
 
-        $(document).wipetouch({
+        //Wipe function
+        $("#friendPictureSection").wipetouch({
             tapToClick: true, // if user taps the screen, triggers a click event
             wipeLeft: function() {
                 console.log("wipeLeft");
-                if($scope.friendIndex < $scope.friendList.length){
-                    $scope.$apply();
+                if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
-                    console.log("$scope.friendIndex", $scope.friendIndex);
+                    $scope.$apply();
+                    console.log("wipeLeft + index = " + $scope.friendIndex);
+                }
+                else{
+                    console.log("wipeLeft + $scope.friendIndex = 0");
+                    $scope.friendIndex = 0;
+                    $scope.$apply();
                 }
             },
             wipeRight: function() {
                 console.log("wipeRight");
-                if($scope.friendIndex < $scope.friendList.length){
-                    $scope.$apply();
+                if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
-                    console.log("$scope.friendIndex", $scope.friendIndex);
+                    $scope.$apply();
+                    console.log("wipeRight + index = " + $scope.friendIndex);
+                }
+                else{
+                    console.log("$scope.friendIndex = 0");
+                    $scope.friendIndex = 0;
+                    $scope.$apply();
                 }
             }
-                });
+        });
 
         console.log('suitmyfriendsCntrl');
         $(document).ready(function(){
@@ -127,12 +155,11 @@ suiteApp
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    console.log('Success : data', data);
+                    console.log('Success getMyUncategorizedFriends: data', data);
 
                     // if user has signed up or not
                     if(data == null){
-                        //$location.path('signup');
-                        console.log('(data = null) in myFriendsCntrl:');
+                        console.log('(data = null) in suitmyfriendsCntrl:');
                     }else{
                         $scope.friendList = data;
                     }
@@ -178,6 +205,11 @@ suiteApp
         });
 
 })
+
+/***************************
+ *  inviteFriends Controller
+ ***************************/
+
 .controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
 
     $scope.autoComplete = {

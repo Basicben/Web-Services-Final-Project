@@ -2,12 +2,12 @@
 <div class="suitmyfriends-wrapper">
 
     <div class="suitmyfriends-header">
-        <h1>Suit My Friends</h1>
+        <h2>Suit My Friends</h2>
     </div>
 
     <!--  Presenting all user's friends, sorted by categories  -->
     <div class="suitmyfriends-body">
-        <div class="friendPictureSection">
+        <div id="friendPictureSection">
             <p>Friends picture are :</p>
             <ul>
                 <li>
@@ -19,7 +19,7 @@
             <p>Categories are :</p>
             <ul>
                 <li ng-repeat="category in categoryList">
-                    {{category}}
+                    <button onclick="">{{category}}</button>
                 </li>
             </ul>
         </div>
@@ -27,7 +27,6 @@
 
     <div class="myfriends-footer">
         <div class="footer-navbar">
-            <button class="btn btn-primary" ng-click="enterApp()"> Enter </button>
         </div>
         <div class="clear"> </div>
     </div>

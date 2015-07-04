@@ -62,6 +62,7 @@ var USER = /*null; /**/
         ]
 
 };/**/
+
 suiteApp .config(['$routeProvider','$locationProvider',
     function($routeProvider,$locationProvider) {
     
