@@ -20,7 +20,6 @@ var addCircle = function(circleTitle, userId){
 
         var query = Circle.findOne().where('Title',circleTitle);
         query.exec(function(err,circle){
-            console.log('circle',circle);
             if(err) {
                 console.log('err',err);
             }else{

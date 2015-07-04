@@ -17,7 +17,7 @@ var getAllCategories = function(callback){
             console.log('err in getAllCategories/query bug', err);
         }
         else{
-            console.log('Categories query exac() was exacute: ',categories);
+            console.log('Categories query exac() was exacute: ');
             callback(categories);
         }
     });

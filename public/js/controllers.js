@@ -194,30 +194,38 @@ suiteApp
     // Watch for Landmark input.
     $scope.$watch('autoComplete.details', function (n, o) {
         $scope.autoComplete.value = n;
-        console.log('$scope.autoComplete',$scope.autoComplete);
-        $scope.markers.mainMarker.lat = n.geometry.location[0];
-        $scope.markers.mainMarker.lng = n.geometry.location[1];
-        $scope.markers.mainMarker.focus = true;
-        $scope.markers.mainMarker.message = '';
-        $scope.markers.mainMarker.draggable = false;
+        if(!jQuery.isEmptyObject(n)){
+            var location = $scope.autoComplete.value.geometry.location;
+            $scope.markers['marker1'] = {
+                lat: location[Object.keys(location)[0]],
+                lng: location[Object.keys(location)[1]],
+                message: n.formatted_address,
+                focus: true,
+                draggable: false
+            }
+
+            $scope.center = {
+                lat: location[Object.keys(location)[0]],
+                lng: location[Object.keys(location)[1]],
+                zoom: 12,
+            }
+        }
     });
 
 
     angular.extend($scope, {
-        osloCenter: {
+        center: {
             lat: 59.91,
             lng: 10.75,
             zoom: 12
         },
         markers: {
-            mainMarker: {}
+
         },
         defaults: {
             scrollWheelZoom: false
         }
     });
-    
-    console.log('inviteFriendsCntrl');
      
 });
 

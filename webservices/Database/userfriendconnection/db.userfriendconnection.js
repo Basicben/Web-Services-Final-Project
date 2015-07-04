@@ -32,11 +32,11 @@ var addUserFriendConnection = function(friendConnectionId,userId){
                     if(err){
                         console.log('err',err);
                     }else{
-                     console.log("\n UserFriendConnection was added to UserFriendConnection collection " + doc);
+                     console.log("\n UserFriendConnection was added to UserFriendConnection collection ");
                     }
                  });
             }else{
-                console.log('connection already exists',connection);    
+                console.log('connection already exists');    
             }
         }
 

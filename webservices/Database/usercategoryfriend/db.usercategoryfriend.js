@@ -31,7 +31,7 @@ var addUserCategoryFriend = function(userCategoryFriendObj){
                 /**     Check if UserFriendCategory already exist        **/
                 if(newUserCategoryFriend.isNew) {
                     newUserCategoryFriend.save(function (err, doc) {
-                        console.log("\n UserCategoryFriend was added to UserCategoryFriend collection " + doc);
+                        console.log("\n UserCategoryFriend was added to UserCategoryFriend collection ");
                     })
                 }
 

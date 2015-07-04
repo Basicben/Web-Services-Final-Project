@@ -98,7 +98,7 @@ var getUserFriends = function(userId,callback){
                                 u.categories = category;
                                 // Push user to friends array.
                                 friends.push(u);
-                                console.log('friend has been pushed to friends array',friends);
+                                console.log('friend has been pushed to friends array');
                                 // If and only if friends array has the same length than the original
                                 // make a callback.
                                 if(friends.length == friendsList.length){
