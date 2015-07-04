@@ -16,7 +16,8 @@ console.log('listenning on server...');
 var addUser = require('./webservices/Database/users/db.user').addUser;
 var getUserFriends = require('./webservices/Database/userfriends/db.userfriends').getUserFriends;
 var getAllCategories = require('./webservices/Database/categories/db.categories').getAllCategories;
-/*var addCircle = require('./webservices/Database/circles/db.circle').addCircle;
+var getFriendCircles = require('./webservices/Database/circles/db.circle').getFriendCircles;
+/*
 var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').addUserCircle;
 **/
 
@@ -53,6 +54,13 @@ app.post('/api/getMyUncategorizedFriends',function(req,res){
     console.log("api/getMyUncategorizedFriends DATA:", req.body.userId);
     getUserFriends(req.body.userId,function(friendsJson){
         res.json(friendsJson);
+    });
+});
+
+app.post('/api/getFriendsCircles',function(req,res){
+    console.log("api/getFriendsCircles DATA:", req.body.userId);
+    getFriendCircles(req.body.userId,function(circles){
+        res.json(circles);
     });
 });
 

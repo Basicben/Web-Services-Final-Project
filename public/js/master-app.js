@@ -97,6 +97,10 @@ suiteApp .config(['$routeProvider','$locationProvider',
           templateUrl: 'templates/invitefriends.html',
           controller: 'inviteFriendsCntrl'
     }).
+    when('/selectfriends', {
+          templateUrl: 'templates/selectfriends.html',
+          controller: 'selectFriendsCntrl'
+    }).
     otherwise({
             redirectTo: '/'
     });

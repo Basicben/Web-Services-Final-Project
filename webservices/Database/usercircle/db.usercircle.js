@@ -31,7 +31,24 @@ var addUserCircle = function(userCircleId,userId){
                 
             }
         });
-
 };
 
+
+var getUserCircles = function(userId,callback){
+    
+    var query = UserCircle.find().where({'UserId':userId});
+    query.exec(function(err,userCircles){
+        if(err){
+            console.log('err',err);
+        }else{
+            if(userCircles != null){
+                console.log('userCircles',userCircles);
+                callback(userCircles);
+            }
+               
+        }
+    });
+}
+
 exports.addUserCircle = addUserCircle;
+exports.getUserCircles = getUserCircles;

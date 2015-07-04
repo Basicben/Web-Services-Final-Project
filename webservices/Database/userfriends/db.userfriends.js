@@ -9,6 +9,9 @@ var UserCategoryFriend = mongoose.model('UserCategoryFriendM',userCategoryFriend
 
 var addUserFriendConnection = require('../userfriendconnection/db.userfriendconnection').addUserFriendConnection;
 var getAllUserFriends = require('../userfriendconnection/db.userfriendconnection').getAllUserFriends;
+
+var getUserCircles = require('../usercircle/db.usercircle').getUserCircles;
+var addCircle = require('../circles/db.circle').addCircle;
 /** **********************************************************/
 
 
@@ -54,6 +57,10 @@ var addUserFriend = function(userFriendList,UserId){
                         }else{
                             console.log("\n UserFriend was added to UserFriend collection " + doc);    
                             addUserFriendConnection(doc._id,UserId);
+                            // Add Circles if needed
+                            if(friendTemp.hometown != null) addCircle(friendTemp.hometown.name,doc._id);
+                            if(friendTemp.gender != null) addCircle(friendTemp.gender,doc._id);
+                            
                         }
                     });
                 }else{
@@ -93,18 +100,22 @@ var getUserFriends = function(userId,callback){
                                 console.log('err',err);
                             }else{
                                 console.log('UserCategoryFriend UserCategoryFriend UserCategoryFriend\n',category);
-                                // Make user an object 
+                                // Make user is an object 
                                 var u = user.toObject();
-                                // Make a new CATEGORY attribute to user.
-                                u.categories = category;
-                                // Push user to friends array.
-                                friends.push(u);
-                                console.log('friend has been pushed to friends array');
-                                // If and only if friends array has the same length than the original
-                                // make a callback.
-                                if(friends.length == friendsList.length){
-                                    callback(friends);                    
-                                }
+
+                                getUserCircles(u._id,function(circles){
+                                    // Make a new CATEGORY attribute to user.
+                                    u.categories = category;
+                                    u.circles = circles;
+                                    // Push user to friends array.
+                                    friends.push(u);
+                                    console.log('friend has been pushed to friends array');
+                                    // If and only if friends array has the same length than the original
+                                    // make a callback.
+                                    if(friends.length == friendsList.length){
+                                        callback(friends);                 
+                                    }
+                                });                                
                             }
                         });
                     }
