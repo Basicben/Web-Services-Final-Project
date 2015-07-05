@@ -135,7 +135,6 @@ suiteApp
         $("#friendPictureSection").wipetouch({
             tapToClick: true, // if user taps the screen, triggers a click event
             wipeLeft: function() {
-                console.log("wipeLeft");
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
                 }
@@ -144,13 +143,15 @@ suiteApp
                 }
                 $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                 $scope.disSelectAllCategories();
-                $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                if($scope.categoriazedFriend.Categories.length != 0) {
+                    $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                }
                 $scope.$apply();
+                $scope.categoriazedFriend.Categories = [];
 
 
             },
             wipeRight: function() {
-                console.log("wipeRight");
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
                 }
@@ -159,18 +160,18 @@ suiteApp
                 }
                 $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                 $scope.disSelectAllCategories();
-                $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                if($scope.categoriazedFriend.Categories.length != 0) {
+                    $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                }
                 $scope.$apply();
+                $scope.categoriazedFriend.Categories = [];
             }
         });
 
         //Pushing selected categories to a new obj.array
         $scope.selectCategory = function(category,index){
-
             //push into a new array the ID of the category and the userFriendId
             category.IsSelected = !category.IsSelected;
-            console.log(category.IsSelected + " " + index);
-
             // if selected is true -> push to array.
             // if false, delete this category from array.
             if(category.IsSelected){
@@ -179,7 +180,6 @@ suiteApp
             else{
                 $scope.categoriazedFriend.Categories.splice($scope.categoriazedFriend.Categories.indexOf(category),1);
             }
-
         };
 
         //Disselect all categories
@@ -217,8 +217,9 @@ suiteApp
                 });
         };
 
-        $(document).ready(function(){
+/*************             First load of the page                ********/
 
+        $(document).ready(function(){
             // make api call to bring user's friends
             $http.post(window.location.origin + '/api/getMyUncategorizedFriends', { userId: $scope.$parent.connectedUser._id } ).
                 success(function(data, status, headers, config) {
@@ -235,6 +236,8 @@ suiteApp
                         // this happens only in the first time --> receiving data of the user's friends and
                         // categoriazedFriends.friendId will get the first friend id
                         $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+                        console.log("index: ",$scope.friendIndex);
+                        console.log("$(documnebt).ready + $scope.friendList[friendIndex]",$scope.friendList[$scope.friendIndex]);
                     }
 
                 }).

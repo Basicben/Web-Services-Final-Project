@@ -20,8 +20,6 @@ var addUser = function(userObj,callback) {
 
     console.log("addUser function");
 
-
-
         // Adding new user from facebook to User's collection
     var newUser = new User({
         FirstName: userObj.first_name == null ? null : userObj.first_name,

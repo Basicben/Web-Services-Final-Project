@@ -5,8 +5,6 @@ var UserCircle = mongoose.model('UserCircleM',userCircleSchema);
 /** **********************************************************/
 
 var addUserCircle = function(userCircleId,userId){
-    // Connection to database ( db_suitemybeer )
-        console.log("Connected to db_suitemybeer/userCircleTable\n");
         
         /**********       Adding new UserCircle from facebook to User's collection              **********/
         var newUserCircle = new UserCircle({
