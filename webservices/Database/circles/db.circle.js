@@ -12,8 +12,6 @@ var getUserFriends = require('../userfriends/db.userfriends').getUserFriends;
 /*****      Connection to the database ( db_suitemybeer ) *****/
 
 var addCircle = function(circleTitle, userId){
-        
-
         /**********       Adding new Circle from facebook to User's collection              **********/
         var newCircle = new Circle({
             Title: circleTitle
@@ -35,7 +33,6 @@ var addCircle = function(circleTitle, userId){
                             console.log('circle not exists -> Adding');
                             addUserCircle(newCircle._id,userId);
                         }
-                        
                     });
                 }else{
                     console.log('circle exists');
@@ -78,6 +75,5 @@ var getFriendCircles = function(userId,callback){
 }
 
 // Exports
-
 exports.addCircle = addCircle;
 exports.getFriendCircles = getFriendCircles;
