@@ -1,8 +1,43 @@
-#wrapper{
-  width: 980px;
-  display: block;
-  margin:0 auto;
+body,html{
+  padding:0;
+  margin:0;
+  width: 360px;
+  height:640px;
+  max-height:640px;
+  overflow: hidden;
 }
+
+span,p,a{
+  color:#fff7d3;
+}
+
+#wrapper{
+  display: block;
+  background-color: #171820;
+  height:592px !important;
+}
+
+.header-logo{
+    width:100px;
+    height:100px;
+    position:relative;
+    display: block;
+    margin:0 auto;
+    background-image: url('../images/logo208.png');
+    top:31px;
+  }
+
+.goldenbtn{
+    border: #fff7d3 2px solid;
+    text-align: center;
+    color: #fff7d3;
+    text-transform: uppercase;
+  }
+
+.goldenbtn > span{
+    position: relative;
+    top:14px;
+  }
 
 .clear{
   clear: both;
@@ -17,7 +52,10 @@
   and (min-device-width: 320px) 
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    #wrapper{
+      width: 360px !important;
+      height:592px !important;
+    }
 }
 
 /* Portrait */

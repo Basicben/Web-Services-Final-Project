@@ -17,6 +17,14 @@
 		margin-top: 15px;
 	}
 
+	.red{
+		background-color: red;
+	}
+
+	.green{
+		background-color: lightgreen;	
+	}
+
 </style>
 
 <div class="select-wrapper">
@@ -29,13 +37,34 @@
 		<!-- Get All Friends Circles -->
 		
 		<div class="circleswrapper">
-			
+			<h2> Circles </h2>
+			<!-- Circles -->
+			<div>
+				<div ng-repeat="circle in circleList" ng-init="circle.IsSelected = false" ng-click="selectCircle(circle);" ng-class="{green: circle.IsSelected == true}">
+					<span> {{circle.Title}} </span>
+				</div>
+			</div>
 		</div>
 
 		<!-- Select all friends \ some of them -->
 		<div class="friendswrapper">
+			<h2> Person Categories </h2>
+			<div>
+				<div ng-repeat="friend in friendList | filter:isCircle(friend)" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{red: friend.IsSelected == true}">
+					<span ng-if="friend.Email"> {{friend.Email}} </span>
+					<span ng-if="friend.FirstName"> {{friend.FirstName}} </span>
+					<span ng-if="friend.LastName"> {{friend.LastName}} </span>
+					<span ng-if="friend.Gender"> {{friend.Gender}} </span>
+					<span ng-if="friend.MediumProfilePicture"> {{friend.MediumProfilePicture}} </span>
+					<span ng-if="friend.SmallProfilePicture"> {{friend.SmallProfilePicture}} </span>
+					<span ng-if="friend.HomeTown"> {{friend.HomeTown}} </span>
+					<div ng-if="friend.categories"> 
+						<div ng-repeat="category in friend.categories">
 
-			<!-- Friends Categories -->
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		
 		<!-- Filter Friends By Categories -->

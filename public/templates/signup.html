@@ -3,20 +3,25 @@
 	.signup-header{
 		text-align: center;
 		width: 100%;
-		margin-top: 15px;
-	}
-
-	.signup-header{
 		font-size: 45px;
+		height:279px;
 	}
 
 	.signup-body{
 		width: 100%;
+		position: relative;
 		text-align: center;
-		height: 35px;
 		margin-top: 15px;
+		height: 240px;
 	}
 
+	.connectbtn{
+		width: 250px;
+	  	height: 45px;
+	  	margin: 0 auto;
+	  	position: relative;
+	  	top: 70px;
+	}
 
 
 </style>
@@ -24,11 +29,11 @@
 <div class="signup-wrapper">
 
 	<div class="signup-header">
-		<span> Suit My Beer </span>
+		<div class="header-logo"> </div>
 	</div>
 	
 	<div class="signup-body">
-		<button class="btn btn-primary" ng-click="facebookInsert()"> Sign in with Facebook </button>
+		<div class="connectbtn goldenbtn" ng-click="facebookInsert()"> <span> Connect With Facebook </span> </div>
 	</div>
 
 	<div class="signup-footer">

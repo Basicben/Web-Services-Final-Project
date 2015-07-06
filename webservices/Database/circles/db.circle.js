@@ -32,11 +32,14 @@ var addCircle = function(circleTitle, userId){
                             console.log('err',err);
                             
                         }else{
-                            console.log("\n Circle was added to Circle collection ");
+                            console.log('circle not exists -> Adding');
                             addUserCircle(newCircle._id,userId);
                         }
                         
                     });
+                }else{
+                    console.log('circle exists');
+                    addUserCircle(circle._id,userId);
                 }
             }
         });        

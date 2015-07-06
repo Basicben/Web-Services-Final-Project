@@ -355,6 +355,69 @@ suiteApp
     // Array contains selected friends we would like to send the invitation to.
     $scope.selectedFriends = [];
 
+    $scope.selectedCircle = [];
+
+    $scope.selectedUsers = [];
+
+    $scope.isCircle = function(user){
+        //return (user.circle.contains());
+
+        return function( friend ) {
+            if($scope.selectedCircle.length == 0 || $scope.selectedCircle == null){
+                console.log('isCircle length == 0');
+                return true;
+            }
+
+            angular.forEach($scope.selectedCircle, function(circle) {
+                for(var i=0; i<friend.circles.length; i++){
+                    console.log('friend.circles[i].Circleid',friend.circles[i].CircleId);
+                    console.log('circle._id',circle._id);
+                    console.log('friend.FirstName',friend.FirstName);
+                    if(friend.circles[i].CircleId == circle._id){
+                        
+                        return true;
+                    }
+                }
+            });
+
+          };
+
+        
+
+        
+    };
+
+    //$scope.criteriaMatch = function( criteria ) {
+    //  return function( item ) {
+    //    return item.name === criteria.name;
+    //  };
+    //};
+
+    $scope.selectFriend = function(friend){
+        friend.IsSelected = !friend.IsSelected
+        console.log('friend',friend);
+        if(friend.IsSelected){
+            // If here, Push object to array
+            $scope.selectedFriends.push(friend);
+        }else{
+            // If here, Delete object from array
+            $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1); 
+        }
+        console.log('$scope.selectedFriends',$scope.selectedFriends);
+    }
+
+    $scope.selectCircle = function(circle){
+        circle.IsSelected = !circle.IsSelected
+        console.log('circle',circle);
+        if(circle.IsSelected){
+            // If here, Push object to array
+            $scope.selectedCircle.push(circle);
+        }else{
+            // If here, Delete object from array
+            $scope.selectedCircle.splice($scope.selectedCircle.indexOf(circle),1); 
+        }
+        console.log('$scope.selectedCircle',$scope.selectedCircle);
+    }
 
     $(document).ready(function(){
 
@@ -396,6 +459,7 @@ suiteApp
                         console.log('(data = null) in suitmyfriendsCntrl:');
                     }else{
                         console.log('data',data);
+                        $scope.circleList = data;
                     }
 
                 }).
