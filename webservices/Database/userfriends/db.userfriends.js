@@ -57,15 +57,15 @@ var addUserFriend = function(userFriendList,UserId){
                             console.log("\n UserFriend was added to UserFriend collection " + doc);    
                             addUserFriendConnection(doc._id,UserId);
                             // Add Circles if needed
-<<<<<<< HEAD
+
                             //if(friendTemp.hometown != null) addCircle(friendTemp.hometown.name,doc._id);
                             //if(friendTemp.gender != null) addCircle(friendTemp.gender,doc._id);
-=======
+
                             if(friendTemp.hometown != null)
                                 addCircle(friendTemp.hometown.name,doc._id);
                             if(friendTemp.gender != null)
                                 addCircle(friendTemp.gender,doc._id);
->>>>>>> c2154d315132938f8257dae9d2120df9de89b384
+
                             
                         }
                     });
