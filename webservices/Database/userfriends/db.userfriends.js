@@ -59,14 +59,7 @@ var addUserFriend = function(userFriendList,UserId){
                             // Add Circles if needed
 
                             //if(friendTemp.hometown != null) addCircle(friendTemp.hometown.name,doc._id);
-                            //if(friendTemp.gender != null) addCircle(friendTemp.gender,doc._id);
-
-                            if(friendTemp.hometown != null)
-                                addCircle(friendTemp.hometown.name,doc._id);
-                            if(friendTemp.gender != null)
-                                addCircle(friendTemp.gender,doc._id);
-
-                            
+                            //if(friendTemp.gender != null) addCircle(friendTemp.gender,doc._id);                            
                         }
                     });
                 }else{

@@ -43,7 +43,16 @@ span,p,a{
   clear: both;
 }
 
-/**** Start Of iPhone Screens ***/
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 592px) 
+  and (-webkit-device-pixel-ratio: 3){
+      #wrapper{
+        width: 360px !important;
+        height:640px !important;
+      }
+  }
+
 
 /* ----------- iPhone 4 and 4S ----------- */
 
@@ -52,10 +61,7 @@ span,p,a{
   and (min-device-width: 320px) 
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
-    #wrapper{
-      width: 360px !important;
-      height:592px !important;
-    }
+    
 }
 
 /* Portrait */
