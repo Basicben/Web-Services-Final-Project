@@ -135,16 +135,21 @@ suiteApp
         $("#friendPictureSection").wipetouch({
             tapToClick: true, // if user taps the screen, triggers a click event
             wipeLeft: function() {
+                console.log("wipeRight");
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
                 }
                 else{
                     $scope.friendIndex = 0;
                 }
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                 $scope.disSelectAllCategories();
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                }
+                else{
+                    console.log("Nothing was insert!");
                 }
                 $scope.$apply();
                 $scope.categoriazedFriend.Categories = [];
@@ -152,16 +157,21 @@ suiteApp
 
             },
             wipeRight: function() {
+                console.log("wipeRight");
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
                 }
                 else{
                     $scope.friendIndex = 0;
                 }
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                 $scope.disSelectAllCategories();
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                }
+                else{
+                    console.log("Nothing was insert!");
                 }
                 $scope.$apply();
                 $scope.categoriazedFriend.Categories = [];
@@ -237,7 +247,8 @@ suiteApp
                         // categoriazedFriends.friendId will get the first friend id
                         $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                         console.log("index: ",$scope.friendIndex);
-                        console.log("$(documnebt).ready + $scope.friendList[friendIndex]",$scope.friendList[$scope.friendIndex]);
+                        console.log("$(documnebt).ready + $scope.friendList[friendIndex]: ",$scope.friendList[$scope.friendIndex]);
+                        console.log("first friend id: ",$scope.categoriazedFriend.FriendId);
                     }
 
                 }).
