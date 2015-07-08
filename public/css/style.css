@@ -16,7 +16,7 @@ body,html{
   padding:0;
   margin:0;
   width: 360px;
-  max-height:640px;
+  max-height:592px;
   overflow: hidden;
 }
 
@@ -188,7 +188,7 @@ body,html{
   and (-webkit-device-pixel-ratio: 3){
       #wrapper{
         width: 360px !important;
-        height:640px !important;
+        height:592px !important;
       }
   }
 
