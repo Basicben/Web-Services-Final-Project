@@ -15,7 +15,6 @@ suiteApp
               }
           }
       }
-
       return false;
   }
 

@@ -26,7 +26,7 @@
         <div class="friendsSection">
             <p>Friends sorted by categories are :</p>
             <ul>
-                <li ng-repeat="friend in friendList | sortByCategory:selectedCategoryList ">
+                <li ng-repeat="friend in friendList | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList ">
                     {{friend.Categories}}
                 </li>
             </ul>
