@@ -1,35 +1,94 @@
 <style type="text/css">
 	
-	.select-header{
-		text-align: center;
-		width: 100%;
-		margin-top: 15px;
+	span,a,p,h1,h2{
+		text-transform: uppercase;
+	}
+
+	span{
+		color: #fff7d4;
+	}
+
+	h1,h2{
+		color:#e7d4ad;
 	}
 
 	.select-header{
-		font-size: 45px;
+		text-align: center;
+		width: 100%;
+	}
+
+	.select-header{
+		
 	}
 
 	.select-body{
 		width: 100%;
-		text-align: center;
-		height: 35px;
 		margin-top: 15px;
 	}
 
-	.red{
-		background-color: red;
+	.circleswrapper, .friendswrapper{
+		color: #e7d4ad !important;
+		font-size: 18px;
+	}
+
+	.circleswrapper .circlesreapter{
+		height: 
+	}
+
+	.titledisplay{
+		position: relative;
+  		bottom: 18px;
+  		left: 8px;
+	}
+
+	.h54{
+		height: 54px;
+		text-align: center;
+	}
+
+	.h54 > span{
+		position: relative;
+		top:10px;
+		font-size: 18px;
+		top: 20px;
+	}
+
+	.withme{
+		background-color: #1c1d33 !important;
+	}
+
+	.sendall{
+		
+		background-color: #171820 !important;
+	}
+
+	.darkviolet{
+		background-color: #2c2d3b;
 	}
 
 	.green{
 		background-color: lightgreen;	
 	}
 
+	.imgprof{
+		width: 48px;
+		height: 48px;
+		border-radius: 150px;
+		margin-left: 26px;
+		background-color: #B2B3D8;
+	}
+
+	.paddbor{
+		border-bottom: 1px solid #625e62;
+  		border-top: 1px solid #625e62;
+  		padding-top: 6px;
+	}
+
 </style>
 
 <div class="select-wrapper">
 
-	<div class="select-header">
+	<div class="select-header header">
 		<span> Select Friends </span>
 	</div>
 	
@@ -39,7 +98,7 @@
 		<div class="circleswrapper">
 			<h2> Circles </h2>
 			<!-- Circles -->
-			<div>
+			<div class="circlesreapter">
 				<div ng-repeat="circle in circleList" ng-init="circle.IsSelected = false" ng-click="selectCircle(circle);" ng-class="{green: circle.IsSelected == true}">
 					<span> {{circle.Title}} </span>
 				</div>
@@ -49,19 +108,14 @@
 		<!-- Select all friends \ some of them -->
 		<div class="friendswrapper">
 			<h2> Person Categories </h2>
-			<div>
-				<div ng-repeat="friend in friendList | filter:isCircle(friend)" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{red: friend.IsSelected == true}">
-					<span ng-if="friend.Email"> {{friend.Email}} </span>
-					<span ng-if="friend.FirstName"> {{friend.FirstName}} </span>
-					<span ng-if="friend.LastName"> {{friend.LastName}} </span>
-					<span ng-if="friend.Gender"> {{friend.Gender}} </span>
-					<span ng-if="friend.MediumProfilePicture"> {{friend.MediumProfilePicture}} </span>
-					<span ng-if="friend.SmallProfilePicture"> {{friend.SmallProfilePicture}} </span>
-					<span ng-if="friend.HomeTown"> {{friend.HomeTown}} </span>
-					<div ng-if="friend.categories"> 
-						<div ng-repeat="category in friend.categories">
-
-						</div>
+			<div id="friends_repeater">
+				<div class="paddbor" ng-repeat="friend in friendList | filter:isCircle(friend)" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
+					<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.SmallProfilePicture}})'}">
+						
+					</div>
+					<div class="inline-block">
+						<span class="titledisplay inline-block" ng-if="friend.FirstName"> {{friend.FirstName}} </span>
+						<span class="titledisplay inline-block" ng-if="friend.LastName"> {{friend.LastName}} </span>
 					</div>
 				</div>
 			</div>
@@ -71,7 +125,8 @@
 	</div>
 
 	<div class="select-footer">
-		
+		<div class="h55blue h54 withme" ng-click="selectedFriends.length == friendList.length ? unsellectAll() : selectAll()"> <span> All </span>  </div>
+		<div class="h55blue h54 sendall" ng-click="sendAll()"> <span> Send </span>  </div>
 	</div>
 	
 </div>
