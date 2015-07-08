@@ -41,13 +41,37 @@ suiteApp
  ***************************/
 .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
 
+        console.log('myFriendsCntrl');
+
         $scope.friendList = [];
         $scope.categoryList = [];
-        $scope.nullsCategoriesToBottom = function(obj) {
-            return (angular.isDefined(obj.categories) ? -1 : 0);
+        $scope.selectedCategoryList = [];
+
+        $scope.addRemoveCategory = function(category,index){
+            //push into a new array the ID of the category and the userFriendId
+            category.IsSelected = !category.IsSelected;
+            // if selected is true -> push to array.
+            // if false, delete this category from array.
+            if(category.IsSelected){
+                $scope.selectedCategoryList.push(category);
+            }
+            else{
+                // splice
+                $scope.selectedCategoryList.splice($scope.selectedCategoryList.indexOf(category),1);
+            }
         };
 
-        console.log('myFriendsCntrl');
+        //Sorting display of friends from categorized friends to uncategorized friends
+        $scope.nullsCategoriesToBottom = function(obj) {
+            if(obj.Categories.length != 0){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        };
+
+        //Page reload for the first time
         $(document).ready(function(){
             // make api call to bring user's friends
             $http.post(window.location.origin + '/api/getMyFriends', { userId: $scope.$parent.connectedUser._id } ).
@@ -81,7 +105,7 @@ suiteApp
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
                         // when the response is available
-                        console.log('Success : data', data);
+                        //console.log('Success : data', data);
                         
                         // if user has signed up or not
                         if(data == null){
@@ -135,16 +159,21 @@ suiteApp
         $("#friendPictureSection").wipetouch({
             tapToClick: true, // if user taps the screen, triggers a click event
             wipeLeft: function() {
+                console.log("wipeRight");
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
                 }
                 else{
                     $scope.friendIndex = 0;
                 }
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                 $scope.disSelectAllCategories();
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                }
+                else{
+                    console.log("Nothing was insert!");
                 }
                 $scope.$apply();
                 $scope.categoriazedFriend.Categories = [];
@@ -152,16 +181,21 @@ suiteApp
 
             },
             wipeRight: function() {
+                console.log("wipeRight");
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
                 }
                 else{
                     $scope.friendIndex = 0;
                 }
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                 $scope.disSelectAllCategories();
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                }
+                else{
+                    console.log("Nothing was insert!");
                 }
                 $scope.$apply();
                 $scope.categoriazedFriend.Categories = [];
@@ -237,7 +271,8 @@ suiteApp
                         // categoriazedFriends.friendId will get the first friend id
                         $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
                         console.log("index: ",$scope.friendIndex);
-                        console.log("$(documnebt).ready + $scope.friendList[friendIndex]",$scope.friendList[$scope.friendIndex]);
+                        console.log("$(documnebt).ready + $scope.friendList[friendIndex]: ",$scope.friendList[$scope.friendIndex]);
+                        console.log("first friend id: ",$scope.categoriazedFriend.FriendId);
                     }
 
                 }).
@@ -285,10 +320,7 @@ suiteApp
 /***************************
  *  inviteFriends Controller
  ***************************/
-
-.controller('inviteFriendsCntrl', function($scope,$rootScope,$http,placelocation) {
-
-
+.controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
     $scope.invitation = {
         name: null,
         placeName: null,
@@ -351,8 +383,12 @@ suiteApp
         placelocation.changeLocation($scope.autoComplete.value);
         $scope.$parent.changeURL('selectfriends');
     }
-     
-}).controller('selectFriendsCntrl', function($scope,$rootScope,$http,friendselection){
+
+/***************************
+ *  selectFriends Controller
+ ***************************/
+.controller('selectFriendsCntrl', function($scope,$rootScope,$http){
+
 
     // Array contains category types.
     $scope.circleList = [];

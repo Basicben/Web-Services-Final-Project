@@ -93,7 +93,7 @@ var getUserFriends = function(userId,callback){
                 }else{                    
                     if(user != null){
                         // Attach user's friends categories to JSON.
-                        var query2 = UserCategoryFriend.find().where({ 'UserId':userId, 'FriendUserId':user._id });
+                        var query2 = UserCategoryFriend.findOne().where({ 'UserId':userId, 'FriendId':user._id });
                         query2.exec(function(err,category){
                             if(err){
                                 console.log('err',err);
@@ -104,7 +104,14 @@ var getUserFriends = function(userId,callback){
 
                                 getUserCircles(u._id,function(circles){
                                     // Make a new CATEGORY attribute to user.
-                                    u.categories = category;
+                                    console.log("Category", category);
+                                    if(category != null){
+                                        u.Categories = category;
+                                    }
+                                    else{
+                                        u.Categories = [];
+                                    }
+                                    //u.Categories = category;
                                     u.circles = circles;
                                     // Push user to friends array.
                                     friends.push(u);
