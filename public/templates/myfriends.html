@@ -1,16 +1,19 @@
 <!--  Presenting all user friends with their categories  -->
-<div class="myfriends-wrapper">
+<div class="myfriends-wrapper clearBackground">
     <style>
 
         .redText{
 
             color:red;
         }
+        .clearBackground{
+            background: #ffffff !important;
+        }
     </style>
 
     <!--  Presenting all categories  -->
     <div class="myfriends-header">
-
+        <input class="h55blue height55 size18" id="WhereInput" type="text" ng-autocomplete ng-model="autoCompleteTemplate" options="autoComplete.options" details="autoComplete.details" ng-cloak placeholder="Filtered" />
     </div>
 
     <!--  Presenting all user's friends, sorted by categories  -->

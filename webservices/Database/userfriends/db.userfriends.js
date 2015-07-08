@@ -106,7 +106,7 @@ var getUserFriends = function(userId,callback){
                                     // Make a new CATEGORY attribute to user.
                                     console.log("Category", category);
                                     if(category != null){
-                                        u.Categories = category;
+                                        u.Categories = category.Categories;
                                     }
                                     else{
                                         u.Categories = [];

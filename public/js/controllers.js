@@ -53,7 +53,8 @@ suiteApp
             // if selected is true -> push to array.
             // if false, delete this category from array.
             if(category.IsSelected){
-                $scope.selectedCategoryList.push(category);
+                console.log(category);
+                $scope.selectedCategoryList.push(category._id);
             }
             else{
                 // splice
@@ -63,6 +64,7 @@ suiteApp
 
         //Sorting display of friends from categorized friends to uncategorized friends
         $scope.nullsCategoriesToBottom = function(obj) {
+            //console.log("nullsCategoriesToBottom obj:",obj);
             if(obj.Categories.length != 0){
                 return -1;
             }
@@ -135,14 +137,6 @@ suiteApp
  *  suitMyFriends Controller
  ***************************/
 .controller('suitmyfriendsCntrl', function($scope,$rootScope,$http) {
-
-        /**
-         * TODO list:
-         * fix the friend index problem ( categoriazedFriend.FriendId)
-         * MONGO bug : friendId isn't mach the right person
-         *
-         * Make api call to Insert user category friend only if obj.length > 0
-         */
 
         console.log('suitmyfriendsCntrl');
 
