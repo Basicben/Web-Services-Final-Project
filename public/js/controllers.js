@@ -41,13 +41,37 @@ suiteApp
  ***************************/
 .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
 
+        console.log('myFriendsCntrl');
+
         $scope.friendList = [];
         $scope.categoryList = [];
-        $scope.nullsCategoriesToBottom = function(obj) {
-            return (angular.isDefined(obj.categories) ? -1 : 0);
+        $scope.selectedCategoryList = [];
+
+        $scope.addRemoveCategory = function(category,index){
+            //push into a new array the ID of the category and the userFriendId
+            category.IsSelected = !category.IsSelected;
+            // if selected is true -> push to array.
+            // if false, delete this category from array.
+            if(category.IsSelected){
+                $scope.selectedCategoryList.push(category);
+            }
+            else{
+                // splice
+                $scope.selectedCategoryList.splice($scope.selectedCategoryList.indexOf(category),1);
+            }
         };
 
-        console.log('myFriendsCntrl');
+        //Sorting display of friends from categorized friends to uncategorized friends
+        $scope.nullsCategoriesToBottom = function(obj) {
+            if(obj.Categories.length != 0){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        };
+
+        //Page reload for the first time
         $(document).ready(function(){
             // make api call to bring user's friends
             $http.post(window.location.origin + '/api/getMyFriends', { userId: $scope.$parent.connectedUser._id } ).
@@ -81,7 +105,7 @@ suiteApp
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
                         // when the response is available
-                        console.log('Success : data', data);
+                        //console.log('Success : data', data);
                         
                         // if user has signed up or not
                         if(data == null){
@@ -296,7 +320,6 @@ suiteApp
 /***************************
  *  inviteFriends Controller
  ***************************/
-
 .controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
 
 
@@ -360,7 +383,12 @@ suiteApp
         $scope.$parent.changeURL('selectfriends');
     }
      
-}).controller('selectFriendsCntrl', function($scope,$rootScope,$http){
+})
+
+/***************************
+ *  selectFriends Controller
+ ***************************/
+.controller('selectFriendsCntrl', function($scope,$rootScope,$http){
 
     // Array contains category types.
     $scope.circleList = [];

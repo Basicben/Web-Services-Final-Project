@@ -1,5 +1,12 @@
 <!--  Presenting all user friends with their categories  -->
 <div class="myfriends-wrapper">
+    <style>
+
+        .redText{
+
+            color:red;
+        }
+    </style>
 
     <!--  Presenting all categories  -->
     <div class="myfriends-header">
@@ -12,15 +19,15 @@
             <p>Categories are :</p>
             <ul>
                 <li ng-repeat="category in categoryList">
-                    {{category}}
+                    <div ng-class="{redText : category.IsSelected == true}" ng-click="addRemoveCategory(category,$index)">{{category._id}}</div>
                 </li>
             </ul>
         </div>
         <div class="friendsSection">
             <p>Friends sorted by categories are :</p>
             <ul>
-                <li ng-repeat="friend in friendList | orderBy: [nullsCategoriesToBottom].concat(predicate)">
-                    {{friend}}
+                <li ng-repeat="friend in friendList | sortByCategory:selectedCategoryList ">
+                    {{friend.Categories}}
                 </li>
             </ul>
         </div>
@@ -28,7 +35,7 @@
 
     <div class="myfriends-footer">
         <div class="footer-navbar">
-            <button class="btn btn-primary" ng-click="enterApp()"> Enter </button>
+
         </div>
         <div class="clear"> </div>
     </div>
