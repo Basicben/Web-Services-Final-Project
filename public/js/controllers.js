@@ -320,7 +320,11 @@ suiteApp
 /***************************
  *  inviteFriends Controller
  ***************************/
+
 .controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
+
+
+
     $scope.invitation = {
         name: null,
         placeName: null,
@@ -383,6 +387,8 @@ suiteApp
         placelocation.changeLocation($scope.autoComplete.value);
         $scope.$parent.changeURL('selectfriends');
     }
+     
+})
 
 /***************************
  *  selectFriends Controller
