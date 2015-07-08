@@ -286,7 +286,7 @@ suiteApp
  *  inviteFriends Controller
  ***************************/
 
-.controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
+.controller('inviteFriendsCntrl', function($scope,$rootScope,$http,placelocation) {
 
 
     $scope.invitation = {
@@ -345,11 +345,14 @@ suiteApp
     });
 
     $scope.sendInvitation = function(){
-
+        if($scope.autoComplete.value == null){
+            return;
+        }
+        placelocation.changeLocation($scope.autoComplete.value);
         $scope.$parent.changeURL('selectfriends');
     }
      
-}).controller('selectFriendsCntrl', function($scope,$rootScope,$http){
+}).controller('selectFriendsCntrl', function($scope,$rootScope,$http,friendselection){
 
     // Array contains category types.
     $scope.circleList = [];
@@ -384,10 +387,6 @@ suiteApp
             });
 
           };
-
-        
-
-        
     };
 
     //$scope.criteriaMatch = function( criteria ) {
@@ -398,7 +397,6 @@ suiteApp
 
     $scope.selectFriend = function(friend){
         friend.IsSelected = !friend.IsSelected
-        console.log('friend',friend);
         if(friend.IsSelected){
             // If here, Push object to array
             $scope.selectedFriends.push(friend);
@@ -406,12 +404,10 @@ suiteApp
             // If here, Delete object from array
             $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1); 
         }
-        console.log('$scope.selectedFriends',$scope.selectedFriends);
     }
 
     $scope.selectCircle = function(circle){
         circle.IsSelected = !circle.IsSelected
-        console.log('circle',circle);
         if(circle.IsSelected){
             // If here, Push object to array
             $scope.selectedCircle.push(circle);
@@ -419,7 +415,43 @@ suiteApp
             // If here, Delete object from array
             $scope.selectedCircle.splice($scope.selectedCircle.indexOf(circle),1); 
         }
-        console.log('$scope.selectedCircle',$scope.selectedCircle);
+    }
+
+    $scope.selectAll = function(){
+        console.log('selectAll');
+        if($scope.selectedFriends.length == $scope.friendList.length)
+            return;
+
+        angular.forEach($scope.friendList, function(friend){
+            if(friend.IsSelected == false){
+                friend.IsSelected = true;
+                $scope.selectedFriends.push(friend);    
+            }            
+        });
+    }
+
+    $scope.unsellectAll = function(){
+        console.log('unsellectAll');
+        angular.forEach($scope.friendList, function(friend){
+            if(friend.IsSelected == true){
+                friend.IsSelected = false;
+                $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1);    
+            }            
+        });
+    }
+
+    $scope.sendAll = function(){
+        if($scope.selectedFriends.length == 0){
+            console.log('Cannot send');
+            return;
+        }
+
+        // Add selected friend object to factory object so it would be reachable from all controllers
+        friendselection.setFriends($scope.selectedFriends);
+        // Transfer to Invitation Page
+        $scope.$parent.changeURL('invitation');
+
+
     }
 
     $(document).ready(function(){
@@ -480,6 +512,13 @@ suiteApp
 
     console.log('selectFriendsCntrl');
     });
+})
+.controller('invitationsCntrl', function($scope,$rootScope,$http,friendselection,placelocation){
+
+    $scope.eventLocation = placelocation.getLocation();
+    $scope.friendList = friendselection.getFriends();
+    console.log('invitationsCntrl',$scope.eventLocation);
+
 });
 
 
