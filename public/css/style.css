@@ -1,3 +1,17 @@
+/*
+Swipe animation:
+
+$(document).ready(function(){
+    $("button").click(function(){
+        $("div").animate({
+            left: '250px', //or right - depend the swipe direction
+            opacity: '0.0',
+            height: 'Pic size',
+            width: 'Pic size'
+        });
+    });
+});
+*/
 body,html{
   padding:0;
   margin:0;
