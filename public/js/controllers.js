@@ -321,9 +321,10 @@ suiteApp
  *  inviteFriends Controller
  ***************************/
 
-.controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
+.controller('inviteFriendsCntrl', function($scope,$rootScope,$http,invitation) {
 
-
+    $scope.friendList = [];
+    $scope.selectedFriends = [];
 
     $scope.invitation = {
         name: null,
@@ -381,19 +382,70 @@ suiteApp
     });
 
     $scope.sendInvitation = function(){
-        if($scope.autoComplete.value == null){
+        if($scope.autoComplete.value == null || $scope.autoComplete.value.formatted_address == null)
             return;
-        }
-        placelocation.changeLocation($scope.autoComplete.value);
+
+        invitation.changeLocation($scope.autoComplete.value);
         $scope.$parent.changeURL('selectfriends');
     }
-     
+
+    $scope.selectFriend = function(friend){
+        friend.IsSelected = !friend.IsSelected
+        if(friend.IsSelected){
+            // If here, Push object to array
+            $scope.selectedFriends.push(friend);
+        }else{
+            // If here, Delete object from array
+            $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1); 
+        }
+    }
+
+    $scope.chooseWithMe = function(){
+        invitation.setWithMe($scope.selectedFriends);
+        $('.withme-wrapper').removeClass('height100');
+    }
+
+    $scope.addRemoveWithMe = function(){
+        var obj = $('.withme-wrapper');
+        if(obj.hasClass('height100')){
+            obj.removeClass('height100');
+        }else{
+            obj.addClass('height100');
+            if($scope.friendList.length <= 0){
+                $http.post(window.location.origin + '/api/getMyFriends', { userId: $scope.$parent.connectedUser._id } ).
+                success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+
+                    // if user has signed up or not
+                    if(data == null){
+                        console.log('(data = null) in suitmyfriendsCntrl:');
+                    }else{
+                        $scope.friendList = data;
+
+                        console.log('$scope.friendList',$scope.friendList);
+                    }
+
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
+                    //$location.path('signup');
+                });
+            }
+        }
+    }     
 })
 
 /***************************
  *  selectFriends Controller
  ***************************/
-.controller('selectFriendsCntrl', function($scope,$rootScope,$http){
+.controller('selectFriendsCntrl', function($scope,$rootScope,$http,invitation){
 
 
     // Array contains category types.
@@ -489,7 +541,7 @@ suiteApp
         }
 
         // Add selected friend object to factory object so it would be reachable from all controllers
-        friendselection.setFriends($scope.selectedFriends);
+        invitation.setInviteFriends($scope.selectedFriends);
         // Transfer to Invitation Page
         $scope.$parent.changeURL('invitation');
 
@@ -551,15 +603,38 @@ suiteApp
                     //$location.path('signup');
                 });
 
-
-    console.log('selectFriendsCntrl');
     });
 })
-.controller('invitationsCntrl', function($scope,$rootScope,$http,friendselection,placelocation){
+.controller('invitationsCntrl', function($scope,$rootScope,$http,invitation){
 
-    $scope.eventLocation = placelocation.getLocation();
-    $scope.friendList = friendselection.getFriends();
-    console.log('invitationsCntrl',$scope.eventLocation);
+    $scope.eventLocation = invitation.getLocation();
+    $scope.invitedFriendList = invitation.getInviteFriends();
+    $scope.withMeList = invitation.getWithMe();
+    $scope.showFriends = false;
+    
+    $scope.showHideFriends = function(){
+        if($scope.showFriends){
+            $('.friendsInvited-wrapper').removeClass('height100');
+            $scope.showFriends = false;
+        }else{
+            $('.friendsInvited-wrapper').addClass('height100');
+            $scope.showFriends = true;
+        }
+    }
+
+    $scope.dontInvite = function(friendObj){
+        invitation.deleteFriendInvitation(friendObj);
+    }
+
+    $scope.cancelInvitation = function(){
+        console.log('change hijo puta');
+        invitation.clearInvitation();
+        $scope.$parent.changeURL('home');
+    }
+
+    console.log('$scope.eventLocation',$scope.eventLocation);
+    console.log('$scope.friendList',$scope.invitedFriendList);
+    console.log('$scope.withMeList',$scope.withMeList);
 
 });
 

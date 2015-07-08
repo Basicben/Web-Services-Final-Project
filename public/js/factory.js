@@ -1,6 +1,8 @@
 suiteApp
-.factory("placelocation",function(){
+.factory("invitation",function(){
         var location = {};
+        var friends = {};
+        var friendsWithMe = {};
 
         var changeLocation = function(newObj) {
 	      	location = newObj;
@@ -10,28 +12,41 @@ suiteApp
 	      	return location;
 	  	};
 
-	  	return {
-	    	changeLocation: changeLocation,
-	    	getLocation: getLocation
-	  	};
-})
-.factory("friendselection",function(){
-        var friends = {};
-
-        var setFriends = function(newObj) {
+	  	var setInviteFriends = function(newObj) {
 	      	friends = newObj;
 	  	};
 
-	  	var getFriends = function(){
+	  	var getInviteFriends = function(){
 	      	return friends;
 	  	};
 
-	  	return {
-	    	setFriends: setFriends,
-	    	getFriends: getFriends
+	  	var setWithMe = function(newObj) {
+	      	friendsWithMe = newObj;
 	  	};
-})
-.factory("connectedUser",function(){
+
+	  	var getWithMe = function(){
+	      	return friendsWithMe;
+	  	};
+
+	  	var clearInvitation = function(){
+	  		friends, friendsWithMe, location = {};
+	  	}
+
+	  	var deleteFriendInvitation = function(obj){
+	  		friends.splice(friends.indexOf(obj),1);
+	  	}
+
+	  	return {
+	    	changeLocation: changeLocation,
+	    	getLocation: getLocation,
+	    	setInviteFriends: setInviteFriends,
+	    	getInviteFriends: getInviteFriends,
+	    	setWithMe: setWithMe,
+	    	getWithMe: getWithMe,
+	    	clearInvitation: clearInvitation,
+	    	deleteFriendInvitation: deleteFriendInvitation
+	  	};
+}).factory("connectedUser",function(){
         var connectedUser = {};
 
         var set = function(newObj) {

@@ -13,7 +13,7 @@
 	}
 
 	.invitation-header{
-		
+		  text-align: center;
 	}
 
 	.comejoinme{
@@ -47,36 +47,77 @@
 		background-image: url('../images/sendinvitation_purple.png');
 	}
 
+	.friendsInvited-wrapper{
+		width: 100%;
+		height: 0px;
+		position: relative;
+		overflow: hidden;
+		-webkit-transition: 0.4s ease;
+		-moz-transition: 0.4s ease;
+		-o-transition: 0.4s ease;
+		-ms-transition: 0.4s ease;
+		transition: 0.4s ease;
+	}
+
+	section.dontinvite-wrapper{
+		position: absolute;
+  		left: 205px;
+  		top: -22px;
+  		width: 50px;
+  		height: 25px;
+  		text-align: center;
+  		border: 1px solid #fff7d4;
+	}
+
+	.px1down{
+		position: relative;
+  		top: 1px;
+	}
+
 </style>
 
 <div class="invitation-wrapper">
 
-	<div class="invitation-header header">
-		<span class="block center size15"> {{friendList.length}} friends invited </span>
-		<span class="block center size15">invite friends</span>
-	</div>
+	<section class="invitation-header header">
+		<span ng-click="showHideFriends()" class="inline-block center size15"> {{invitedFriendList.length}} friends invited 
+			<span ng-if="!showFriends"> &#9660; </span> <span ng-if="showFriends"> &#9650; </span> 
+		</span>
+	</section>
+
+	<section class="friendsInvited-wrapper">
+		<div class="paddbor" ng-repeat="friend in invitedFriendList">
+			<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.SmallProfilePicture}})'}">
+						
+			</div>
+			<div class="inline-block relative">
+				<span class="titledisplay inline-block" ng-if="friend.FirstName"> {{friend.FirstName}} </span>
+				<span class="titledisplay inline-block" ng-if="friend.LastName"> {{friend.LastName}} </span>
+				<section class="dontinvite-wrapper" ng-click="dontInvite(friend)"> <span class="px1down"> &#x2715; </span> </section>
+			</div>
+		</div>
+	</section>
 	
-	<div class="invitation-body">
+	<section class="invitation-body">
 	
-		<div class="comejoinme">  </div>
-		<div>
+		<section class="comejoinme">  </section>
+		<section>
 			<span class="center block size30"> I'm at the </span>
 			<span class="center block size50"> {{eventLocation.name}} </span>
 			<span class="center block"> {{eventLocation.formatted_address}} </span>
 			<div class="block center margtop20"> 
 				<span class="rspov center block"> rspov </span>
 			</div>	
-		</div>	
+		</section>	
 
-	</div>
+	</section>
 
-	<div class="invitation-footer margtop20">
-		<div class="center"> 
-			<span class="size40 marginright50"> &#x2715; </span>
+	<section class="invitation-footer margtop20">
+		<section class="center"> 
+			<span class="size40 marginright50" ng-click="cancelInvitation()"> &#x2715; </span>
 			<span class="size40 marginright50"> &#x2713; </span>
 			<span class="size40"> ? </span>
-		</div>
-		<div class="sendinvitation center margtop20">  </div>
-	</div>
+		</section>
+		<section class="sendinvitation center margtop20">  </section>
+	</section>
 	
 </div>
