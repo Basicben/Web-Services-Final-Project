@@ -163,7 +163,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
         });/**/
 
         /* API CALL IN LOCALHOST */
-        $http.post('http://localhost:3000/api/userInsert', { user:USER } ).
+        $http.post(/*'http://localhost:3000*/ window.location.origin + '/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available
