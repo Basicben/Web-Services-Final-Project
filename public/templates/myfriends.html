@@ -30,7 +30,7 @@
             <p>Friends sorted by categories are :</p>
             <ul>
                 <li ng-repeat="friend in friendList | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList ">
-                    {{friend.Categories}}
+                    {{friend.name}}
                 </li>
             </ul>
         </div>
