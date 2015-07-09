@@ -276,7 +276,7 @@ suiteApp
         value: null,
         details: {},
         options: {
-            types: 'address'
+            types: 'establishment'
             //,country: 'ca'
         }
     };
