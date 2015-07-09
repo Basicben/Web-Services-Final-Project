@@ -2,7 +2,7 @@ suiteApp
 /***************************
  *  SignUp Controller
  ***************************/
-.controller('signupCntrl', function($scope,$rootScope) {
+.controller('signupCntrl', function($scope,$rootScope)  {
 
 	$scope.facebookInsert = function(){
 		$scope.$parent.angFacebookLogin();
@@ -40,7 +40,6 @@ suiteApp
  *  myFriends Controller
  ***************************/
 .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
-
         console.log('myFriendsCntrl');
 
         $scope.friendList = $scope.$parent.connectedUser.userObject.friendsList;
@@ -103,7 +102,6 @@ suiteApp
                         //$location.path('signup');
                     });
         });
-
 })
 
 /***************************
@@ -118,7 +116,7 @@ suiteApp
         $scope.categoryList = [];
 
         $scope.categoriazedFriend = {
-            UserId:$scope.$parent.connectedUser.userObject._id,
+            UserId:$scope.$parent.connectedUser._id,
             FriendId:0,
             Categories:[]
         };
@@ -127,7 +125,7 @@ suiteApp
         $("#friendPictureSection").wipetouch({
             tapToClick: true, // if user taps the screen, triggers a click event
             wipeLeft: function() {
-                console.log("wipeRight");
+
                 $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex].id;
 
                 if($scope.friendIndex < $scope.friendList.length - 1){
@@ -151,7 +149,7 @@ suiteApp
             },
             wipeRight: function() {
                 console.log("wipeRight");
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex].id;
 
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
@@ -198,11 +196,33 @@ suiteApp
 
         //Sending the new object(categoriazedFriends[userId,friendId,categories]) to server
         $scope.sendObjOfUserCategoryFriend = function(obj){
-            
+            $http.post(window.location.origin + '/api/userCategoryFriendInsert',{categoriazedFriend : $scope.categoriazedFriend}).
+                success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+
+                    // if user has signed up or not
+                    if(data == null){
+                        //$location.path('signup');
+                        console.log('(data = null) in getCategories:');
+                    }else{
+
+                    }
+
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
+                    //$location.path('signup');
+                });
         };
 
 /*************             First load of the page                ********/
-        $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
 
         $(document).ready(function(){
 
@@ -247,8 +267,8 @@ suiteApp
     $scope.invitation = {
         name: null,
         placeName: null,
-        friends:null,
-    }
+        friends:null
+    };
 
 
 
@@ -274,12 +294,12 @@ suiteApp
                 message: n.formatted_address,
                 focus: true,
                 draggable: false
-            }
+            };
 
             $scope.center = {
                 lat: location[Object.keys(location)[0]],
                 lng: location[Object.keys(location)[1]],
-                zoom: 12,
+                zoom: 12
             }
         }
     });
@@ -308,7 +328,7 @@ suiteApp
     }
 
     $scope.selectFriend = function(friend){
-        friend.IsSelected = !friend.IsSelected
+        friend.IsSelected = !friend.IsSelected;
         if(friend.IsSelected){
             // If here, Push object to array
             $scope.selectedFriends.push(friend);
