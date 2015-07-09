@@ -1,8 +1,4 @@
 <style type="text/css">
-	
-	span,a,p,h1,h2{
-		text-transform: uppercase;
-	}
 
 	span{
 		color: #fff7d4;
@@ -90,8 +86,7 @@
 						
 			</div>
 			<div class="inline-block relative">
-				<span class="titledisplay inline-block" ng-if="friend.FirstName"> {{friend.FirstName}} </span>
-				<span class="titledisplay inline-block" ng-if="friend.LastName"> {{friend.LastName}} </span>
+				<span class="titledisplay inline-block" ng-if="friend.name"> {{friend.name}} </span>
 				<section class="dontinvite-wrapper" ng-click="dontInvite(friend)"> <span class="px1down"> &#x2715; </span> </section>
 			</div>
 		</div>

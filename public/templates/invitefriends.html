@@ -1,9 +1,5 @@
 <style type="text/css">
 
-	span,a,p,h1,h2{
-		text-transform: uppercase;
-	}
-
 	h1,h2{
 		color:#e7d4ad;
 	}
@@ -30,6 +26,10 @@
   		top: 19px;
 	}
 
+	.left25{
+		left: 25px;
+	}
+
 	.withme{
 		height: 55px;
 		font-size: 20px;
@@ -47,9 +47,13 @@
 	  	right: 17px;
 	  	width: 79px;
 	  	height: 78px;
-	  	background-color: #2c3048;
+	  	background-color: #212437;
 	  	z-index: 99999;
 	  	border-radius: 150px;
+	}
+
+	.sendinvitation:hover{
+		background-color: #2c3048;
 	}
 
 	.withme-wrapper{
@@ -79,22 +83,21 @@
 
 		</div>
 		<div class="paddbor" ng-repeat="friend in friendList | filter:searchFriend" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
-			<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.SmallProfilePicture}})'}">
+			<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">
 						
 			</div>
 			<div class="inline-block">
-				<span class="titledisplay inline-block gold" ng-if="friend.FirstName"> {{friend.FirstName}} </span>
-				<span class="titledisplay inline-block gold" ng-if="friend.LastName"> {{friend.LastName}} </span>
+				<span class="titledisplay inline-block gold uppercase" ng-if="friend.name"> {{friend.name}} </span>
 			</div>
 		</div>
-		<div class="h55blue h54 rglbtn" ng-click="chooseWithMe()"> <span> Choose </span>  </div>
+		<div class="h55blue h54 rglbtn uppercase" ng-click="chooseWithMe()"> <span> Choose </span>  </div>
 	</div>
 </div>
 
 <div class="invite-wrapper">
 
 	<div class="invite-header header">
-		<span> Invite Friends </span>
+		<span> Invite friends </span>
 	</div>
 	
 	<div class="invite-body">
@@ -108,7 +111,7 @@
 	</div>
 
 	<div class="invite-footer">
-		<div class="h55blue withme" ng-click="addRemoveWithMe()"> <span> + with me now </span> </div>
+		<div class="h55blue withme" ng-click="addRemoveWithMe()"> <span class="left25"> + with me now </span> </div>
 	</div>
 	
 </div>

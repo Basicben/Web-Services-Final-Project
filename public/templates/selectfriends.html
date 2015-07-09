@@ -1,8 +1,4 @@
 <style type="text/css">
-	
-	span,a,p,h1,h2{
-		text-transform: uppercase;
-	}
 
 	span{
 		color: #fff7d4;
@@ -44,7 +40,7 @@
 <div class="select-wrapper">
 
 	<div class="select-header header">
-		<span> Select Friends </span>
+		<span> Select friends </span>
 	</div>
 	
 	<div class="select-body">
@@ -54,8 +50,8 @@
 			<h2> Circles </h2>
 			<!-- Circles -->
 			<div class="circlesreapter">
-				<div ng-repeat="circle in circleList" ng-init="circle.IsSelected = false" ng-click="selectCircle(circle);" ng-class="{green: circle.IsSelected == true}">
-					<span> {{circle.Title}} </span>
+				<div ng-repeat="circle in circleList" ng-click="selectCircle(circle);" ng-class="{green: circle.IsSelected == true}">
+					<span> {{circle.value}} </span>
 				</div>
 			</div>
 		</div>
@@ -65,12 +61,11 @@
 			<h2> Person Categories </h2>
 			<div id="friends_repeater">
 				<div class="paddbor" ng-repeat="friend in friendList | filter:isCircle(friend)" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
-					<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.SmallProfilePicture}})'}">
+					<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">
 						
 					</div>
 					<div class="inline-block">
-						<span class="titledisplay inline-block" ng-if="friend.FirstName"> {{friend.FirstName}} </span>
-						<span class="titledisplay inline-block" ng-if="friend.LastName"> {{friend.LastName}} </span>
+						<span class="titledisplay inline-block uppercase" ng-if="friend.name"> {{friend.name}} </span>
 					</div>
 				</div>
 			</div>
