@@ -40,10 +40,9 @@ suiteApp
  *  myFriends Controller
  ***************************/
 .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
-
         console.log('myFriendsCntrl');
 
-        $scope.friendList = [];
+        $scope.friendList = $scope.$parent.connectedUser.userObject.friendsList;
         $scope.categoryList = [];
         $scope.selectedCategoryList = [];
 
@@ -64,8 +63,8 @@ suiteApp
 
         //Sorting display of friends from categorized friends to uncategorized friends
         $scope.nullsCategoriesToBottom = function(obj) {
-            //console.log("nullsCategoriesToBottom obj:",obj);
-            if(obj.Categories.length != 0){
+            console.log("nullsCategoriesToBottom obj:",obj);
+            if(obj.categories.length != 0){
                 return -1;
             }
             else{
@@ -76,18 +75,19 @@ suiteApp
         //Page reload for the first time
         $(document).ready(function(){
             // make api call to bring user's friends
-            $http.post(window.location.origin + '/api/getMyFriends', { userId: $scope.$parent.connectedUser._id } ).
+
+            $http.post(window.location.origin + '/api/getCategories').
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    console.log('Success : data', data);
-                    
+                    //console.log('Success : data', data);
+
                     // if user has signed up or not
                     if(data == null){
                         //$location.path('signup');
-                        console.log('(data = null) in myFriendsCntrl:');
+                        console.log('(data = null) in getCategories:');
                     }else{
-                        $scope.friendList = data;
+                        $scope.categoryList = data;
                     }
 
                 }).
@@ -101,34 +101,6 @@ suiteApp
                     // Redirect user back to login page
                     //$location.path('signup');
                 });
-
-
-                $http.post(window.location.origin + '/api/getCategories').
-                    success(function(data, status, headers, config) {
-                        // this callback will be called asynchronously
-                        // when the response is available
-                        //console.log('Success : data', data);
-                        
-                        // if user has signed up or not
-                        if(data == null){
-                            //$location.path('signup');
-                            console.log('(data = null) in getCategories:');
-                        }else{
-                            $scope.categoryList = data;
-                        }
-
-                    }).
-                    error(function(data, status, headers, config) {
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
-                        console.log('Error : data', data);
-                        console.log('Error : status', status);
-                        console.log('Error : headers', headers);
-                        console.log('Error : config', config);
-                        // Redirect user back to login page
-                        //$location.path('signup');
-                    });
-
         });
 
 })
