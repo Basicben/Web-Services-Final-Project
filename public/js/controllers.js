@@ -393,9 +393,6 @@ suiteApp
 
             angular.forEach($scope.selectedCircle, function(circle) {
                 for(var i=0; i<friend.circles.length; i++){
-                    console.log('friend.circles[i].Circleid',friend.circles[i].CircleId);
-                    console.log('circle._id',circle._id);
-                    console.log('friend.FirstName',friend.FirstName);
                     if(friend.circles[i].CircleId == circle._id){
                         
                         return true;
