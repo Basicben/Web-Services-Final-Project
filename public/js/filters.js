@@ -17,9 +17,9 @@ suiteApp
 
             //Running on friendsList array to check if someone has the same category._id
             angular.forEach(friendsList,function(friend){
-                if(friend.Categories.length != 0) {
-                    for (var i = 0; i < friend.Categories.length; i++) {
-                        if(selectedCategoryList.indexOf(friend.Categories[i]) != -1){
+                if(friend.categories.length != 0) {
+                    for (var i = 0; i < friend.categories.length; i++) {
+                        if(selectedCategoryList.indexOf(friend.categories[i]) != -1){
                             //if HERE we found a match --> Let's push it to the new list
                             out.push(friend);
                         }

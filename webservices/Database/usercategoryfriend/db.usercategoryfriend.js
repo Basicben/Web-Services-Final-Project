@@ -1,9 +1,9 @@
-/********       Connecting to database + Creating UserCategoryFriend schema            **************/
+// mongoose Connection
 var mongoose = require('mongoose');
-var userCategoryFriendSchema = require('./db.usercategoryfriend.schema').userCategoryFriendSchema;
-var UserCategoryFriend = mongoose.model('UserCategoryFriendM',userCategoryFriendSchema);
-/** **********************************************************/
-
+// Require user schema JS file
+var userSchema = require('../users/db.user.schema').userSchema;
+// User Model
+var User = mongoose.model('UserM', userSchema);
 
 var addUserCategoryFriend = function(userCategoryFriendObj){
 
@@ -14,19 +14,78 @@ var addUserCategoryFriend = function(userCategoryFriendObj){
 
     var conn = mongoose.connection;
 
-        /**********       Adding new UserFriendCategory from app to User category friend collection    **********/
-            var newUserCategoryFriend = new UserCategoryFriend({
-                UserId: userCategoryFriendObj.UserId,
-                FriendId: userCategoryFriendObj.FriendId,
-                Categories: userCategoryFriendObj.Categories
-            });
+    /**********       Updating new UserFriendCategory from app to a specific User.friendList.categories     **********/
 
-                /**     Check if UserFriendCategory already exist        **/
-                if(newUserCategoryFriend.isNew) {
-                    newUserCategoryFriend.save(function (err, doc) {
-                        console.log("\n UserCategoryFriend was added to UserCategoryFriend collection ");
-                    })
+    /**
+     * First we need to bring by userId the selected user document
+     * Second, we need to search in friendList the specific friend by FriendId
+     * After we found the specific friend, lets push and update his categories
+     */
+
+    var query = User.findOne().where('_id',userCategoryFriendObj.UserId);
+
+    query.exec(function(err,user){
+        if(err){
+            console.log('err',err);
+        }else{
+            if(user == null){
+                console.log("user",user);
+                console.log('User == null',err);
+            }else{
+                var oldUser = user;
+                user.userObject.friendsList.forEach(function(friend){
+                    console.log("friend:",friend);
+                    if(userCategoryFriendObj.FriendId == friend.id){
+                        console.log("userCategoryFriendObj.FriendId == friend.id");
+                        if(friend.categories.length == 0){
+                            console.log("friend.categories.length == 0");
+                            userCategoryFriendObj.Categories.forEach(function(category){
+                                console.log("Success!!!!!!!!!1");
+                                friend.categories.push(category._id);
+                            });
+                        }
+                        else{
+                            userCategoryFriendObj.Categories.forEach(function(category){
+                                if((friend.categories.indexOf(category._id),1) == -1){
+                                    friend.categories.push(category._id);
+                                }
+
+                            });
+                        }
+                        User.findOneAndUpdate({_id:oldUser._id},user,function (err, doc) {
+                            if(err){
+                                console.log("err",err);
+                            }else{
+                                console.log("\nCategories were saved :",doc.userObject);
+                            }
+                        });
+                    }
+                    else{
+                        console.log("userCategoryFriendObj.FriendId != value.id!!!!!!!!!!");
+                        console.log("userCategoryFriendObj",userCategoryFriendObj);
+                        console.log("userCategoryFriendObj.FriendId",userCategoryFriendObj.FriendId);
+                        console.log("friend.id",friend.id);
+                    }
+                });
+            }
+        }
+    });
+
+    /*var query = User.update( {
+            friendsList: {
+                $elemMatch: {
+                    id: userCategoryFriendObj.id
                 }
+            }
+        },
+        {
+            $set: { 'friendsList.$.categories': userCategoryFriendObj.Categories }
+        });*/
+
+
+
+
+
 
 };
 

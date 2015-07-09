@@ -20,6 +20,8 @@ var getAllCategories = require('./webservices/Database/categories/db.categories'
 var addUserCategoryFriend = require('./webservices/Database/usercategoryfriend/db.usercategoryfriend').addUserCategoryFriend;
 var getFriendCircles = require('./webservices/Database/circles/db.circle').getFriendCircles;
 
+var addUserEvent = require('./webservices/Database/userevent/db.userevent').addUserEvent;
+
 /*var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').addUserCircle;
 **/
 
@@ -77,8 +79,9 @@ app.post('/api/userCategoryFriendInsert',function(req,res){
 
 // User Event Insert API
 app.post('/api/userEventInsert',function(req,res){
-
-    res.send("HERE ");
+    console.log('userEventInsert');
+    addUserEvent(req.body.invitationObj);
+    res.send("SUCCESS");
 });
 
 // *************************** Routing *************************** //

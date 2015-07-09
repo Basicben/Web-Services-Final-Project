@@ -2,6 +2,10 @@
 var mongoose = require('mongoose');
 // Require user schema JS file
 var userSchema = require('./db.user.schema').userSchema;
+// Circle
+var addCircle = require('../circles/db.circle').addCircle;
+// User's friends
+var addUserFriend = require('../userfriends/db.userfriends').addUserFriend;
 // User Model
 var User = mongoose.model('UserM', userSchema);
 
@@ -15,27 +19,20 @@ var addUser = function(userObj,callback) {
     var conn = mongoose.connection;
 
     console.log("addUser function");
-    // Add circles to user.
-    userObj.circles = [];
-    userObj.hometown != null ? userObj.circles.push(userObj.hometown.name) : 1=1;
-    userObj.gender != null ? userObj.circles.push(userObj.gender) : 1=1;
-    // Add an empty event array for user.
-    userObj.events = [];
-    // add empty categories array for user.
-    // add empty circles array for user.
-    userObj.friendsList.forEach(function(value,key){
-        console.log("for each blat");
-        value.categories = [];
-        value.circles = [];
-    });
 
-    // Adding new user from facebook to User's collection
+        // Adding new user from facebook to User's collection
     var newUser = new User({
-        userObject: userObj
+        FirstName: userObj.first_name == null ? null : userObj.first_name,
+        LastName: userObj.last_name == null ? null : userObj.last_name,
+        Email: userObj.email == null ? null : userObj.email,
+        MediumProfilePicture: userObj.mediumProfilePicture,
+        SmallProfilePicture: userObj.smallProfilePicture,
+        HomeTown: userObj.hometown == null ? null  : userObj.hometown.name,
+        Gender: userObj.gender == null ? null : userObj.gender,
+        FacebookId: userObj.id
     });
 
-    var query = User.findOne().where('email',userObj.email);
-    console.log('addUser query find one');
+    var query = User.findOne().where('Email',newUser.Email);
     query.exec(function(err,user){
         if(err){
             console.log('err',err);
@@ -46,6 +43,11 @@ var addUser = function(userObj,callback) {
                         console.log("err",err);
                     }else{
                         console.log("\nUser was added to User collection ");
+                        // add circles.
+                        addCircle(newUser.HomeTown,doc._id);
+                        addCircle(newUser.Gender,doc._id);
+                        // add user friends to DB
+                        addUserFriend(userObj.friendsList, doc._id);
                         callback(newUser);
                     }                
                 });

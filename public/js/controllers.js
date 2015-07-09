@@ -76,33 +76,32 @@ suiteApp
         $(document).ready(function(){
             // make api call to bring user's friends
 
-            $http.post(window.location.origin + '/api/getCategories').
-                success(function(data, status, headers, config) {
-                    // this callback will be called asynchronously
-                    // when the response is available
-                    //console.log('Success : data', data);
+                $http.post(window.location.origin + '/api/getCategories').
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        //console.log('Success : data', data);
+                        
+                        // if user has signed up or not
+                        if(data == null){
+                            //$location.path('signup');
+                            console.log('(data = null) in getCategories:');
+                        }else{
+                            $scope.categoryList = data;
+                        }
 
-                    // if user has signed up or not
-                    if(data == null){
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.log('Error : data', data);
+                        console.log('Error : status', status);
+                        console.log('Error : headers', headers);
+                        console.log('Error : config', config);
+                        // Redirect user back to login page
                         //$location.path('signup');
-                        console.log('(data = null) in getCategories:');
-                    }else{
-                        $scope.categoryList = data;
-                    }
-
-                }).
-                error(function(data, status, headers, config) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                    console.log('Error : data', data);
-                    console.log('Error : status', status);
-                    console.log('Error : headers', headers);
-                    console.log('Error : config', config);
-                    // Redirect user back to login page
-                    //$location.path('signup');
-                });
+                    });
         });
-
 })
 
 /***************************
@@ -113,8 +112,9 @@ suiteApp
         console.log('suitmyfriendsCntrl');
 
         $scope.friendIndex = 0;
-        $scope.friendList = [];
+        $scope.friendList = $scope.$parent.connectedUser.userObject.friendsList;
         $scope.categoryList = [];
+        
         $scope.categoriazedFriend = {
             UserId:$scope.$parent.connectedUser._id,
             FriendId:0,
@@ -125,8 +125,8 @@ suiteApp
         $("#friendPictureSection").wipetouch({
             tapToClick: true, // if user taps the screen, triggers a click event
             wipeLeft: function() {
-                console.log("wipeRight");
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+                console.log("wipeLeft");
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex].id;
 
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
@@ -134,6 +134,7 @@ suiteApp
                 else{
                     $scope.friendIndex = 0;
                 }
+
                 $scope.disSelectAllCategories();
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
@@ -148,7 +149,7 @@ suiteApp
             },
             wipeRight: function() {
                 console.log("wipeRight");
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
+                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex].id;
 
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     $scope.friendIndex++;
@@ -157,6 +158,7 @@ suiteApp
                     $scope.friendIndex = 0;
                 }
                 $scope.disSelectAllCategories();
+
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
                 }
@@ -194,16 +196,19 @@ suiteApp
 
         //Sending the new object(categoriazedFriends[userId,friendId,categories]) to server
         $scope.sendObjOfUserCategoryFriend = function(obj){
-            $http.post(window.location.origin + '/api/userCategoryFriendInsert',{ categoriazedFriend: obj }).
+            $http.post(window.location.origin + '/api/userCategoryFriendInsert',{categoriazedFriend : $scope.categoriazedFriend}).
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    console.log('Success at sendObjOfUserCategoryFriend : ', data);
 
                     // if user has signed up or not
                     if(data == null){
-                        console.log('(data = null) in /api/userCategoryFriendInsert:');
+                        //$location.path('signup');
+                        console.log('(data = null) in getCategories:');
+                    }else{
+
                     }
+
                 }).
                 error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs
@@ -220,39 +225,6 @@ suiteApp
 /*************             First load of the page                ********/
 
         $(document).ready(function(){
-            // make api call to bring user's friends
-            $http.post(window.location.origin + '/api/getMyUncategorizedFriends', { userId: $scope.$parent.connectedUser._id } ).
-                success(function(data, status, headers, config) {
-                    // this callback will be called asynchronously
-                    // when the response is available
-                    console.log('Success getMyUncategorizedFriends: data', data);
-
-                    // if user has signed up or not
-                    if(data == null){
-                        console.log('(data = null) in suitmyfriendsCntrl:');
-                    }else{
-                        $scope.friendList = data;
-
-                        // this happens only in the first time --> receiving data of the user's friends and
-                        // categoriazedFriends.friendId will get the first friend id
-                        $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex]._id;
-                        console.log("index: ",$scope.friendIndex);
-                        console.log("$(documnebt).ready + $scope.friendList[friendIndex]: ",$scope.friendList[$scope.friendIndex]);
-                        console.log("first friend id: ",$scope.categoriazedFriend.FriendId);
-                    }
-
-                }).
-                error(function(data, status, headers, config) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                    console.log('Error : data', data);
-                    console.log('Error : status', status);
-                    console.log('Error : headers', headers);
-                    console.log('Error : config', config);
-                    // Redirect user back to login page
-                    //$location.path('signup');
-                });
-
 
             $http.post(window.location.origin + '/api/getCategories').
                 success(function(data, status, headers, config) {
@@ -287,15 +259,16 @@ suiteApp
  *  inviteFriends Controller
  ***************************/
 
-.controller('inviteFriendsCntrl', function($scope,$rootScope,$http) {
+.controller('inviteFriendsCntrl', function($scope,$rootScope,$http,invitation) {
 
-
+    $scope.friendList = [];
+    $scope.selectedFriends = [];
 
     $scope.invitation = {
         name: null,
         placeName: null,
-        friends:null,
-    }
+        friends:null
+    };
 
 
 
@@ -321,12 +294,12 @@ suiteApp
                 message: n.formatted_address,
                 focus: true,
                 draggable: false
-            }
+            };
 
             $scope.center = {
                 lat: location[Object.keys(location)[0]],
                 lng: location[Object.keys(location)[1]],
-                zoom: 12,
+                zoom: 12
             }
         }
     });
@@ -347,19 +320,70 @@ suiteApp
     });
 
     $scope.sendInvitation = function(){
-        if($scope.autoComplete.value == null){
+        if($scope.autoComplete.value == null || $scope.autoComplete.value.formatted_address == null)
             return;
-        }
-        placelocation.changeLocation($scope.autoComplete.value);
+
+        invitation.changeLocation($scope.autoComplete.value);
         $scope.$parent.changeURL('selectfriends');
     }
-     
+
+    $scope.selectFriend = function(friend){
+        friend.IsSelected = !friend.IsSelected
+        if(friend.IsSelected){
+            // If here, Push object to array
+            $scope.selectedFriends.push(friend);
+        }else{
+            // If here, Delete object from array
+            $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1); 
+        }
+    }
+
+    $scope.chooseWithMe = function(){
+        invitation.setWithMe($scope.selectedFriends);
+        $('.withme-wrapper').removeClass('height100');
+    }
+
+    $scope.addRemoveWithMe = function(){
+        var obj = $('.withme-wrapper');
+        if(obj.hasClass('height100')){
+            obj.removeClass('height100');
+        }else{
+            obj.addClass('height100');
+            if($scope.friendList.length <= 0){
+                $http.post(window.location.origin + '/api/getMyFriends', { userId: $scope.$parent.connectedUser._id } ).
+                success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+
+                    // if user has signed up or not
+                    if(data == null){
+                        console.log('(data = null) in suitmyfriendsCntrl:');
+                    }else{
+                        $scope.friendList = data;
+
+                        console.log('$scope.friendList',$scope.friendList);
+                    }
+
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
+                    //$location.path('signup');
+                });
+            }
+        }
+    }     
 })
 
 /***************************
  *  selectFriends Controller
  ***************************/
-.controller('selectFriendsCntrl', function($scope,$rootScope,$http){
+.controller('selectFriendsCntrl', function($scope,$rootScope,$http,invitation){
 
 
     // Array contains category types.
@@ -455,7 +479,7 @@ suiteApp
         }
 
         // Add selected friend object to factory object so it would be reachable from all controllers
-        friendselection.setFriends($scope.selectedFriends);
+        invitation.setInviteFriends($scope.selectedFriends);
         // Transfer to Invitation Page
         $scope.$parent.changeURL('invitation');
 
@@ -517,15 +541,75 @@ suiteApp
                     //$location.path('signup');
                 });
 
-
-    console.log('selectFriendsCntrl');
     });
 })
-.controller('invitationsCntrl', function($scope,$rootScope,$http,friendselection,placelocation){
+.controller('invitationsCntrl', function($scope,$rootScope,$http,invitation){
 
-    $scope.eventLocation = placelocation.getLocation();
-    $scope.friendList = friendselection.getFriends();
-    console.log('invitationsCntrl',$scope.eventLocation);
+    $scope.eventLocation = invitation.getLocation();
+    $scope.invitedFriendList = invitation.getInviteFriends();
+    $scope.withMeList = invitation.getWithMe();
+    $scope.showFriends = false;
+    
+    $scope.showHideFriends = function(){
+        if($scope.showFriends){
+            $('.friendsInvited-wrapper').removeClass('height100');
+            $scope.showFriends = false;
+        }else{
+            $('.friendsInvited-wrapper').addClass('height100');
+            $scope.showFriends = true;
+        }
+    }
+
+    $scope.dontInvite = function(friendObj){
+        invitation.deleteFriendInvitation(friendObj);
+    }
+
+    $scope.clearInvitation = function(){
+        invitation.clearInvitation();
+        $scope.$parent.changeURL('home');
+    }
+
+    $scope.invitation = {
+        UserId:null,
+        eventLocation:null,
+        invitedFriendList:null,
+        withMeList:null
+    }
+
+    $scope.sendInvitation = function(){
+        // invitationObj HTTP POST
+        $scope.invitation.UserId = $scope.$parent.connectedUser._id;
+        $scope.invitation.eventLocation = $scope.eventLocation;
+        $scope.invitation.invitedFriendList = $scope.invitedFriendList;
+        $scope.invitation.withMeList = $scope.withMeList;
+
+        $http.post(window.location.origin + '/api/userEventInsert', { invitationObj: $scope.invitation } ).
+                success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+
+                    invitation.clearInvitation();
+                    $scope.$parent.changeURL('home');
+
+                }).
+                error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
+                    //$location.path('signup');
+                });
+
+        
+
+    }
+
+    console.log('$scope.eventLocation',$scope.eventLocation);
+    console.log('$scope.friendList',$scope.invitedFriendList);
+    console.log('$scope.withMeList',$scope.withMeList);
 
 });
 
