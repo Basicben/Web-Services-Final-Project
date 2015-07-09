@@ -13,29 +13,43 @@ var addUser = function(userObj,callback) {
     }
 
     var conn = mongoose.connection;
-
-    console.log("addUser function");
     // Add circles to user.
     userObj.circles = [];
-    userObj.hometown != null ? userObj.circles.push(userObj.hometown.name) : 1=1;
-    userObj.gender != null ? userObj.circles.push(userObj.gender) : 1=1;
+
+    if(userObj.hometown != null)
+        userObj.circles.push(userObj.hometown.name);
+
+    if(userObj.gender != null)
+        userObj.circles.push(userObj.gender);
+
     // Add an empty event array for user.
     userObj.events = [];
     // add empty categories array for user.
     // add empty circles array for user.
+
+    var circleList = [];
+
     userObj.friendsList.forEach(function(value,key){
-        console.log("for each blat");
         value.categories = [];
         value.circles = [];
+      
+        if(value.hometown != null){   
+            value.circles.push({ value:value.hometown.name });
+        }
+
+        if(value.gender != null){
+            value.circles.push({ value: value.gender });
+        }
+
     });
+
 
     // Adding new user from facebook to User's collection
     var newUser = new User({
         userObject: userObj
     });
 
-    var query = User.findOne().where('email',userObj.email);
-    console.log('addUser query find one');
+    var query = User.findOne().where('userObject.email',userObj.email);
     query.exec(function(err,user){
         if(err){
             console.log('err',err);
@@ -45,7 +59,7 @@ var addUser = function(userObj,callback) {
                     if(err){                    
                         console.log("err",err);
                     }else{
-                        console.log("\nUser was added to User collection ");
+                        console.log("\nUser was added to User collection");
                         callback(newUser);
                     }                
                 });

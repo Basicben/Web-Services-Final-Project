@@ -12,11 +12,47 @@ $(document).ready(function(){
     });
 });
 */
+
+@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville);
+
+a,span,h1,h2,h3,p{
+  font-family: Lato;
+}
+
+.libreBfont{
+  font-family: Libre Baskerville !important;
+}
+
+.uppercase{
+  text-transform: uppercase !important;
+}
+
 body,html{
   padding:0;
   margin:0;
   width: 360px;
   overflow: hidden;
+}
+
+::-webkit-input-placeholder {
+   position: relative;
+   left:25px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   position: relative;
+   left:25px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   position: relative;
+   left:25px;
+}
+
+:-ms-input-placeholder {  
+   position: relative;
+   left:25px;
 }
 
 #wrapper{
@@ -25,12 +61,13 @@ body,html{
 }
 
 .header{
-    font-size: 25px;
+    font-size: 18px !important;
     border: 2px solid #fff7d4;
     color: #fff7d4;
     padding: 10px; 
     display: block;
     width: 100%;
+    text-transform: initial !important;
 }
 
 .header-logo{
