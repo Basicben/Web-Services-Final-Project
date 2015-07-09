@@ -5,6 +5,7 @@ suiteApp
         return function(friendsList, selectedCategoryList) {
 
             var out = [];
+            var j = 0;
 
             console.log("friends:",friendsList);
             console.log("selectedCategoryList:",selectedCategoryList);
@@ -21,8 +22,11 @@ suiteApp
                     for (var i = 0; i < friend.categories.length; i++) {
                         if(selectedCategoryList.indexOf(friend.categories[i]) != -1){
                             //if HERE we found a match --> Let's push it to the new list
-                            out.push(friend);
+                            j++;
                         }
+                    }
+                    if(j == selectedCategoryList.length){
+                        out.push(friend);
                     }
                 }
             });
