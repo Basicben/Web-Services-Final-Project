@@ -112,7 +112,7 @@ suiteApp
         console.log('suitmyfriendsCntrl');
 
         $scope.friendIndex = 0;
-        $scope.friendList = $scope.$parent.connectedUser.userObject.friendsList;
+        $scope.friendList = [];
         $scope.categoryList = [];
 
         $scope.categoriazedFriend = {
@@ -120,6 +120,7 @@ suiteApp
             FriendId:0,
             Categories:[]
         };
+
 
         //Wipe function
         $("#friendPictureSection").wipetouch({
@@ -230,7 +231,12 @@ suiteApp
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-
+                    $scope.$parent.connectedUser.userObject.friendsList.forEach(function(friend){
+                        if(friend.categories.length <= 0){
+                            $scope.friendList.push(friend);
+                        }
+                    });
+                    console.log("First time I'm here",$scope.friendList);
                     // if user has signed up or not
                     if(data == null){
                         //$location.path('signup');
