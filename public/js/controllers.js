@@ -2,7 +2,7 @@ suiteApp
 /***************************
  *  SignUp Controller
  ***************************/
-.controller('signupCntrl', function($scope,$rootScope) {
+.controller('signupCntrl', function($scope,$rootScope)  {
 
 	$scope.facebookInsert = function(){
 		$scope.$parent.angFacebookLogin();
