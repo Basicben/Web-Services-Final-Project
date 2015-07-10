@@ -26,9 +26,11 @@ suiteApp
                         }
                     }
                     if(j == selectedCategoryList.length){
+                        console.log("out.push(friend)");
                         out.push(friend);
                     }
                 }
+                j = 0;
             });
             return out;
         }
