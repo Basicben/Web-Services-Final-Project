@@ -144,7 +144,7 @@ suiteApp
                     console.log("Nothing was insert!");
                 }
                 $scope.$apply();
-
+                $scope.categoriazedFriend.Categories = [];
             },
             wipeRight: function() {
                 console.log("wipeRight");
@@ -166,10 +166,8 @@ suiteApp
                     console.log("Nothing was insert!");
                 }
                 $scope.$apply();
-
+                $scope.categoriazedFriend.Categories = [];
             }
-            
-            $scope.categoriazedFriend.Categories = [];
 
         });
 
