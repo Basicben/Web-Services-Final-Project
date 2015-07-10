@@ -24,7 +24,7 @@ suiteApp
 /***************************
  *  Welcome Controller
  ***************************/
-.controller('welcomeCntrl', function($scope,$rootScope,$location) {
+.controller('welcomeCntrl', function($scope,$rootScope,$location,connectedUser) {
      
     console.log('welcomeCntrl');
 
@@ -39,7 +39,7 @@ suiteApp
 /***************************
  *  myFriends Controller
  ***************************/
-.controller('myFriendsCntrl', function($scope,$rootScope,$http) {
+.controller('myFriendsCntrl', function($scope,$rootScope,$http,connectedUser) {
         console.log('myFriendsCntrl');
 
         $scope.friendList = connectedUser.get().userObject.friendsList;
@@ -143,6 +143,7 @@ suiteApp
                 else{
                     console.log("Nothing was insert!");
                 }
+                $scope.$apply();
 
             },
             wipeRight: function() {
@@ -164,10 +165,10 @@ suiteApp
                 else{
                     console.log("Nothing was insert!");
                 }
+                $scope.$apply();
 
             }
-
-            $scope.$apply();
+            
             $scope.categoriazedFriend.Categories = [];
 
         });
@@ -267,7 +268,7 @@ suiteApp
  *  inviteFriends Controller
  ***************************/
 
-.controller('inviteFriendsCntrl', function($scope,$rootScope,$http,invitation) {
+.controller('inviteFriendsCntrl', function($scope,$rootScope,$http,invitation,connectedUser) {
 
     $scope.friendList = connectedUser.get().userObject.friendsList;
     $scope.selectedFriends = [];
@@ -367,7 +368,7 @@ suiteApp
 /***************************
  *  selectFriends Controller
  ***************************/
-.controller('selectFriendsCntrl', function($scope,$rootScope,$http,invitation){
+.controller('selectFriendsCntrl', function($scope,$rootScope,$http,invitation,connectedUser){
 
     $scope.containsObject = function(obj, list) {
         var i;
@@ -498,7 +499,7 @@ suiteApp
 
     }
 })
-.controller('invitationsCntrl', function($scope,$rootScope,$http,invitation){
+.controller('invitationsCntrl', function($scope,$rootScope,$http,invitation,connectedUser){
 
     $scope.eventLocation = invitation.getLocation();
     $scope.invitedFriendList = invitation.getInviteFriends();
