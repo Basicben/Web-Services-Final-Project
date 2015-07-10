@@ -47,9 +47,11 @@ suiteApp
 	    	deleteFriendInvitation: deleteFriendInvitation
 	  	};
 }).factory("connectedUser",function(){
-        var connectedUser = {};
+        var connectedUser = null;
 
         var set = function(newObj) {
+        	if(connectedUser != null)
+        		return;
 	      	connectedUser = newObj;
 	  	};
 
@@ -57,8 +59,33 @@ suiteApp
 	      	return connectedUser;
 	  	};
 
+	  	var update = function(){
+	  		http.post(window.location.origin + '/api/getUser', { userId: connectedUser._id } ).
+                  success(function(data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log('Success : data', data);
+                    if(data == null){
+                        console.log('could not update', data);
+                    }else{
+                        connectedUser = data;
+                    }
+
+                  }).
+                  error(function(data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.log('Error : data', data);
+                    console.log('Error : status', status);
+                    console.log('Error : headers', headers);
+                    console.log('Error : config', config);
+                    // Redirect user back to login page
+                  });
+	  	}
+
 	  	return {
 	    	set: set,
-	    	get: get
+	    	get: get,
+	    	update: update
 	  	};
 });

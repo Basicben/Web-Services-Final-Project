@@ -110,11 +110,8 @@ suiteApp .config(['$routeProvider','$locationProvider',
     });
 }]);
 
-suiteApp.controller('masterCntrl', function($scope,$http,$location) {
-     
-     // Connected user object.
-    $scope.connectedUser = null;
-    
+suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser) {
+         
     $(document).ready(function(){
         console.log('init');
         //$scope.connectedUser = checkLoginState();
@@ -144,7 +141,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
                     if(data == null){
                         $location.path('signup');
                     }else{
-                        $scope.connectedUser = data;                        
+                        connectedUser.set(data);
                         $location.path('welcome');
                     }
 

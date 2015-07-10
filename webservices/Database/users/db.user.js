@@ -70,9 +70,30 @@ var addUser = function(userObj,callback) {
     });
 };
 
+var getUser = function(userId,callback) {
+    console.log('userid',userid);
+    // Connect if not connected already
+    if(!mongoose.connection.readyState){
+        mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");    
+    }
+
+    var conn = mongoose.connection;
+
+    var query = User.findOne().where('_id',userid);
+    query.exec(function(err,user){
+        if(err){
+            console.log('err',err);
+        }else{
+            console.log('user',user);
+            callback(user);
+        }
+    });
+};
+
 // Exports
 
 exports.addUser = addUser;
+exports.getUser = getUser;
 
 /*****      Connection to the database ( db_suitemybeer ) *****/
 

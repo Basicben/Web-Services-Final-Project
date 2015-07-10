@@ -14,6 +14,8 @@ app.use( ngRoute.route() );
 console.log('listenning on server...');
 
 var addUser = require('./webservices/Database/users/db.user').addUser;
+var getUser = require('./webservices/Database/users/db.user').getUser;
+
 var getUserFriends = require('./webservices/Database/userfriends/db.userfriends').getUserFriends;
 var getAllCategories = require('./webservices/Database/categories/db.categories').getAllCategories;
 
@@ -33,8 +35,18 @@ app.post('/api/userInsert',function(req,res){
         // Callback function.
         res.json(newUser);
     });
-    
 });
+
+// Get User Object by user id
+app.post('/api/getUser',function(req,res){
+    console.log('api/getUser');
+    getUser(req.body.userId,function(user){
+        // Callback function.
+        res.json(user);
+    });
+});
+
+
 // GET User Friends API
 app.post('/api/getMyFriends',function(req,res){
     console.log("api/myfriends DATA:", req.body.userId);

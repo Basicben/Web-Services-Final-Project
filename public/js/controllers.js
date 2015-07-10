@@ -29,7 +29,7 @@ suiteApp
     console.log('welcomeCntrl');
 
     $scope.enterApp = function(){
-    	if($scope.$parent.connectedUser != null){
+    	if(connectedUser.get() != null){
     		$location.path('home');
     	}
     }
@@ -42,7 +42,7 @@ suiteApp
 .controller('myFriendsCntrl', function($scope,$rootScope,$http) {
         console.log('myFriendsCntrl');
 
-        $scope.friendList = $scope.$parent.connectedUser.userObject.friendsList;
+        $scope.friendList = connectedUser.get().userObject.friendsList;
         $scope.categoryList = [];
         $scope.selectedCategoryList = [];
 
@@ -106,7 +106,7 @@ suiteApp
 /***************************
  *  suitMyFriends Controller
  ***************************/
-.controller('suitmyfriendsCntrl', function($scope,$rootScope,$http) {
+.controller('suitmyfriendsCntrl', function($scope,$rootScope,$http,connectedUser) {
 
         console.log('suitmyfriendsCntrl');
 
@@ -115,7 +115,7 @@ suiteApp
         $scope.categoryList = [];
 
         $scope.categoriazedFriend = {
-            UserId:$scope.$parent.connectedUser._id,
+            UserId:connectedUser.get()._id,
             FriendId:0,
             Categories:[]
         };
@@ -138,13 +138,11 @@ suiteApp
                 $scope.disSelectAllCategories();
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                    connectedUser.update();
                 }
                 else{
                     console.log("Nothing was insert!");
                 }
-                $scope.$apply();
-                $scope.categoriazedFriend.Categories = [];
-
 
             },
             wipeRight: function() {
@@ -161,13 +159,17 @@ suiteApp
 
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
+                    connectedUser.update();
                 }
                 else{
                     console.log("Nothing was insert!");
                 }
-                $scope.$apply();
-                $scope.categoriazedFriend.Categories = [];
+
             }
+
+            $scope.$apply();
+            $scope.categoriazedFriend.Categories = [];
+
         });
 
         //Pushing selected categories to a new obj.array
@@ -230,7 +232,7 @@ suiteApp
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    $scope.$parent.connectedUser.userObject.friendsList.forEach(function(friend){
+                    connectedUser.get().userObject.friendsList.forEach(function(friend){
                         if(friend.categories.length <= 0){
                             $scope.friendList.push(friend);
                         }
@@ -267,7 +269,7 @@ suiteApp
 
 .controller('inviteFriendsCntrl', function($scope,$rootScope,$http,invitation) {
 
-    $scope.friendList = $scope.$parent.connectedUser.userObject.friendsList;
+    $scope.friendList = connectedUser.get().userObject.friendsList;
     $scope.selectedFriends = [];
 
     $scope.invitation = {
@@ -356,7 +358,7 @@ suiteApp
         }else{
             obj.addClass('height100');
             if($scope.friendList.length <= 0){
-                $scope.friendList = $scope.$parent.connectedUser.userObject.friendsList;
+                $scope.friendList = connectedUser.get().userObject.friendsList;
             }
         }
     }     
@@ -380,7 +382,7 @@ suiteApp
 
     $(document).ready(function () {
         // Array contains friend list.
-        $scope.friendList = $scope.$parent.connectedUser.userObject.friendsList;
+        $scope.friendList = connectedUser.get().userObject.friendsList;
 
         $scope.circleList = [];
         // Array contains circles types.
@@ -531,7 +533,7 @@ suiteApp
 
     $scope.sendInvitation = function(){
         // invitationObj HTTP POST
-        $scope.invitation.UserId = $scope.$parent.connectedUser._id;
+        $scope.invitation.UserId = connectedUser.get()._id;
         $scope.invitation.eventLocation = $scope.eventLocation;
         $scope.invitation.invitedFriendList = $scope.invitedFriendList;
         $scope.invitation.withMeList = $scope.withMeList;
