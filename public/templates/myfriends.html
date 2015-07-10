@@ -2,12 +2,23 @@
 <div class="myfriends-wrapper clearBackground">
     <style>
 
-        .redText{
 
-            color:red;
-        }
+        
         .clearBackground{
             background: #ffffff !important;
+        }
+
+        .category{
+            width: 70px;
+            height: 69px;
+            background-color: #e3d5b2;
+            border-radius: 150px;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .yellowCover{
+            background-color: #9a9383 !important;
         }
     </style>
 
@@ -21,8 +32,9 @@
         <div class="categoriesSection">
             <p>Categories are :</p>
             <ul>
-                <li ng-repeat="category in categoryList">
-                    <div ng-class="{redText : category.IsSelected == true}" ng-click="addRemoveCategory(category,$index)">{{category._id}}</div>
+                <li ng-repeat="category in categoryList" class="inline-block">
+                    <div ng-click="addRemoveCategory(category,$index)" ng-class="{yellowCover : category.IsSelected == true}" class="category" ng-style="{ 'background-image': 'url(' + category.Picture + ')' }">  </div>
+
                 </li>
             </ul>
         </div>

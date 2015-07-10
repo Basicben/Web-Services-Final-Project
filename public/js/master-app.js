@@ -1,7 +1,7 @@
 var suiteApp = angular.module('suiteApp',['ngRoute','ngAutocomplete','leaflet-directive']);
 
-var USER = /*null; /**/
-/**/
+var USER = null; /**/
+/*
 {
 
         id: "10153356515014410",
@@ -129,7 +129,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         console.log('window.location.origin',window.location.origin);
 
-        /*
+        /**/
         $scope.friendList = [];
         facebookLogin(function(friendList){
             
@@ -162,8 +162,8 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location) {
 
         });/**/
 
-        /* API CALL IN LOCALHOST */
-        $http.post(/*'http://localhost:3000*/ window.location.origin + '/api/userInsert', { user:USER } ).
+        /* API CALL IN LOCALHOST 
+        $http.post( window.location.origin + '/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available
