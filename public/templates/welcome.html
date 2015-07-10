@@ -51,10 +51,10 @@
 	</div>
 	
 	<div class="welcome-body">
-		<img ng-src="{{$parent.connectedUser.userObject.mediumProfilePicture}}">
+		<img ng-src="{{connectedUser.get().userObject.mediumProfilePicture}}">
 
 		<div class="welcometext">
-			<span> Hello {{ $parent.connectedUser.userObject.first_name }} </span>
+			<span> Hello {{ connectedUser.get().userObject.first_name }} </span>
 		</div>
 
 	</div>
