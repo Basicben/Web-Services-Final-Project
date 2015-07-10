@@ -46,7 +46,7 @@ suiteApp
 	    	clearInvitation: clearInvitation,
 	    	deleteFriendInvitation: deleteFriendInvitation
 	  	};
-}).factory("connectedUser",function(){
+}).factory("connectedUser",['$http' ,function($http){
         var connectedUser = null;
 
         var set = function(newObj) {
@@ -88,4 +88,4 @@ suiteApp
 	    	get: get,
 	    	update: update
 	  	};
-});
+}]);

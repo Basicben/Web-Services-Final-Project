@@ -117,6 +117,8 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
         //$scope.connectedUser = checkLoginState();
     });
 
+    $scope.connectedUser = null;
+
     $scope.changeURL = function(url){
         $location.path(url);
     };
@@ -142,6 +144,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
                         $location.path('signup');
                     }else{
                         connectedUser.set(data);
+                        $scope.connectedUser = data;
                         $location.path('welcome');
                     }
 
