@@ -162,7 +162,7 @@ suiteApp
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
                     connectedUser.update();
-                    console.log('update');
+                    console.log('update',connectedUser.get());
                 }
                 else{
                     console.log("Nothing was insert!");
