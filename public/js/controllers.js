@@ -52,7 +52,6 @@ suiteApp
             // if selected is true -> push to array.
             // if false, delete this category from array.
             if(category.IsSelected){
-                console.log(category);
                 $scope.selectedCategoryList.push(category._id);
             }
             else{
@@ -236,10 +235,11 @@ suiteApp
                             $scope.friendList.push(friend);
                         }
                     });
-                    console.log("First time I'm here",$scope.friendList);
+                    if($scope.friendList.length == 0){
+                        console.log("There is no more friends to categorized! Well Done!");
+                    }
                     // if user has signed up or not
                     if(data == null){
-                        //$location.path('signup');
                         console.log('(data = null) in getCategories:');
                     }else{
                         $scope.categoryList = data;
