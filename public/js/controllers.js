@@ -229,15 +229,16 @@ suiteApp
 
         $(document).ready(function(){
 
+            connectedUser.get().userObject.friendsList.forEach(function(friend){
+                if(friend.categories.length <= 0){
+                    $scope.friendList.push(friend);
+                }
+            });
+
             $http.post(window.location.origin + '/api/getCategories').
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    connectedUser.get().userObject.friendsList.forEach(function(friend){
-                        if(friend.categories.length <= 0){
-                            $scope.friendList.push(friend);
-                        }
-                    });
                     if($scope.friendList.length == 0){
                         console.log("There is no more friends to categorized! Well Done!");
                     }
