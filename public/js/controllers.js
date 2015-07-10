@@ -139,6 +139,7 @@ suiteApp
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
                     connectedUser.update();
+                    console.log('update');
                 }
                 else{
                     console.log("Nothing was insert!");
@@ -161,6 +162,7 @@ suiteApp
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
                     connectedUser.update();
+                    console.log('update');
                 }
                 else{
                     console.log("Nothing was insert!");

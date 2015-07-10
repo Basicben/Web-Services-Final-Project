@@ -60,6 +60,7 @@ suiteApp
 	  	};
 
 	  	var update = function(){
+	  		console.log('update',connectedUser);
 	  		$http.post(window.location.origin + '/api/getUser', { userId: connectedUser._id } ).
                   success(function(data, status, headers, config) {
                     // this callback will be called asynchronously

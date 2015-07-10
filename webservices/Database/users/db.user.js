@@ -71,7 +71,7 @@ var addUser = function(userObj,callback) {
 };
 
 var getUser = function(userId,callback) {
-    console.log('userid',userid);
+    console.log('userId',userId);
     // Connect if not connected already
     if(!mongoose.connection.readyState){
         mongoose.connect("mongodb://benari:123456@ds043972.mongolab.com:43972/db_suitemybeer");    
@@ -79,7 +79,7 @@ var getUser = function(userId,callback) {
 
     var conn = mongoose.connection;
 
-    var query = User.findOne().where('_id',userid);
+    var query = User.findOne().where('_id',userId);
     query.exec(function(err,user){
         if(err){
             console.log('err',err);

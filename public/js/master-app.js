@@ -162,7 +162,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
 
         });/**/
 
-        /* API CALL IN LOCALHOST 
+        /* API CALL IN LOCALHOST
         $http.post( window.location.origin + '/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
@@ -172,6 +172,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
                 if(data == null){
                     $location.path('signup');
                 }else{
+                    connectedUser.set(data);
                     $scope.connectedUser = data;
                     $location.path('welcome');
                 }
