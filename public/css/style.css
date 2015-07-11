@@ -228,7 +228,7 @@ body,html{
   and (-webkit-device-pixel-ratio: 3){
       #wrapper{
         width: 360px !important;
-        height:592px !important;
+        height:568px !important;
       }
   }
 
