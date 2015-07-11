@@ -30,11 +30,11 @@ suiteApp
 
 	  	var clearInvitation = function(){
 	  		friends, friendsWithMe, location = {};
-	  	}
+	  	};
 
 	  	var deleteFriendInvitation = function(obj){
 	  		friends.splice(friends.indexOf(obj),1);
-	  	}
+	  	};
 
 	  	return {
 	    	changeLocation: changeLocation,
@@ -46,7 +46,8 @@ suiteApp
 	    	clearInvitation: clearInvitation,
 	    	deleteFriendInvitation: deleteFriendInvitation
 	  	};
-}).factory("connectedUser",['$http' ,function($http){
+})
+    .factory("connectedUser",['$http' ,function($http){
         var connectedUser = null;
 
         var set = function(newObj) {
@@ -71,6 +72,7 @@ suiteApp
                     }else{
                         connectedUser = data;
                         console.log('update after',connectedUser);
+                        return connectedUser;
                     }
 
                   }).
@@ -83,7 +85,7 @@ suiteApp
                     console.log('Error : config', config);
                     // Redirect user back to login page
                   });
-	  	}
+	  	};
 
 	  	return {
 	    	set: set,

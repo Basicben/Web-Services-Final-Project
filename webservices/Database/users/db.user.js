@@ -84,7 +84,7 @@ var getUser = function(userId,callback) {
         if(err){
             console.log('err',err);
         }else{
-            console.log('getUser getUser getUser getUser',user.friendsList);
+            console.log('getUser getUser getUser getUser',user.userObject.friendsList);
             callback(user);
         }
     });

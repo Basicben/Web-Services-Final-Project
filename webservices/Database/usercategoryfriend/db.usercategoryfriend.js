@@ -5,7 +5,7 @@ var userSchema = require('../users/db.user.schema').userSchema;
 // User Model
 var User = mongoose.model('UserM', userSchema);
 
-var addUserCategoryFriend = function(userCategoryFriendObj){
+var addUserCategoryFriend = function(userCategoryFriendObj,callback){
 
     // Connect if not connected already
     if(!mongoose.connection.readyState){
@@ -34,11 +34,13 @@ var addUserCategoryFriend = function(userCategoryFriendObj){
                 var oldUser = user;
                 user.userObject.friendsList.forEach(function(friend){
                     if(userCategoryFriendObj.FriendId == friend.id){
+                        //if friend.categories.length == 0 than we insert a new categories to this friend
                         if(friend.categories.length == 0){
                             userCategoryFriendObj.Categories.forEach(function(category){
                                 friend.categories.push(category._id);
                             });
                         }
+                        //if friend.categories.length != 0 than we only update his categories
                         else{
                             userCategoryFriendObj.Categories.forEach(function(category){
                                 if((friend.categories.indexOf(category._id),1) == -1){
@@ -52,6 +54,7 @@ var addUserCategoryFriend = function(userCategoryFriendObj){
                                 console.log("err",err);
                             }else{
                                 console.log("\nCategories were saved :",doc.userObject);
+                                callback(friend);
                             }
                         });
                     }
