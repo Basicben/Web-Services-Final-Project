@@ -120,23 +120,15 @@ suiteApp
  ***************************/
 .controller('suitmyfriendsCntrl', function($scope,$rootScope,$http,connectedUser) {
 
-        console.log('suitmyfriendsCntrl');
-
         $scope.friendIndex = 0;
         $scope.friendList = [];
         $scope.categoryList = [];
-
         $scope.categoriazedFriend = {
             UserId:connectedUser.get()._id,
             FriendId:0,
             Categories:[]
         };
 
-        $scope.updateFriendsList = function(){
-            connectedUser.update();
-            console.log('update');
-            $scope.friendList = connectedUser.userObject.friendsList;
-        }
 
         //Wipe function
         $("#friendPictureSection").wipetouch({
@@ -152,44 +144,51 @@ suiteApp
                     $scope.friendIndex = 0;
                 }
 
-                $scope.disSelectAllCategories();
                 if($scope.categoriazedFriend.Categories.length != 0) {
+                    $scope.friendList.splice($scope.friendList.indexOf($scope.friendList[$scope.friendIndex--]),1);
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
-                    $scope.updateFriendsList();
+                    $scope.$apply();
                 }
                 else{
                     console.log("Nothing was insert!");
                 }
+                $scope.disSelectAllCategories();
                 $scope.$apply();
                 $scope.categoriazedFriend.Categories = [];
             },
             wipeRight: function() {
-                console.log("wipeRight");
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex].id;
-
-                if($scope.friendIndex < $scope.friendList.length - 1){
-                    $scope.friendIndex++;
-                }
-                else{
-                    $scope.friendIndex = 0;
-                }
+                var friend = $scope.friendList[$scope.friendIndex];
+                $scope.categoriazedFriend.FriendId = friend.id;
                 $scope.disSelectAllCategories();
 
                 if($scope.categoriazedFriend.Categories.length != 0) {
+                    $scope.friendList.splice($scope.friendList.indexOf(friend),1);
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
-                    $scope.updateFriendsList();
+                    $scope.$apply();
                 }
                 else{
                     console.log("Nothing was insert!");
                 }
+
+                console.log('$scope.friendIndex After Categories.length != 0',$scope.friendIndex);
+                if($scope.friendIndex < $scope.friendList.length - 1){
+                    if($scope.friendList.length == 1)
+                        $scope.friendIndex = 0;
+                    else
+                        $scope.friendIndex++;
+                }
+                else{
+                    $scope.friendIndex = 0;
+                }
+
+                $scope.clearcategoriazedFriendObj();
                 $scope.$apply();
-                $scope.categoriazedFriend.Categories = [];
             }
 
         });
 
         //Pushing selected categories to a new obj.array
-        $scope.selectCategory = function(category,index){
+        $scope.selectCategory = function(category){
             //push into a new array the ID of the category and the userFriendId
             category.IsSelected = !category.IsSelected;
             // if selected is true -> push to array.
@@ -212,21 +211,25 @@ suiteApp
             $scope.$apply();
         };
 
+        //Disselect all categories
+        $scope.clearcategoriazedFriendObj = function(){
+            $scope.categoriazedFriend.FriendId = 0;
+            $scope.categoriazedFriend.Categories = [];
+        };
+
         //Sending the new object(categoriazedFriends[userId,friendId,categories]) to server
         $scope.sendObjOfUserCategoryFriend = function(obj){
-            $http.post(window.location.origin + '/api/userCategoryFriendInsert',{categoriazedFriend : $scope.categoriazedFriend}).
+            $http.post(window.location.origin + '/api/userCategoryFriendInsert',{categoriazedFriend : obj}).
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-
+                    console.log('Updated data after $scope.sendObjOfUserCategoryFriend',data);
+                    $scope.updateFriendsList();
                     // if user has signed up or not
                     if(data == null){
                         //$location.path('signup');
-                        console.log('(data = null) in getCategories:');
-                    }else{
-
+                        console.log('(data = null) in userCategoryFriendInsert:');
                     }
-
                 }).
                 error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs
@@ -240,23 +243,37 @@ suiteApp
                 });
         };
 
+        //Updating the friendList
+        $scope.updateFriendsList = function(){
+            connectedUser.update();
+            console.log('update');
+        };
+
 /*************             First load of the page                ********/
 
-        $(document).ready(function(){
-
+        $scope.clearCategoraizedFriends = function() {
+            $scope.friendList = [];
             connectedUser.get().userObject.friendsList.forEach(function(friend){
-                if(friend.categories.length <= 0){
+                if(friend.categories.length == 0){
                     $scope.friendList.push(friend);
                 }
             });
+        };
+
+        $(document).ready(function(){
+
+            $scope.clearCategoraizedFriends();
+            if($scope.friendList.length == 0){
+                console.log("There is no more friends to categorized! Well Done!");
+            }
+            else{
+                console.log("$scope.friendList!!!!!",$scope.friendList);
+            }
 
             $http.post(window.location.origin + '/api/getCategories').
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    if($scope.friendList.length == 0){
-                        console.log("There is no more friends to categorized! Well Done!");
-                    }
                     // if user has signed up or not
                     if(data == null){
                         console.log('(data = null) in getCategories:');

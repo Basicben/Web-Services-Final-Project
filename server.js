@@ -85,8 +85,9 @@ app.post('/api/getFriendsCircles',function(req,res){
 app.post('/api/userCategoryFriendInsert',function(req,res){
     // Get User Category Friend
     console.log("api/userCategoryFriendInsert DATA:", req.body.categoriazedFriend);
-    addUserCategoryFriend(req.body.categoriazedFriend);
-    res.json(req.body.categoriazedFriend);
+    addUserCategoryFriend(req.body.categoriazedFriend,function(updatedUser){
+        res.json(updatedUser);
+    });
 });
 
 // User Event Insert API
