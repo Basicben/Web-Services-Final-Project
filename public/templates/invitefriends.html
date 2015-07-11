@@ -5,10 +5,6 @@
 	}
 
 	.invite-header{
-		text-align: center;
-	}
-
-	.invite-header{
 		
 	}
 
@@ -31,7 +27,7 @@
 	}
 
 	.withme{
-		height: 55px;
+		height: 61px;
 		font-size: 20px;
 	}
 
@@ -78,11 +74,19 @@
 	<div class="withmerepeater">
 		<div>
 			<input class="h55blue height55 size18" placeholder="search" type="text" ng-model="searchFriend" >
+			<div class="searchbtn"> </div>
 		</div>
-		<div class="category_repeater">
+		<div class="categoriesSection">
+			<span class="gold uppercase marginleft25 size20">person Categories</span>
+				<section id="category-wrapper" class="center">
+		            <div ng-repeat="category in categoryList" class="inline-block">
+		                <div ng-click="addRemoveCategory(category,$index)" ng-class="{yellowCover : category.IsSelected == true}" class="category" ng-style="{ 'background-image': 'url(' + category.Picture + ')' }">  </div>
 
+		            </div>
+		        </section>
 		</div>
-		<div class="paddbor" ng-repeat="friend in friendList | filter:searchFriend" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
+		
+		<div class="paddbor" ng-repeat="friend in friendList | filter:searchFriend | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
 			<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">
 						
 			</div>

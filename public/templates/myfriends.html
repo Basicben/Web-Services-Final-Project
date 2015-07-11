@@ -1,50 +1,64 @@
+<style>
+
+    span{
+        color: #fff7d4;
+    }
+
+    .friend-select{
+        width:0px;
+        position: absolute;
+        right: 0px;
+        top:0px;
+        background-color: #36374b;
+        -webkit-transition: 0.4s ease;
+        -moz-transition: 0.4s ease;
+        -o-transition: 0.4s ease;
+        -ms-transition: 0.4s ease;
+        transition: 0.4s ease;
+    }
+
+    .width30{
+        width: 30px !important;
+    }
+
+</style>
+
 <!--  Presenting all user friends with their categories  -->
-<div class="myfriends-wrapper clearBackground">
-    <style>
-
-
-        
-        .clearBackground{
-            background: #ffffff !important;
-        }
-
-        .category{
-            width: 70px;
-            height: 69px;
-            background-color: #e3d5b2;
-            border-radius: 150px;
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-
-        .yellowCover{
-            background-color: #9a9383 !important;
-        }
-    </style>
-
+<div class="myfriends-wrapper">
     <!--  Presenting all categories  -->
-    <div class="myfriends-header">
-        <input class="h55blue height55 size18" id="WhereInput" type="text" ng-autocomplete ng-model="autoCompleteTemplate" options="autoComplete.options" details="autoComplete.details" ng-cloak placeholder="Filtered" />
+    <div class="myfriends-header header">
+        <span> Filtered </span>
     </div>
 
     <!--  Presenting all user's friends, sorted by categories  -->
     <div class="myfriends-body">
         <div class="categoriesSection">
-            <p>Categories are :</p>
-            <ul>
-                <li ng-repeat="category in categoryList" class="inline-block">
+            <span class="gold uppercase marginleft25 size20">person Categories</span>
+            <section id="category-wrapper" class="center">
+                <div ng-repeat="category in categoryList" class="inline-block">
                     <div ng-click="addRemoveCategory(category,$index)" ng-class="{yellowCover : category.IsSelected == true}" class="category" ng-style="{ 'background-image': 'url(' + category.Picture + ')' }">  </div>
 
-                </li>
-            </ul>
+                </div>
+            </section>
         </div>
-        <div class="friendsSection">
-            <p>Friends sorted by categories are :</p>
-            <ul>
-                <li ng-repeat="friend in friendList | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList ">
-                    {{friend.name}}
-                </li>
-            </ul>
+        <div id="friends_repeater">
+            <div class="paddbor height70 relative" ng-repeat="friend in friendList | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend,$index,$event);">
+                <div class="friend-details-wrapper">
+
+                    <div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">
+                        
+                    </div>
+                    <div class="inline-block">
+                        <span class="titledisplay inline-block uppercase" ng-if="friend.name"> {{friend.name}} </span>
+                    </div>
+
+                </div>
+
+                <div class="inline-block friend-select height76">
+
+                </div>
+                
+            </div>
         </div>
     </div>
 

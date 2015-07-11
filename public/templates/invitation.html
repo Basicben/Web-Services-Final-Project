@@ -74,6 +74,10 @@
 		max-height: 66px;
 	}
 
+	.top-20{
+		top:-20px;
+	}
+
 </style>
 
 <div class="invitation-wrapper">
@@ -85,13 +89,15 @@
 	</section>
 
 	<section class="friendsInvited-wrapper">
-		<div class="paddbor" ng-repeat="friend in invitedFriendList">
-			<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.SmallProfilePicture}})'}">
-						
-			</div>
-			<div class="inline-block relative">
-				<span class="titledisplay inline-block" ng-if="friend.name"> {{friend.name}} </span>
-				<section class="dontinvite-wrapper" ng-click="dontInvite(friend)"> <span class="px1down"> &#x2715; </span> </section>
+		<div class="paddbor height70" ng-repeat="friend in invitedFriendList">
+			<div class="friend-details-wrapper">
+				<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.SmallProfilePicture}})'}">
+							
+				</div>
+				<div class="inline-block relative">
+					<span class="titledisplay inline-block" ng-if="friend.name"> {{friend.name}} </span>
+					<section class="dontinvite-wrapper" ng-click="dontInvite(friend)"> <span class="px1down"> &#x2715; </span> </section>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -99,7 +105,7 @@
 	<section class="invitation-body">
 	
 		<section class="comejoinme">  </section>
-		<section>
+		<section class="relative top-20">
 			<span class="center block size30 uppercase"> I'm at the </span>
 			<span class="center block size50 overflow maxheight66	"> {{eventLocation.name}} </span>
 			<span class="center block"> {{eventLocation.formatted_address}} </span>
@@ -110,13 +116,13 @@
 
 	</section>
 
-	<section class="invitation-footer margtop20">
+	<section class="invitation-footer">
 		<section class="center"> 
 			<span class="size40 marginright50" ng-click="clearInvitation()"> &#x2715; </span>
 			<span class="size40 marginright50"> &#x2713; </span>
 			<span class="size40"> ? </span>
 		</section>
-		<section class="sendinvitation center margtop20" ng-click="sendInvitation()">  </section>
+		<section class="sendinvitation center margtop10" ng-click="sendInvitation()">  </section>
 	</section>
 	
 </div>

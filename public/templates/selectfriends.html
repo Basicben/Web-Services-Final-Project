@@ -10,11 +10,6 @@
 
 	.select-header{
 		text-align: center;
-		width: 100%;
-	}
-
-	.select-header{
-		
 	}
 
 	.select-body{
@@ -47,7 +42,7 @@
 		<!-- Get All Friends Circles -->
 		
 		<div class="circleswrapper">
-			<h2> Circles </h2>
+			<span class="gold uppercase marginleft25 size20">facebook circles</span>
 			<!-- Circles -->
 			<div class="circlesreapter">
 				<div ng-repeat="circle in circleList" ng-click="selectCircle(circle);" ng-class="{green: circle.IsSelected == true}">
@@ -58,14 +53,18 @@
 
 		<!-- Select all friends \ some of them -->
 		<div class="friendswrapper">
-			<h2> Person Categories </h2>
+			<span class="gold uppercase marginleft25 size20">person categories</span>
 			<div id="friends_repeater">
-				<div class="paddbor" ng-repeat="friend in friendList | filter:isCircle(friend)" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
-					<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">
+				<div class="paddbor height70" ng-repeat="friend in friendList | filter:isCircle(friend)" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
+					
+					<div class="friend-details-wrapper">
+
+						<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">
 						
-					</div>
-					<div class="inline-block">
-						<span class="titledisplay inline-block uppercase" ng-if="friend.name"> {{friend.name}} </span>
+						</div>
+						<div class="inline-block">
+							<span class="titledisplay inline-block uppercase" ng-if="friend.name"> {{friend.name}} </span>
+						</div>
 					</div>
 				</div>
 			</div>

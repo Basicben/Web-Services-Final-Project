@@ -71,6 +71,18 @@ suiteApp
             }
         };
 
+        $scope.selectFriend = function(friend,index,$event){
+            friend.IsSelected = !friend.IsSelected;
+            var clickedElement = $event.currentTarget;
+            if(friend.IsSelected){
+                $(clickedElement).find('.friend-select').addClass('width30');
+            }
+            else{
+                $(clickedElement).find('.friend-select').removeClass('width30');
+            }
+
+        }
+
         //Page reload for the first time
         $(document).ready(function(){
             // make api call to bring user's friends
@@ -276,6 +288,8 @@ suiteApp
 
     $scope.friendList = connectedUser.get().userObject.friendsList;
     $scope.selectedFriends = [];
+    $scope.selectedCategoryList = [];
+    $scope.categoryList = [];
 
     $scope.invitation = {
         name: null,
@@ -332,6 +346,20 @@ suiteApp
         }
     });
 
+    $scope.addRemoveCategory = function(category,index){
+            //push into a new array the ID of the category and the userFriendId
+        category.IsSelected = !category.IsSelected;
+            // if selected is true -> push to array.
+            // if false, delete this category from array.
+        if(category.IsSelected){
+            $scope.selectedCategoryList.push(category._id);
+        }
+        else{
+                // splice
+            $scope.selectedCategoryList.splice($scope.selectedCategoryList.indexOf(category),1);
+        }
+    };
+
     $scope.sendInvitation = function(){
         if($scope.autoComplete.value == null || $scope.autoComplete.value.formatted_address == null)
             return;
@@ -367,6 +395,35 @@ suiteApp
             }
         }
     }     
+
+
+    $(document).ready(function(){
+        $http.post(window.location.origin + '/api/getCategories').
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        //console.log('Success : data', data);
+                        
+                        // if user has signed up or not
+                        if(data == null){
+                            //$location.path('signup');
+                            console.log('(data = null) in getCategories:');
+                        }else{
+                            $scope.categoryList = data;
+                        }
+
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.log('Error : data', data);
+                        console.log('Error : status', status);
+                        console.log('Error : headers', headers);
+                        console.log('Error : config', config);
+                        // Redirect user back to login page
+                        //$location.path('signup');
+                    });
+    });
 })
 
 /***************************

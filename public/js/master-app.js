@@ -122,6 +122,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
     $scope.changeURL = function(url){
         $location.path(url);
     };
+
     $scope.angFacebookLogin = function(){
 
         console.log('add user from fb');
