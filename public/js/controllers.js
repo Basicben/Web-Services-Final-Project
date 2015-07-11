@@ -300,7 +300,6 @@ suiteApp
 /***************************
  *  inviteFriends Controller
  ***************************/
-
 .controller('inviteFriendsCntrl', function($scope,$rootScope,$http,invitation,connectedUser) {
 
     $scope.friendList = connectedUser.get().userObject.friendsList;
@@ -448,6 +447,8 @@ suiteApp
  ***************************/
 .controller('selectFriendsCntrl', function($scope,$rootScope,$http,invitation,connectedUser){
 
+    $scope.isAnyFriendSelected = false;
+
     $scope.containsObject = function(obj, list) {
         var i;
         for (i = 0; i < list.length; i++) {
@@ -472,7 +473,7 @@ suiteApp
                     var obj = {
                         value:cValue.value,
                         IsSelected:false
-                    }
+                    };
 
                     if( !$scope.containsObject(obj,$scope.circleList) )
                         $scope.circleList.push(obj);
@@ -517,26 +518,27 @@ suiteApp
     //};
 
     $scope.selectFriend = function(friend){
-        friend.IsSelected = !friend.IsSelected
+        friend.IsSelected = !friend.IsSelected;
         if(friend.IsSelected){
             // If here, Push object to array
             $scope.selectedFriends.push(friend);
+            $scope.isAnyFriendSelected = true;
         }else{
             // If here, Delete object from array
             $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1); 
         }
-    }
+    };
 
     $scope.selectCircle = function(circle){
-        circle.IsSelected = !circle.IsSelected
+        circle.IsSelected = !circle.IsSelected;
         if(circle.IsSelected){
             // If here, Push object to array
-            $scope.selectedCircle.push(circle);
+            $scope.selectedCircle.push(circle.value);
         }else{
             // If here, Delete object from array
-            $scope.selectedCircle.splice($scope.selectedCircle.indexOf(circle),1); 
+            $scope.selectedCircle.splice($scope.selectedCircle.indexOf(circle.value),1);
         }
-    }
+    };
 
     $scope.selectAll = function(){
         console.log('selectAll');
@@ -551,7 +553,7 @@ suiteApp
                 $scope.selectedFriends.push(friend);    
             }            
         });
-    }
+    };
 
     $scope.unsellectAll = function(){
         console.log('unsellectAll');
@@ -561,7 +563,7 @@ suiteApp
                 $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1);    
             }            
         });
-    }
+    };
 
     $scope.sendAll = function(){
         if($scope.selectedFriends.length == 0){
@@ -577,6 +579,10 @@ suiteApp
 
     }
 })
+
+/***************************
+ *  invitations Controller
+ ***************************/
 .controller('invitationsCntrl', function($scope,$rootScope,$http,invitation,connectedUser){
 
     $scope.eventLocation = invitation.getLocation();
@@ -592,7 +598,7 @@ suiteApp
             $('.friendsInvited-wrapper').addClass('height100');
             $scope.showFriends = true;
         }
-    }
+    };
 
     $scope.dontInvite = function(friendObj){
         invitation.deleteFriendInvitation(friendObj);
@@ -601,14 +607,14 @@ suiteApp
     $scope.clearInvitation = function(){
         invitation.clearInvitation();
         $scope.$parent.changeURL('home');
-    }
+    };
 
     $scope.invitation = {
         UserId:null,
         eventLocation:null,
         invitedFriendList:null,
         withMeList:null
-    }
+    };
 
     $scope.sendInvitation = function(){
         // invitationObj HTTP POST
@@ -621,10 +627,8 @@ suiteApp
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-
                     invitation.clearInvitation();
                     $scope.$parent.changeURL('home');
-
                 }).
                 error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs
