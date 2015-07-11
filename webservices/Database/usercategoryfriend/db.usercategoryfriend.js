@@ -29,18 +29,13 @@ var addUserCategoryFriend = function(userCategoryFriendObj){
             console.log('err',err);
         }else{
             if(user == null){
-                console.log("user",user);
                 console.log('User == null',err);
             }else{
                 var oldUser = user;
                 user.userObject.friendsList.forEach(function(friend){
-                    console.log("friend:",friend);
                     if(userCategoryFriendObj.FriendId == friend.id){
-                        console.log("userCategoryFriendObj.FriendId == friend.id");
                         if(friend.categories.length == 0){
-                            console.log("friend.categories.length == 0");
                             userCategoryFriendObj.Categories.forEach(function(category){
-                                console.log("Success!!!!!!!!!1");
                                 friend.categories.push(category._id);
                             });
                         }
@@ -60,33 +55,11 @@ var addUserCategoryFriend = function(userCategoryFriendObj){
                             }
                         });
                     }
-                    else{
-                        console.log("userCategoryFriendObj.FriendId != value.id!!!!!!!!!!");
-                        console.log("userCategoryFriendObj",userCategoryFriendObj);
-                        console.log("userCategoryFriendObj.FriendId",userCategoryFriendObj.FriendId);
-                        console.log("friend.id",friend.id);
-                    }
+                    
                 });
             }
         }
     });
-
-    /*var query = User.update( {
-            friendsList: {
-                $elemMatch: {
-                    id: userCategoryFriendObj.id
-                }
-            }
-        },
-        {
-            $set: { 'friendsList.$.categories': userCategoryFriendObj.Categories }
-        });*/
-
-
-
-
-
-
 };
 
 

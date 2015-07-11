@@ -120,6 +120,11 @@ suiteApp
             Categories:[]
         };
 
+        $scope.updateFriendsList = function(){
+            connectedUser.update();
+            console.log('update');
+            $scope.friendList = connectedUser.userObject.friendsList;
+        }
 
         //Wipe function
         $("#friendPictureSection").wipetouch({
@@ -138,8 +143,7 @@ suiteApp
                 $scope.disSelectAllCategories();
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
-                    connectedUser.update();
-                    console.log('update');
+                    $scope.updateFriendsList();
                 }
                 else{
                     console.log("Nothing was insert!");
@@ -161,8 +165,7 @@ suiteApp
 
                 if($scope.categoriazedFriend.Categories.length != 0) {
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
-                    connectedUser.update();
-                    console.log('update',connectedUser.get());
+                    $scope.updateFriendsList();
                 }
                 else{
                     console.log("Nothing was insert!");
