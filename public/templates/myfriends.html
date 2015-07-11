@@ -21,13 +21,44 @@
         width: 30px !important;
     }
 
+    #uniqesearch::-webkit-input-placeholder {
+       left:0px;
+       color: #fff7d4;
+    }
+
+    #uniqesearch:-moz-placeholder { /* Firefox 18- */
+       left:0px;
+       color: #fff7d4;
+    }
+
+    #uniqesearch::-moz-placeholder {  /* Firefox 19+ */
+       left:0px;
+       color: #fff7d4;
+    }
+
+    #uniqesearch:-ms-input-placeholder {  
+       left:0px;
+       color: #fff7d4;
+    }
+
+    .noborder{
+        border:none;
+    }
+
+    .additional{
+        text-transform: initial !important;
+        font-family: Lato;
+    }
+
+
 </style>
 
 <!--  Presenting all user friends with their categories  -->
 <div class="myfriends-wrapper">
     <!--  Presenting all categories  -->
     <div class="myfriends-header header">
-        <span> Filtered </span>
+        <input class="h55blue size18 center noborder additional lato" id="uniqesearch" placeholder="Filtered" type="text" ng-model="searchFriend" >
+        <div class="searchbtn"> </div>
     </div>
 
     <!--  Presenting all user's friends, sorted by categories  -->
@@ -36,13 +67,13 @@
             <span class="gold uppercase marginleft25 size20">person Categories</span>
             <section id="category-wrapper" class="center">
                 <div ng-repeat="category in categoryList" class="inline-block">
-                    <div ng-click="addRemoveCategory(category,$index)" ng-class="{yellowCover : category.IsSelected == true}" class="category" ng-style="{ 'background-image': 'url(' + category.Picture + ')' }">  </div>
+                    <div ng-class="{yellowCover : category.IsSelected == true}" class="category" ng-style="{ 'background-image': 'url(' + category.Picture + ')' }">  </div>
 
                 </div>
             </section>
         </div>
         <div id="friends_repeater">
-            <div class="paddbor height70 relative" ng-repeat="friend in friendList | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend,$index,$event);">
+            <div class="paddbor height70 relative" ng-repeat="friend in friendList | filter:searchFriend | orderBy:[nullsCategoriesToBottom]" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend,$index,$event);">
                 <div class="friend-details-wrapper">
 
                     <div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">

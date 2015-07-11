@@ -62,7 +62,6 @@ suiteApp
 
         //Sorting display of friends from categorized friends to uncategorized friends
         $scope.nullsCategoriesToBottom = function(obj) {
-            console.log("nullsCategoriesToBottom obj:",obj);
             if(obj.categories.length != 0){
                 return -1;
             }
@@ -71,16 +70,45 @@ suiteApp
             }
         };
 
+        var lastIndex = -1;
         $scope.selectFriend = function(friend,index,$event){
             friend.IsSelected = !friend.IsSelected;
             var clickedElement = $event.currentTarget;
             if(friend.IsSelected){
+                var elm = $('.width30');
+                if(elm && lastIndex != -1){
+                    elm.removeClass('width30');
+                    $scope.friendList[lastIndex].IsSelected = false;
+                }
+                lastIndex =  index;
                 $(clickedElement).find('.friend-select').addClass('width30');
+                $scope.pickCategories(friend);
             }
             else{
+                lastIndex =  -1;
                 $(clickedElement).find('.friend-select').removeClass('width30');
+                $scope.clearCategories();
             }
+        }
 
+        $scope.clearCategories = function(){
+            $scope.categoryList.forEach(function(c){
+                c.IsSelected = false;
+                $scope.selectedCategoryList = [];
+            })
+        }
+
+        $scope.pickCategories = function(friend){
+            $scope.clearCategories();
+            friend.categories.forEach(function(val,key){
+                $scope.categoryList.forEach(function(category){
+                    if(val == category._id){
+                        category.IsSelected = true;
+                        $scope.selectedCategoryList.push(category._id);
+                    }
+                });
+            });
+            console.log('$scope.selectedCategoryList',$scope.selectedCategoryList)
         }
 
         //Page reload for the first time
