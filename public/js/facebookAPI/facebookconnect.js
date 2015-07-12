@@ -81,6 +81,7 @@ var makeApiCalls = function(callback){
             console.log('friendResponse.data',friendResponse.data);
             for(i=0;i<friendResponse.data.length;i++){
               FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
+                friendDetails.id = friendResponse.data[i].id;
                 friendList.push(friendDetails);
                 if(friendList.length == friendResponse.data.length) callback(friendList);    
               });
