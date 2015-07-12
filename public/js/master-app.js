@@ -133,13 +133,15 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
         $scope.friendList = [];
         facebookLogin(function(friendList){
                 //friendList = getFacebookFriendsImages(friendList);
-                console.log('friendList AFTER',friendList);
+                
                 friendsList = friendList.data;
-
+                console.log('friendList 1111111111111 AFTER',friendList);
                 friendsList.forEach(function(friend){
                     friend.profilePicture = friend.picture.data.url
                     delete friend['picture'];
                 });
+
+                console.log('friendList 2222222222222 AFTER',friendList);
 
                 USER.friendsList = friendList;
                 console.log('success',USER);
