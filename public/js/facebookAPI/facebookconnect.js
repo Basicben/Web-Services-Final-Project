@@ -81,7 +81,8 @@ var makeApiCalls = function(callback){
             console.log('friendResponse.data',friendResponse.data);
             for(i=0;i<friendResponse.data.length;i++){
               FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
-                friendDetails.id = friendResponse.data[i].id;
+                friendDetails.facebookId = friendResponse.data[i].id;
+                console.log('friendDetails',friendDetails);
                 friendList.push(friendDetails);
                 if(friendList.length == friendResponse.data.length) callback(friendList);    
               });
@@ -96,8 +97,8 @@ var getFacebookFriendsImages = function(friendList){
   console.log('friendList',friendList);
   
   for(var i=0; i<friendList.length; i++){
-    FB.api('/' + friendList[i].id + '/picture?height=200', function (img) {
-        console.log('/' + friendList[i].id + '/picture?height=200','img',img);
+    FB.api('/' + friendList[i].facebookId + '/picture?height=200', function (img) {
+        console.log('/' + friendList[i].facebookId + '/picture?height=200','img',img);
         friendList[i].smallProfilePicture = img;
     });
   }
