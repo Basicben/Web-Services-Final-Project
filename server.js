@@ -27,6 +27,7 @@ var addUserEvent = require('./webservices/Database/userevent/db.userevent').addU
 /*var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').addUserCircle;
 **/
 
+// *************************** Routing *************************** //
 
 // User Insert API
 app.post('/api/userInsert',function(req,res){
@@ -74,6 +75,7 @@ app.post('/api/getMyUncategorizedFriends',function(req,res){
     });
 });
 
+// GET Friends Circles API
 app.post('/api/getFriendsCircles',function(req,res){
     console.log("api/getFriendsCircles DATA:", req.body.userId);
     getFriendCircles(req.body.userId,function(circles){
