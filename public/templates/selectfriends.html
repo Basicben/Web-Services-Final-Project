@@ -76,7 +76,7 @@
 
 	<div class="select-footer">
 		<div class="h55blue h54 rglbtn" ng-click="selectedFriends.length == friendList.length ? unsellectAll() : selectAll()"> <span> All </span>  </div>
-		<div class="h55blue h54 rglbtn" ng-click="sendAll()" ng-disabled="isAnyFriendSelected"> <span> Send </span>  </div>
+		<div class="h55blue h54 rglbtn" ng-click="sendAll(); alertIfFriendNotSelected()" ng-disabled="isAnyFriendSelected"> <span> Send </span>  </div>
 	</div>
 	
 </div>
