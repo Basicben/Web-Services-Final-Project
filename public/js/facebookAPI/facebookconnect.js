@@ -83,7 +83,7 @@ var makeApiCalls = function(callback){
           
             console.log('response',response);
             friendList = response;
-            callback(friendList);    
+            callback(friendList);
 
           });
 

@@ -1,9 +1,5 @@
 <style type="text/css">
 
-	span{
-		color: #fff7d4;
-	}
-
 	h1,h2{
 		color:#e7d4ad;
 	}
@@ -26,40 +22,62 @@
 		height: 
 	}
 
-	.green{
-		background-color: lightgreen;	
+	.selectedCircle{
+		font-size: 20px;
+		color:#fff7d3 !important;	
+	}
+
+	.selectedCircle .hline{
+		margin: 15px auto !important;
+	}
+
+	.circlesreapter > .center.uppercase {
+		margin:10px;
+		  line-height: 30px;
+	}
+
+	.center .uppercase span{
+		color:#e7d3ac;
+	}
+
+	.hline{
+		height: 1px;
+		width: 210px;
+		background-color: #72737c;
+		margin: 7px auto !important;
 	}
 
 </style>
 
 <div class="select-wrapper">
 
-	<div class="select-header header">
+	<section class="select-header header">
 		<span> Select friends </span>
-	</div>
+	</section>
 	
 	<div class="select-body">
 		<!-- Get All Friends Circles -->
 		
-		<div class="circleswrapper">
+		<section class="circleswrapper">
 			<span class="gold uppercase marginleft25 size20">Facebook Circles</span>
 			<!-- Circles -->
 			<div class="circlesreapter">
-				<div ng-repeat="circle in circleList" ng-click="selectCircle(circle);" ng-class="{green: circle.IsSelected == true}">
+				<div class="center uppercase" ng-repeat="circle in circleList" ng-click="selectCircle(circle);" ng-class="{selectedCircle: circle.IsSelected == true}">
 					<span> {{circle.value}} </span>
+					<div class="hline"></div>
 				</div>
 			</div>
-		</div>
+		</section>
 
 		<!-- Select all friends \ some of them -->
-		<div class="friendswrapper">
+		<section class="friendswrapper">
 			<span class="gold uppercase marginleft25 size20">person categories</span>
 			<div id="friends_repeater">
 				<div class="paddbor height70" ng-repeat="friend in friendList | sortByCircle:selectedCircle" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
 					
 					<div class="friend-details-wrapper">
 
-						<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">
+						<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.profilePicture}})'}">
 						
 						</div>
 						<div class="inline-block">
@@ -68,7 +86,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 		
 		<!-- Filter Friends By Categories -->
 	</div>

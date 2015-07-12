@@ -87,7 +87,7 @@
 		</div>
 		
 		<div class="paddbor" ng-repeat="friend in friendList | filter:searchFriend | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
-			<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.smallProfilePicture}})'}">
+			<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.profilePicture}})'}">
 						
 			</div>
 			<div class="inline-block">
