@@ -134,6 +134,12 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
         facebookLogin(function(friendList){
                 //friendList = getFacebookFriendsImages(friendList);
                 console.log('friendList AFTER',friendList);
+                friendsList = friendList.data;
+
+                friendsList.forEach(function(friend){
+                    friend.profilePicture = friend.picture.data.url
+                    delete friend['picture'];
+                });
 
                 USER.friendsList = friendList;
                 console.log('success',USER);
