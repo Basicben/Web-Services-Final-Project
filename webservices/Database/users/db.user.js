@@ -27,8 +27,6 @@ var addUser = function(userObj,callback) {
     // add empty categories array for user.
     // add empty circles array for user.
 
-    var circleList = [];
-
     userObj.friendsList.forEach(function(value,key){
         value.categories = [];
         value.circles = [];

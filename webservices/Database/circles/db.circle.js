@@ -3,44 +3,12 @@ var mongoose = require('mongoose');
 var circleSchema = require('./db.circle.schema').circleSchema;
 var Circle = mongoose.model('CircleM',circleSchema);
 // User Circle
-var addUserCircle = require('../usercircle/db.usercircle').addUserCircle;
 var getUserCircles = require('../usercircle/db.usercircle').getUserCircles;
 
 var getUserFriends = require('../userfriends/db.userfriends').getUserFriends;
 /** **********************************************************/
 
 /*****      Connection to the database ( db_suitemybeer ) *****/
-
-var addCircle = function(circleTitle, userId){
-        /**********       Adding new Circle from facebook to User's collection              **********/
-        var newCircle = new Circle({
-            Title: circleTitle
-        });
-
-        /**     Check if Circle already exist        **/
-
-        var query = Circle.findOne().where('Title',circleTitle);
-        query.exec(function(err,circle){
-            if(err) {
-                console.log('err',err);
-            }else{
-                if(circle == null){
-                    newCircle.save(function (err, doc) {
-                        if(err){
-                            console.log('err',err);
-                            
-                        }else{
-                            console.log('circle not exists -> Adding');
-                            addUserCircle(newCircle._id,userId);
-                        }
-                    });
-                }else{
-                    console.log('circle exists');
-                    addUserCircle(circle._id,userId);
-                }
-            }
-        });        
-};
 
 var getFriendCircles = function(userId,callback){
     var circleList = [];
@@ -72,8 +40,7 @@ var getFriendCircles = function(userId,callback){
     });
     // get all user circles of friends id
     // insert all circles to array
-}
+};
 
 // Exports
-exports.addCircle = addCircle;
 exports.getFriendCircles = getFriendCircles;
