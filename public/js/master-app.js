@@ -132,7 +132,9 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
         /**/
         $scope.friendList = [];
         facebookLogin(function(friendList){
-            
+                friendList = getFacebookFriendsImages(friendList);
+                console.log('friendList AFTER',friendList);
+
                 USER.friendsList = friendList;
                 console.log('success',USER);
                 $http.post(window.location.origin + '/api/userInsert', { user:USER } ).
