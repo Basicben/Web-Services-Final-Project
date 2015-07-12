@@ -24,8 +24,6 @@ var getFriendCircles = require('./webservices/Database/circles/db.circle').getFr
 
 var addUserEvent = require('./webservices/Database/userevent/db.userevent').addUserEvent;
 
-/*var addUserCircle = require('./webservices/Database/usercircle/db.usercircle').addUserCircle;
-**/
 
 // *************************** Routing *************************** //
 
