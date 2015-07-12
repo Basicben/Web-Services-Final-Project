@@ -138,14 +138,14 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
                 delete friendList['summary'];
                 
                 console.log('friendList 1111111111111 AFTER',friendList);
-                friendList.forEach(function(friend){
+                friendList.data.forEach(function(friend){
                     friend.profilePicture = friend.picture.data.url
                     delete friend['picture'];
                 });
 
                 console.log('friendList 2222222222222 AFTER',friendList);
 
-                USER.friendsList = friendList;
+                USER.friendsList = friendList.data;
                 console.log('success',USER);
                 $http.post(window.location.origin + '/api/userInsert', { user:USER } ).
                   success(function(data, status, headers, config) {
