@@ -70,46 +70,17 @@ suiteApp
             }
         };
 
-        var lastIndex = -1;
         $scope.selectFriend = function(friend,index,$event){
             friend.IsSelected = !friend.IsSelected;
             var clickedElement = $event.currentTarget;
             if(friend.IsSelected){
-                var elm = $('.width30');
-                if(elm && lastIndex != -1){
-                    elm.removeClass('width30');
-                    $scope.friendList[lastIndex].IsSelected = false;
-                }
-                lastIndex =  index;
                 $(clickedElement).find('.friend-select').addClass('width30');
-                $scope.pickCategories(friend);
             }
             else{
-                lastIndex =  -1;
                 $(clickedElement).find('.friend-select').removeClass('width30');
-                $scope.clearCategories();
             }
-        }
 
-        $scope.clearCategories = function(){
-            $scope.categoryList.forEach(function(c){
-                c.IsSelected = false;
-                $scope.selectedCategoryList = [];
-            })
-        }
-
-        $scope.pickCategories = function(friend){
-            $scope.clearCategories();
-            friend.categories.forEach(function(val,key){
-                $scope.categoryList.forEach(function(category){
-                    if(val == category._id){
-                        category.IsSelected = true;
-                        $scope.selectedCategoryList.push(category._id);
-                    }
-                });
-            });
-            console.log('$scope.selectedCategoryList',$scope.selectedCategoryList)
-        }
+        };
 
         //Page reload for the first time
         $(document).ready(function(){
@@ -163,26 +134,31 @@ suiteApp
             tapToClick: true, // if user taps the screen, triggers a click event
             wipeLeft: function() {
 
-                $scope.categoriazedFriend.FriendId = $scope.friendList[$scope.friendIndex].id;
-
-                if($scope.friendIndex < $scope.friendList.length - 1){
-                    $scope.friendIndex++;
-                }
-                else{
-                    $scope.friendIndex = 0;
-                }
+                var friend = $scope.friendList[$scope.friendIndex];
+                $scope.categoriazedFriend.FriendId = friend.id;
+                $scope.disSelectAllCategories();
 
                 if($scope.categoriazedFriend.Categories.length != 0) {
-                    $scope.friendList.splice($scope.friendList.indexOf($scope.friendList[$scope.friendIndex--]),1);
+                    $scope.friendList.splice($scope.friendList.indexOf(friend),1);
                     $scope.sendObjOfUserCategoryFriend($scope.categoriazedFriend);
                     $scope.$apply();
                 }
                 else{
                     console.log("Nothing was insert!");
                 }
-                $scope.disSelectAllCategories();
+
+                if($scope.friendIndex < $scope.friendList.length - 1){
+                    if($scope.friendList.length == 1)
+                        $scope.friendIndex = 0;
+                    else
+                        $scope.friendIndex++;
+                }
+                else{
+                    $scope.friendIndex = 0;
+                }
+
+                $scope.clearcategoriazedFriendObj();
                 $scope.$apply();
-                $scope.categoriazedFriend.Categories = [];
             },
             wipeRight: function() {
                 var friend = $scope.friendList[$scope.friendIndex];
@@ -198,7 +174,6 @@ suiteApp
                     console.log("Nothing was insert!");
                 }
 
-                console.log('$scope.friendIndex After Categories.length != 0',$scope.friendIndex);
                 if($scope.friendIndex < $scope.friendList.length - 1){
                     if($scope.friendList.length == 1)
                         $scope.friendIndex = 0;
@@ -212,7 +187,6 @@ suiteApp
                 $scope.clearcategoriazedFriendObj();
                 $scope.$apply();
             }
-
         });
 
         //Pushing selected categories to a new obj.array
@@ -251,11 +225,10 @@ suiteApp
                 success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    console.log('Updated data after $scope.sendObjOfUserCategoryFriend',data);
+                    //After sending the new categorized friend into the DB, update the friendList
                     $scope.updateFriendsList();
                     // if user has signed up or not
                     if(data == null){
-                        //$location.path('signup');
                         console.log('(data = null) in userCategoryFriendInsert:');
                     }
                 }).
@@ -274,12 +247,10 @@ suiteApp
         //Updating the friendList
         $scope.updateFriendsList = function(){
             connectedUser.update();
-            console.log('update');
         };
 
-/*************             First load of the page                ********/
-
-        $scope.clearCategoraizedFriends = function() {
+        //Updating the friendList
+        $scope.clearCategorizedFriends = function() {
             $scope.friendList = [];
             connectedUser.get().userObject.friendsList.forEach(function(friend){
                 if(friend.categories.length == 0){
@@ -287,15 +258,14 @@ suiteApp
                 }
             });
         };
+/*************             First load of the page                ********/
+
 
         $(document).ready(function(){
 
-            $scope.clearCategoraizedFriends();
+            $scope.clearCategorizedFriends();
             if($scope.friendList.length == 0){
                 console.log("There is no more friends to categorized! Well Done!");
-            }
-            else{
-                console.log("$scope.friendList!!!!!",$scope.friendList);
             }
 
             $http.post(window.location.origin + '/api/getCategories').
@@ -330,115 +300,118 @@ suiteApp
  ***************************/
 .controller('inviteFriendsCntrl', function($scope,$rootScope,$http,invitation,connectedUser) {
 
-    $scope.friendList = connectedUser.get().userObject.friendsList;
-    $scope.selectedFriends = [];
-    $scope.selectedCategoryList = [];
-    $scope.categoryList = [];
+        $scope.friendList = connectedUser.get().userObject.friendsList;
+        $scope.selectedFriends = [];
+        $scope.selectedCategoryList = [];
+        $scope.categoryList = [];
 
-    $scope.invitation = {
-        name: null,
-        placeName: null,
-        friends:null
-    };
+        $scope.invitation = {
+            name: null,
+            placeName: null,
+            friends:null
+        };
 
+        $scope.autoComplete = {
+            value: null,
+            details: {},
+            options: {
+                types: 'establishment'
+                //,country: 'ca'
+            }
+        };
 
+        $scope.autoCompleteTemplate = '';
 
-    $scope.autoComplete = {
-        value: null,
-        details: {},
-        options: {
-            types: 'establishment'
-            //,country: 'ca'
-        }
-    };
+        // Watch for Landmark input.
+        $scope.$watch('autoComplete.details', function (n, o) {
+            $scope.autoComplete.value = n;
+            if(!jQuery.isEmptyObject(n)){
+                var location = $scope.autoComplete.value.geometry.location;
+                $scope.markers['marker1'] = {
+                    lat: location[Object.keys(location)[0]],
+                    lng: location[Object.keys(location)[1]],
+                    message: n.formatted_address,
+                    focus: true,
+                    draggable: false
+                };
 
-    $scope.autoCompleteTemplate = '';
+                $scope.center = {
+                    lat: location[Object.keys(location)[0]],
+                    lng: location[Object.keys(location)[1]],
+                    zoom: 12
+                }
+            }
+        });
 
-    // Watch for Landmark input.
-    $scope.$watch('autoComplete.details', function (n, o) {
-        $scope.autoComplete.value = n;
-        if(!jQuery.isEmptyObject(n)){
-            var location = $scope.autoComplete.value.geometry.location;
-            $scope.markers['marker1'] = {
-                lat: location[Object.keys(location)[0]],
-                lng: location[Object.keys(location)[1]],
-                message: n.formatted_address,
-                focus: true,
-                draggable: false
-            };
-
-            $scope.center = {
-                lat: location[Object.keys(location)[0]],
-                lng: location[Object.keys(location)[1]],
+        angular.extend($scope, {
+            center: {
+                lat: 59.91,
+                lng: 10.75,
                 zoom: 12
+            },
+            markers: {
+
+            },
+            defaults: {
+                scrollWheelZoom: false
             }
-        }
-    });
+        });
 
-
-    angular.extend($scope, {
-        center: {
-            lat: 59.91,
-            lng: 10.75,
-            zoom: 12
-        },
-        markers: {
-
-        },
-        defaults: {
-            scrollWheelZoom: false
-        }
-    });
-
-    $scope.addRemoveCategory = function(category,index){
-            //push into a new array the ID of the category and the userFriendId
-        category.IsSelected = !category.IsSelected;
-            // if selected is true -> push to array.
-            // if false, delete this category from array.
-        if(category.IsSelected){
-            $scope.selectedCategoryList.push(category._id);
-        }
-        else{
-                // splice
-            $scope.selectedCategoryList.splice($scope.selectedCategoryList.indexOf(category),1);
-        }
-    };
-
-    $scope.sendInvitation = function(){
-        if($scope.autoComplete.value == null || $scope.autoComplete.value.formatted_address == null)
-            return;
-
-        invitation.changeLocation($scope.autoComplete.value);
-        $scope.$parent.changeURL('selectfriends');
-    }
-
-    $scope.selectFriend = function(friend){
-        friend.IsSelected = !friend.IsSelected;
-        if(friend.IsSelected){
-            // If here, Push object to array
-            $scope.selectedFriends.push(friend);
-        }else{
-            // If here, Delete object from array
-            $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1); 
-        }
-    }
-
-    $scope.chooseWithMe = function(){
-        invitation.setWithMe($scope.selectedFriends);
-        $('.withme-wrapper').removeClass('height100');
-    }
-
-    $scope.addRemoveWithMe = function(){
-        var obj = $('.withme-wrapper');
-        if(obj.hasClass('height100')){
-            obj.removeClass('height100');
-        }else{
-            obj.addClass('height100');
-            if($scope.friendList.length <= 0){
-                $scope.friendList = connectedUser.get().userObject.friendsList;
+        $scope.addRemoveCategory = function(category,index){
+                //push into a new array the ID of the category and the userFriendId
+            category.IsSelected = !category.IsSelected;
+                // if selected is true -> push to array.
+                // if false, delete this category from array.
+            if(category.IsSelected){
+                $scope.selectedCategoryList.push(category._id);
             }
-        }
-    }     
+            else{
+                    // splice
+                $scope.selectedCategoryList.splice($scope.selectedCategoryList.indexOf(category),1);
+            }
+        };
+
+        $scope.sendInvitation = function(){
+            if($scope.autoComplete.value == null || $scope.autoComplete.value.formatted_address == null) {
+                swal({
+                    title: "Oops..",
+                    text: "You forgot to enter a place",
+                    timer: 2000,
+                    showConfirmButton: false });
+                return;
+            }
+
+            invitation.changeLocation($scope.autoComplete.value);
+            $scope.$parent.changeURL('selectfriends');
+        };
+
+        $scope.selectFriend = function(friend){
+            friend.IsSelected = !friend.IsSelected;
+            if(friend.IsSelected){
+                // If here, Push object to array
+                $scope.selectedFriends.push(friend);
+            }else{
+                // If here, Delete object from array
+                $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1);
+            }
+        };
+
+        $scope.chooseWithMe = function(){
+            invitation.setWithMe($scope.selectedFriends);
+            $('.withme-wrapper').removeClass('height100');
+        };
+
+        $scope.addRemoveWithMe = function(){
+            var obj = $('.withme-wrapper');
+            if(obj.hasClass('height100')){
+                obj.removeClass('height100');
+            }else{
+                obj.addClass('height100');
+                if($scope.friendList.length <= 0){
+                    $scope.friendList = connectedUser.get().userObject.friendsList;
+                }
+            }
+        };
 
 
     $(document).ready(function(){
@@ -446,7 +419,6 @@ suiteApp
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
                         // when the response is available
-                        //console.log('Success : data', data);
                         
                         // if user has signed up or not
                         if(data == null){
@@ -475,9 +447,22 @@ suiteApp
  ***************************/
 .controller('selectFriendsCntrl', function($scope,$rootScope,$http,invitation,connectedUser){
 
-    $scope.isAnyFriendSelected = false;
+        //Indication if friend was selected for continuing of the procedure
+        $scope.isAnyFriendSelected = false;
 
-    $scope.containsObject = function(obj, list) {
+        //Sweet alert pop-up
+        $scope.alertIfFriendNotSelected = function(){
+          if(!$scope.isAnyFriendSelected){
+              swal({
+                  title: "Oops..",
+                  text: "You forgot to invite friend/s",
+                  timer: 2000,
+                  showConfirmButton: false });
+          }
+        };
+
+        //This function checks if there an object in an array
+        $scope.containsObject = function(obj, list) {
         var i;
         for (i = 0; i < list.length; i++) {
             if (angular.equals(list[i], obj)) {
@@ -512,100 +497,67 @@ suiteApp
     });    
 
     // Array contains selected friends we would like to send the invitation to.
-    $scope.selectedFriends = [];
+        $scope.selectedFriends = [];
+        $scope.selectedCircle = [];
+        $scope.selectedUsers = [];
 
-    $scope.selectedCircle = [];
+        $scope.selectFriend = function(friend){
+            friend.IsSelected = !friend.IsSelected;
+            if(friend.IsSelected){
+                // If here, Push object to array
+                $scope.selectedFriends.push(friend);
+                $scope.isAnyFriendSelected = true;
+            }else{
+                // If here, Delete object from array
+                $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1);
+            }
+        };
 
-    $scope.selectedUsers = [];
+        $scope.selectCircle = function(circle){
+            circle.IsSelected = !circle.IsSelected;
+            if(circle.IsSelected){
+                // If here, Push object to array
+                $scope.selectedCircle.push(circle.value);
+            }else{
+                // If here, Delete object from array
+                $scope.selectedCircle.splice($scope.selectedCircle.indexOf(circle.value),1);
+            }
+        };
 
-    $scope.isCircle = function(user){
-        //return (user.circle.contains());
-
-        return function( friend ) {
-            if($scope.selectedCircle.length == 0 || $scope.selectedCircle == null){
-                console.log('isCircle length == 0');
-                return true;
+        $scope.selectAll = function(){
+            if($scope.selectedFriends.length == $scope.friendList.length){
+                $scope.unsellectAll();
+                return;
             }
 
-            angular.forEach($scope.selectedCircle, function(circle) {
-                for(var i=0; i<friend.circles.length; i++){
-                    if(friend.circles[i].CircleId == circle._id){
-                        
-                        return true;
-                    }
+            angular.forEach($scope.friendList, function(friend){
+                if(friend.IsSelected == false){
+                    friend.IsSelected = true;
+                    $scope.selectedFriends.push(friend);
                 }
             });
+        };
 
-          };
-    };
+        $scope.unsellectAll = function(){
+            angular.forEach($scope.friendList, function(friend){
+                if(friend.IsSelected == true){
+                    friend.IsSelected = false;
+                    $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1);
+                }
+            });
+        };
 
-    //$scope.criteriaMatch = function( criteria ) {
-    //  return function( item ) {
-    //    return item.name === criteria.name;
-    //  };
-    //};
+        $scope.sendAll = function(){
+            if($scope.selectedFriends.length == 0){
+                return;
+            }
+            // Add selected friend object to factory object so it would be reachable from all controllers
+            invitation.setInviteFriends($scope.selectedFriends);
+            // Transfer to Invitation Page
+            $scope.$parent.changeURL('invitation');
 
-    $scope.selectFriend = function(friend){
-        friend.IsSelected = !friend.IsSelected;
-        if(friend.IsSelected){
-            // If here, Push object to array
-            $scope.selectedFriends.push(friend);
-            $scope.isAnyFriendSelected = true;
-        }else{
-            // If here, Delete object from array
-            $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1); 
+
         }
-    };
-
-    $scope.selectCircle = function(circle){
-        circle.IsSelected = !circle.IsSelected;
-        if(circle.IsSelected){
-            // If here, Push object to array
-            $scope.selectedCircle.push(circle.value);
-        }else{
-            // If here, Delete object from array
-            $scope.selectedCircle.splice($scope.selectedCircle.indexOf(circle.value),1);
-        }
-    };
-
-    $scope.selectAll = function(){
-        console.log('selectAll');
-        if($scope.selectedFriends.length == $scope.friendList.length){
-            $scope.unsellectAll();
-            return;
-        }
-
-        angular.forEach($scope.friendList, function(friend){
-            if(friend.IsSelected == false){
-                friend.IsSelected = true;
-                $scope.selectedFriends.push(friend);    
-            }            
-        });
-    };
-
-    $scope.unsellectAll = function(){
-        console.log('unsellectAll');
-        angular.forEach($scope.friendList, function(friend){
-            if(friend.IsSelected == true){
-                friend.IsSelected = false;
-                $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1);    
-            }            
-        });
-    };
-
-    $scope.sendAll = function(){
-        if($scope.selectedFriends.length == 0){
-            console.log('Cannot send');
-            return;
-        }
-        console.log('$scope.selectedFriends',$scope.selectedFriends);
-        // Add selected friend object to factory object so it would be reachable from all controllers
-        invitation.setInviteFriends($scope.selectedFriends);
-        // Transfer to Invitation Page
-        $scope.$parent.changeURL('invitation');
-
-
-    }
 })
 
 /***************************
@@ -630,7 +582,7 @@ suiteApp
 
     $scope.dontInvite = function(friendObj){
         invitation.deleteFriendInvitation(friendObj);
-    }
+    };
 
     $scope.clearInvitation = function(){
         invitation.clearInvitation();
@@ -672,10 +624,6 @@ suiteApp
         
 
     }
-
-    console.log('$scope.eventLocation',$scope.eventLocation);
-    console.log('$scope.friendList',$scope.invitedFriendList);
-    console.log('$scope.withMeList',$scope.withMeList);
 
 });
 

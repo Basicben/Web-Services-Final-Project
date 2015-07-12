@@ -7,6 +7,7 @@ suiteApp
 
             var out = [];
             var j = 0;
+
             //If none of the categories were selected, than return the original friendsList
             if(selectedCategoryList == null || selectedCategoryList.length == 0){
                 return friendsList;
@@ -34,18 +35,13 @@ suiteApp
 
     .filter('sortByCircle', function() {
     // In the return function, we must pass in a single parameter which contains all the friendsList objects.
-    //
     return function(friendsList, selectedCircle) {
 
         var out = [];
         var j = 0;
 
-        console.log("friends:",friendsList);
-        console.log("selectedCircle:",selectedCircle);
-
         //If none of the circles were selected, than return the original friendsList
         if(selectedCircle == null || selectedCircle.length == 0){
-            console.log("Returning empty friendsList because none of the circles were chosen");
             return friendsList;
         }
 
@@ -59,7 +55,6 @@ suiteApp
                     }
                 }
                 if(j == selectedCircle.length){
-                    console.log("out.push(friend)");
                     out.push(friend);
                 }
             }
