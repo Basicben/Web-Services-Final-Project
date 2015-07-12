@@ -35,7 +35,6 @@ suiteApp
 
     .filter('sortByCircle', function() {
     // In the return function, we must pass in a single parameter which contains all the friendsList objects.
-    //
     return function(friendsList, selectedCircle) {
 
         var out = [];

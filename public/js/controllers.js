@@ -419,7 +419,6 @@ suiteApp
                     success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
                         // when the response is available
-                        //console.log('Success : data', data);
                         
                         // if user has signed up or not
                         if(data == null){
