@@ -79,7 +79,7 @@ var makeApiCalls = function(callback){
           USER.mediumProfilePicture = mediumResponse.data.url;
 
 
-          FB.api('/me/friends?fields=id,name,gender,user_hometown,picture{url}', function(response) {
+          FB.api('/me/friends?fields=id,name,gender,picture{url}', function(response) {
           
             console.log('response',response);
             friendList = response;
