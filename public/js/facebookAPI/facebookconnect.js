@@ -85,6 +85,7 @@ var makeApiCalls = function(callback){
               FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
                   FB.api('/' + friendResponse.data[i].id + '/picture?height=200' , function (friendImg) {
                       friendDetails.mediumProfilePicture = friendImg;
+                      console.log('friendDetails',friendDetails);
                       friendList.push(friendDetails);
                       if(friendList.length == friendResponse.data.length) callback(friendList);    
                   });
