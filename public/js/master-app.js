@@ -132,7 +132,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
         /**/
         $scope.friendList = [];
         facebookLogin(function(friendList){
-                friendList = getFacebookFriendsImages(friendList);
+                //friendList = getFacebookFriendsImages(friendList);
                 console.log('friendList AFTER',friendList);
 
                 USER.friendsList = friendList;
