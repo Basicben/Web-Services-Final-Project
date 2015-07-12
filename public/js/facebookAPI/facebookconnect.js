@@ -94,7 +94,7 @@ var makeApiCalls = function(callback){
 var getFacebookFriendsImages = function(friendList){
   console.log('friendList',friendList);
   
-  for(var i=0;i<friendList.lenght;i++){
+  for(var i=0; i<friendList.length; i++){
     FB.api('/' + friendList[i].id + '/picture?height=200', function (img) {
         console.log('/' + friendList[i].id + '/picture?height=200','img',img);
         friendList[i].smallProfilePicture = img;
