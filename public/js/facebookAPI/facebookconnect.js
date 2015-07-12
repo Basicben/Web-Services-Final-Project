@@ -80,9 +80,10 @@ var makeApiCalls = function(callback){
           FB.api('/' + response.id + '/friends', function (friendResponse) {
             console.log('friendResponse.data',friendResponse.data);
             for(i=0;i<friendResponse.data.length;i++){
+              console.log('friendResponse.data[i].id',friendResponse.data[i].id);
               FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
-                friendDetails.facebookId = friendResponse.data[i].id;
                 console.log('friendDetails',friendDetails);
+                friendDetails.facebookId = friendResponse.data[i].id;
                 friendList.push(friendDetails);
                 if(friendList.length == friendResponse.data.length) callback(friendList);    
               });
@@ -94,11 +95,12 @@ var makeApiCalls = function(callback){
 }
 
 var getFacebookFriendsImages = function(friendList){
-  console.log('friendList',friendList);
+  
   
   for(var i=0; i<friendList.length; i++){
-    FB.api('/' + friendList[i].facebookId + '/picture?height=200', function (img) {
-        console.log('/' + friendList[i].facebookId + '/picture?height=200','img',img);
+    console.log('friendList[i]',friendList[i]);
+    FB.api('/' + friendList[i].facebookId + '/photo?height=200', function (img) {
+        console.log('/' + friendList[i].facebookId + '/picture?photo=200','img',img);
         friendList[i].smallProfilePicture = img;
     });
   }
