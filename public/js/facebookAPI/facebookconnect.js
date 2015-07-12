@@ -77,19 +77,22 @@ var makeApiCalls = function(callback){
         USER.smallProfilePicture = smallResponse.data.url;
         FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
           USER.mediumProfilePicture = mediumResponse.data.url;
-          FB.api('/' + response.id + '/friends', function (friendResponse) {
-            console.log('friendResponse.data',friendResponse.data);
-            for(i=0;i<friendResponse.data.length;i++){
-              FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
-                friendList.push(friendDetails);
-                if(friendList.length == friendResponse.data.length) callback(friendList);    
-              });
-            }
+
+
+          FB.api('/me/friends?fields=id,name,gender,picture{url}', function(response) {
+          
+            console.log('response',response);
+            friendList = response;
+            callback(friendList);    
+
           });
+
         });
       });
   });
 }
+
+
 
 var getUserFriendsFromFB = function(friends,pushFriend){
     
