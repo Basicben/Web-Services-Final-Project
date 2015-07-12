@@ -75,14 +75,19 @@ var makeApiCalls = function(callback){
       USER = response;
       FB.api('/' + response.id + '/picture?height=38', function (smallResponse) {
         USER.smallProfilePicture = smallResponse.data.url;
+
         FB.api('/' + response.id + '/picture?height=200', function (mediumResponse) {
           USER.mediumProfilePicture = mediumResponse.data.url;
+
           FB.api('/' + response.id + '/friends', function (friendResponse) {
-            console.log('friendResponse.data',friendResponse.data);
+            
             for(i=0;i<friendResponse.data.length;i++){
               FB.api('/' + friendResponse.data[i].id , function (friendDetails) {
-                friendList.push(friendDetails);
-                if(friendList.length == friendResponse.data.length) callback(friendList);    
+                  FB.api('/' + friendResponse.data[i].id + '/picture?height=200' , function (friendImg) {
+                      friendDetails.mediumProfilePicture = friendImg;
+                      friendList.push(friendDetails);
+                      if(friendList.length == friendResponse.data.length) callback(friendList);    
+                  });
               });
             }
           });
