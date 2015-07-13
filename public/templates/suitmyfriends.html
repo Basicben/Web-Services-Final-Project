@@ -6,51 +6,98 @@
         color:red;
     }
 
+    .suitmyfriends-body{
+        top: 74px;
+    }
+
     .suite{
-        background-image:url('../images/suitemyfriends.png');
+        background-image:url('../images/suitemyfriend.png');
         background-repeat: no-repeat;
         width:336px;
         height: 336px;
     }
 
     .suite > img {
-        width:205px;
-        height:205px;
+        width: 215px;
+        height: 215px;
         border-radius: 200px;
+        position: relative;
+        top: 61px;
     }
 
-    .suite > p{
+    .suite > .name-wrapper{
         color:black;
     }
+
+    .float-categories{
+        position: absolute;
+    }
+
+    .float-categories > img{
+        width: 35px;
+        height: 35px;
+    }
+
+    .float-categories.A{
+        top: 38px;
+        right: 87px;
+    }
+
+    .float-categories.B{
+        top: 110px;
+        right: 30px;
+    }
+
+    .float-categories.C{
+        top: 66px;
+        right: 52px;
+    }
+
+    .float-categories.D{
+        top: 22px;
+        right: 179px;
+    }
+
+    .float-categories.E{
+        top: 41px;
+        left: 86px;
+    }
+
+    .float-categories.F{
+         top: 20px;
+        left: 175px;
+    }
+
+    .float-categories.G{
+        top: 109px;
+        left: 29px;
+    }
+
+    .float-categories.H{
+        top: 69px;
+        left: 52px;
+    }
+
 
 </style>
 
 <div class="suitmyfriends-wrapper">
 
-    <div class="suitmyfriends-header">
-        <h2>Suit My Friends</h2>
+    <div class="suitmyfriends-header header">
+        <span>Suit My Friends</span>
     </div>
-
     <!--  Presenting all user's friends, sorted by categories  -->
-    <div class="suitmyfriends-body">
+    <div class="suitmyfriends-body relative">
         <div id="friendPictureSection">
-            
-            <div id="suitefriends-wrapper">
-
                 <div class="suite relative center">
+                    <div class="categories-section">
+                        <div ng-repeat="category in categoryList" ng-click="selectCategory(category,$event)" class="float-categories {{category.Title}}" >
+                            <img ng-src="{{category.Picture}}"> 
+                        </div>      
+                    </div>
                     <img ng-src="{{friendList[friendIndex].profilePicture}}" >
-                    <p> {{friendList[friendIndex].name}} </p>
+                    <h2 id="curvedName" class="name-wrapper center relative size20"> {{friendList[friendIndex].name}} </h2>
                 </div>
-
-            </div>
-        </div>
-        <div class="categoriesSection">
-            <p>Categories are :</p>
-            <ul>
-                <li ng-repeat="category in categoryList">
-                    <div ng-class="{redText : category.IsSelected == true}" ng-click="selectCategory(category)">{{category}}</div>
-                </li>
-            </ul>
         </div>
     </div>
 

@@ -70,17 +70,46 @@ suiteApp
             }
         };
 
+        var lastIndex = -1;
         $scope.selectFriend = function(friend,index,$event){
             friend.IsSelected = !friend.IsSelected;
             var clickedElement = $event.currentTarget;
             if(friend.IsSelected){
+                var elm = $('.width30');
+                if(elm && lastIndex != -1){
+                    elm.removeClass('width30');
+                    $scope.friendList[lastIndex].IsSelected = false;
+                }
+                lastIndex =  index;
                 $(clickedElement).find('.friend-select').addClass('width30');
+                $scope.pickCategories(friend);
             }
             else{
+                lastIndex =  -1;
                 $(clickedElement).find('.friend-select').removeClass('width30');
+                $scope.clearCategories();
             }
+        }
 
-        };
+        $scope.clearCategories = function(){
+            $scope.categoryList.forEach(function(c){
+                c.IsSelected = false;
+                $scope.selectedCategoryList = [];
+            })
+        }
+
+        $scope.pickCategories = function(friend){
+            $scope.clearCategories();
+            friend.categories.forEach(function(val,key){
+                $scope.categoryList.forEach(function(category){
+                    if(val == category._id){
+                        category.IsSelected = true;
+                        $scope.selectedCategoryList.push(category._id);
+                    }
+                });
+            });
+            console.log('$scope.selectedCategoryList',$scope.selectedCategoryList)
+        }
 
         //Page reload for the first time
         $(document).ready(function(){
@@ -190,7 +219,10 @@ suiteApp
         });
 
         //Pushing selected categories to a new obj.array
-        $scope.selectCategory = function(category){
+        $scope.selectCategory = function(category,$e){
+
+            if($e.originalEvent != null) return;
+            if ($e) $e.stopImmediatePropagation();
             //push into a new array the ID of the category and the userFriendId
             category.IsSelected = !category.IsSelected;
             // if selected is true -> push to array.
@@ -201,6 +233,9 @@ suiteApp
             else{
                 $scope.categoriazedFriend.Categories.splice($scope.categoriazedFriend.Categories.indexOf(category),1);
             }
+
+            console.log('selectCategory',$scope.categoriazedFriend,category);
+
         };
 
         //Disselect all categories
@@ -263,6 +298,8 @@ suiteApp
 
         $(document).ready(function(){
 
+            
+
             $scope.clearCategorizedFriends();
             if($scope.friendList.length == 0){
                 console.log("There is no more friends to categorized! Well Done!");
@@ -292,7 +329,6 @@ suiteApp
                 });
 
         });
-
 })
 
 /***************************

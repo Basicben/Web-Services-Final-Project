@@ -29,35 +29,16 @@ var USER = /*null; /**/
         verified: true,
         friendsList: [
             {
-                id:343677234,
-                birthday: "05/25",
-                first_name: "Ben Ari",
-                gender: "male",
-                hometown: {
-                    Objectid: "102184499823699",
-                    name: "Montreal, Quebec"
-                },
-                last_name: "Kutai",
-                link: "https://www.facebook.com/app_scoped_user_id/10153356515014410/",
-                locale: "en_US",
-                location: {
-                    Objectid: "111853268841906",
-                    name: "Rehovot, Israel"
-                },
-                name: "Ben Ari Kutai",
-                updated_time: "2015-06-05T18:00:17+0000"
-
+                profilePicture: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/v/t1.0-1/c39.36.450.450/s50x50/999588_10151791538574592_1966057484_n.jpg?oh=b69066e7944df6b60a25713a66edea59&oe=5618D284&__gda__=1444836887_82ac05e25e6c7d583087aaee11f6c648",
+                gender: "female",
+                name: "Dana Freilich",
+                id: "10153390184239592"
             },
             {
-                birthday: "03/01",
-                first_name: "Noam",
+                profilePicture: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c49.49.618.618/s50x50/208959_10150978397109863_793617579_n.jpg?oh=8a53ff8aa2cc8baa865ff5f7c1e7515f&oe=56183530&__gda__=1444989859_1bcfd25a1a554d40917b825093c0b88b",
                 gender: "male",
-                id: "10153947428804863",
-                last_name: "Rom",
-                link: "https://www.facebook.com/app_scoped_user_id/10153947428804863/",
-                locale: "en_US",
                 name: "Noam Rom",
-                updated_time: "2014-12-30T10:56:34+0000",
+                id: "10153947428804863"
             }
         ]
 
