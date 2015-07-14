@@ -36,11 +36,13 @@
     .float-categories > img{
         width: 35px;
         height: 35px;
+        z-index: 99999;
+        position: relative;
     }
 
-    .float-categories.A{
-        top: 38px;
-        right: 87px;
+    .float-categories.A{        
+        top: 20px;
+        left: 175px;
     }
 
     .float-categories.B{
@@ -64,8 +66,9 @@
     }
 
     .float-categories.F{
-         top: 20px;
-        left: 175px;
+         
+        top: 69px;
+        left: 52px;
     }
 
     .float-categories.G{
@@ -74,10 +77,61 @@
     }
 
     .float-categories.H{
-        top: 69px;
-        left: 52px;
+        
+        top: 38px;
+        right: 87px;
     }
 
+    .selectedImg{
+        width: 78px;
+        height: 69px;
+        position: absolute;
+    }
+
+    .selectedImg.c1 {
+      right: -24px;
+      top: -21px;
+    }
+
+    .selectedImg.c2 {
+      right: -30px;
+      top: -25px;
+    }
+
+    .selectedImg.c3{
+        right: -30px;
+        top: -25px;
+    }
+
+    .selectedImg.c4 {
+      right: -18px;
+      top: -21px;
+    }
+
+    .selectedImg.c5 {
+      top: -29px;
+      right: -11px;
+    }
+
+    .selectedImg.c6 {
+      right: -12px;
+      top: -26px;
+    }
+
+    .selectedImg.c7 {
+      right: -15px;
+      top: -22px;
+      height: 67px !important;
+    }
+
+    .selectedImg.c8 {
+      top: -26px;
+      right: -30px;
+    }
+
+    .selectedImg.c5, .selectedImg.c8{
+        height: 75px !important;
+    }
 
 </style>
 
@@ -93,9 +147,11 @@
                     <div class="categories-section">
                         <div ng-repeat="category in categoryList" ng-click="selectCategory(category,$event)" class="float-categories {{category.Title}}" >
                             <img ng-src="{{category.Picture}}"> 
+                            <div class="selectedImg c{{$index+1}}" ng-style="{'background-image': 'url({{category.SelectedPic}})' }" ng-if="category.IsSelected"> </div>
+                            
                         </div>      
                     </div>
-                    <img ng-src="{{friendList[friendIndex].profilePicture}}" >
+                    <img ng-src="{{friendList[friendIndex].profilePicture}}"  >
                     <h2 id="curvedName" class="name-wrapper center relative size20"> {{friendList[friendIndex].name}} </h2>
                 </div>
         </div>
