@@ -76,7 +76,7 @@
 			<input class="h55blue height55 size18" placeholder="search" type="text" ng-model="searchFriend" >
 			<div class="searchbtn"> </div>
 		</div>
-		<div class="categoriesSection">
+		<div class="categoriesSection paddtb15">
 			<span class="gold uppercase marginleft25 size20">person Categories</span>
 			<section id="category-wrapper" class="center">
 		        <div ng-repeat="category in categoryList" class="inline-block">
@@ -85,7 +85,7 @@
 		        </div>
 		    </section>
 		</div>
-		<div class="scroll">
+		<div class="scroll maxheight275">
 			<div class="paddbor" ng-repeat="friend in friendList | filter:searchFriend | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
 				<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.profilePicture}})'}">
 							

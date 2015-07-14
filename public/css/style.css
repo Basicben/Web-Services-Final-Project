@@ -183,6 +183,16 @@ body,html{
     max-height: 335px;
   }
 
+  .maxheight275{
+    height: 275px;
+    max-height: 275px;
+  }
+
+  .maxheight312{
+    height: 312px;
+    max-height: 312px;
+  }    
+
   .paddbor{
       border: 1px solid #625e62;
       padding-top: 6px;
