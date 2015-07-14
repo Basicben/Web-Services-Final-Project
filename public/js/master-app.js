@@ -98,18 +98,11 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
         //$scope.connectedUser = checkLoginState();
     });
 
-    $scope.connectedUser = null;
-
     $scope.changeURL = function(url){
         $location.path(url);
     };
 
     $scope.angFacebookLogin = function(){
-
-        console.log('add user from fb');
-
-        console.log('window.location.origin',window.location.origin);
-
         /**/
         $scope.friendList = [];
         facebookLogin(function(friendList){
@@ -156,7 +149,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
 
         });/**/
 
-        /* API CALL IN LOCALHOST
+        /* API CALL IN LOCALHOST 
         $http.post( window.location.origin + '/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously

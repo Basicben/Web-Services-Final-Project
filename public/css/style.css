@@ -175,8 +175,12 @@ body,html{
   }
 
   .scroll{
-    overflow: hidden;
+    overflow: scroll;
+  }
 
+  .maxheight335{
+    height: 335px;
+    max-height: 335px;
   }
 
   .paddbor{
@@ -272,6 +276,8 @@ body,html{
       padding-top: 15px;
       padding-bottom: 15px;
   }
+
+
 
   .top-10{
     top:-10px;

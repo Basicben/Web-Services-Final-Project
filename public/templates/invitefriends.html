@@ -85,15 +85,17 @@
 		        </div>
 		    </section>
 		</div>
-		
-		<div class="paddbor" ng-repeat="friend in friendList | filter:searchFriend | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
-			<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.profilePicture}})'}">
-						
-			</div>
-			<div class="inline-block">
-				<span class="titledisplay inline-block gold uppercase" ng-if="friend.name"> {{friend.name}} </span>
+		<div class="scroll">
+			<div class="paddbor" ng-repeat="friend in friendList | filter:searchFriend | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
+				<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.profilePicture}})'}">
+							
+				</div>
+				<div class="inline-block">
+					<span class="titledisplay inline-block gold uppercase" ng-if="friend.name"> {{friend.name}} </span>
+				</div>
 			</div>
 		</div>
+		
 		<div class="h55blue h54 rglbtn uppercase" ng-click="chooseWithMe()"> <span> Choose </span>  </div>
 	</div>
 </div>
