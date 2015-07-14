@@ -80,7 +80,7 @@
 
 		<!-- Select all friends \ some of them -->
 		<section class="friendswrapper">
-			<div id="friends_repeater scroll">
+			<div id="friends_repeater scroll maxheight312">
 				<div class="paddbor height70" ng-repeat="friend in friendList | sortByCircle:selectedCircle | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
 					
 					<div class="friend-details-wrapper">

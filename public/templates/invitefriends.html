@@ -85,7 +85,7 @@
 		        </div>
 		    </section>
 		</div>
-		<div class="scroll maxheight275">
+		<div class="scroll maxheight245">
 			<div class="paddbor" ng-repeat="friend in friendList | filter:searchFriend | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
 				<div class="inline-block imgprof" ng-style="{'background-image':'url({{friend.profilePicture}})'}">
 							
