@@ -1,16 +1,11 @@
 <style type="text/css">
 
-	h1,h2{
-		color:#e7d4ad;
-	}
-
 	.select-header{
 		text-align: center;
 	}
 
 	.select-body{
 		width: 100%;
-		margin-top: 15px;
 	}
 
 	.circleswrapper, .friendswrapper{
@@ -47,6 +42,10 @@
 		margin: 7px auto !important;
 	}
 
+	.darkblue{
+		background-color: #2c2d3b;
+	}
+
 </style>
 
 <div class="select-wrapper">
@@ -58,10 +57,10 @@
 	<div class="select-body">
 		<!-- Get All Friends Circles -->
 		
-		<section class="circleswrapper">
-			<span class="gold uppercase marginleft25 size20">Facebook Circles</span>
+		<section class="circleswrapper darkblue relative paddtb15">
+			<span class="gold uppercase marginleft25 size20" ng-click="toggleCircle()">Facebook Circles</span>
 			<!-- Circles -->
-			<div class="circlesreapter">
+			<div id="circles-wrapper" class="circlesreapter overflow">
 				<div class="center uppercase" ng-repeat="circle in circleList" ng-click="selectCircle(circle);" ng-class="{selectedCircle: circle.IsSelected == true}">
 					<span> {{circle.value}} </span>
 					<div class="hline"></div>
@@ -69,11 +68,20 @@
 			</div>
 		</section>
 
+		<div class="relative darkblue paddtb15">
+			<span class="gold uppercase marginleft25 size20" ng-click="toggleCategory()">person Categories</span>
+			<section id="category-wrapper" class="center overflow">
+		        <div ng-repeat="category in categoryList" class="inline-block">
+		            <div ng-click="addRemoveCategory(category,$index)" ng-class="{yellowCover : category.IsSelected == true}" class="category" ng-style="{ 'background-image': 'url(' + category.Picture + ')' }">  </div>
+
+		        </div>
+		    </section>
+		</div>
+
 		<!-- Select all friends \ some of them -->
 		<section class="friendswrapper">
-			<span class="gold uppercase marginleft25 size20">person categories</span>
 			<div id="friends_repeater">
-				<div class="paddbor height70" ng-repeat="friend in friendList | sortByCircle:selectedCircle" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
+				<div class="paddbor height70" ng-repeat="friend in friendList | sortByCircle:selectedCircle | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend);"  ng-class="{darkviolet: friend.IsSelected == true}">
 					
 					<div class="friend-details-wrapper">
 

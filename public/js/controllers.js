@@ -483,18 +483,16 @@ suiteApp
  ***************************/
 .controller('selectFriendsCntrl', function($scope,$rootScope,$http,invitation,connectedUser){
 
-        //Indication if friend was selected for continuing of the procedure
-        $scope.isAnyFriendSelected = false;
+        // Array contains selected friends we would like to send the invitation to.
+        $scope.selectedFriends = [];
+        $scope.selectedCategoryList = [];
+        $scope.categoryList = [];
+        $scope.selectedCircle = [];
+        $scope.selectedUsers = [];
 
         //Sweet alert pop-up
         $scope.alertIfFriendNotSelected = function(){
-          if(!$scope.isAnyFriendSelected){
-              swal({
-                  title: "Oops..",
-                  text: "You forgot to invite friend/s",
-                  timer: 2000,
-                  showConfirmButton: false });
-          }
+          
         };
 
         //This function checks if there an object in an array
@@ -530,22 +528,58 @@ suiteApp
             }
 
         });
+
+
+        $http.post(window.location.origin + '/api/getCategories').
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        
+                        // if user has signed up or not
+                        if(data == null){
+                            //$location.path('signup');
+                            console.log('(data = null) in getCategories:');
+                        }else{
+                            $scope.categoryList = data;
+                        }
+
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.log('Error : data', data);
+                        console.log('Error : status', status);
+                        console.log('Error : headers', headers);
+                        console.log('Error : config', config);
+                        // Redirect user back to login page
+                        //$location.path('signup');
+                    });
+
     });    
 
-    // Array contains selected friends we would like to send the invitation to.
-        $scope.selectedFriends = [];
-        $scope.selectedCircle = [];
-        $scope.selectedUsers = [];
 
         $scope.selectFriend = function(friend){
             friend.IsSelected = !friend.IsSelected;
             if(friend.IsSelected){
                 // If here, Push object to array
                 $scope.selectedFriends.push(friend);
-                $scope.isAnyFriendSelected = true;
             }else{
                 // If here, Delete object from array
                 $scope.selectedFriends.splice($scope.selectedFriends.indexOf(friend),1);
+            }
+        };
+
+        $scope.addRemoveCategory = function(category,index){
+                //push into a new array the ID of the category and the userFriendId
+            category.IsSelected = !category.IsSelected;
+                // if selected is true -> push to array.
+                // if false, delete this category from array.
+            if(category.IsSelected){
+                $scope.selectedCategoryList.push(category._id);
+            }
+            else{
+                    // splice
+                $scope.selectedCategoryList.splice($scope.selectedCategoryList.indexOf(category),1);
             }
         };
 
@@ -584,15 +618,34 @@ suiteApp
         };
 
         $scope.sendAll = function(){
-            if($scope.selectedFriends.length == 0){
-                return;
+            if($scope.selectedFriends == null || $scope.selectedFriends.length <= 0){
+              swal({
+                  title: "Oops..",
+                  text: "You forgot to invite friend/s",
+                  timer: 2000,
+                  showConfirmButton: false });
+
+              return;
             }
+
             // Add selected friend object to factory object so it would be reachable from all controllers
             invitation.setInviteFriends($scope.selectedFriends);
             // Transfer to Invitation Page
             $scope.$parent.changeURL('invitation');
 
 
+        }
+
+        $scope.toggleCircle = function(){
+            $( "#circles-wrapper" ).toggle( "fast", function() {
+                // Animation complete.
+            });
+        }
+
+        $scope.toggleCategory = function(){
+            $( "#category-wrapper" ).toggle( "fast", function() {
+                // Animation complete.
+            });
         }
 })
 

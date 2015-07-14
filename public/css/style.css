@@ -268,10 +268,13 @@ body,html{
         margin-bottom: 15px;
     }
 
-  .categoriesSection{
-      background-color: #2c2d3b;
-      position: relative;
-      padding-top: 20px;
+  .paddtb15{
+      padding-top: 15px;
+      padding-bottom: 15px;
+  }
+
+  .top-10{
+    top:-10px;
   }
 
     #category-wrapper{
