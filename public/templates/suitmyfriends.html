@@ -1,27 +1,23 @@
 <!--  Presenting all user friends with their categories  -->
 
-<div class="suitmyfriends-wrapper">
-
+<div class="suitmyfriends-wrapper" id="friendPictureSection">
     <div class="suitmyfriends-header header">
         <span>Suit My Friends</span>
     </div>
     <!--  Presenting all user's friends, sorted by categories  -->
     <div class="suitmyfriends-body relative">
-        <div id="friendPictureSection">
-                <div class="suite relative center">
-                    <div class="categories-section">
-                        <div ng-repeat="category in categoryList" ng-click="selectCategory(category,$event)" class="float-categories {{category.Title}}" >
-                            <img ng-src="{{category.Picture}}"> 
-                            <div class="selectedImg c{{$index+1}}" ng-style="{'background-image': 'url({{category.SelectedPic}})' }" ng-if="category.IsSelected"> </div>
-                            
-                        </div>      
-                    </div>
-                    <img ng-src="{{friendList[friendIndex].bigProfilePicture}}">
-                    <span class="name-wrapper center relative size20 curvedName" ng-if="friendList[friendIndex] != null && categoriazedFriend.Categories != null && categoriazedFriend.Categories.length == 0"> {{friendList[friendIndex].name}} </span>
-                    <span class="name-wrapper center relative size20 curvedName" ng-if="categoriazedFriend.Categories.length > 0"> {{lastCateogryName}} </span>
-
-
+        <div>
+            <div class="suite relative center">
+                <div class="categories-section">
+                    <div ng-repeat="category in categoryList" ng-click="selectCategory(category,$event)" class="float-categories {{category.Title}}" >
+                        <img ng-src="{{category.Picture}}"> 
+                        <div class="selectedImg c{{$index+1}}" ng-style="{'background-image': 'url({{category.SelectedPic}})' }" ng-if="category.IsSelected"> </div>
+                    </div>      
                 </div>
+                <img ng-src="{{friendList[friendIndex].bigProfilePicture}}">
+                <span class="name-wrapper center relative size20 curvedName" ng-if="friendList[friendIndex] != null && categoriazedFriend.Categories != null && categoriazedFriend.Categories.length == 0"> {{friendList[friendIndex].name}} </span>
+                <span class="name-wrapper center relative size20 curvedName" ng-if="categoriazedFriend.Categories.length > 0"> {{lastCateogryName}} </span>
+            </div>
         </div>
     </div>
 

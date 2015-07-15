@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="114d92cf-b77f-41d9-99ad-8e3625106c35" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/guide/1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/guide/2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/guide/3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/guide/4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/angular/angular-carousel.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/lib/angular/angular-carousel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/lib/angular/angular-touch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/guide.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers.js" afterPath="$PROJECT_DIR$/public/js/controllers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/invitefriends.html" afterPath="$PROJECT_DIR$/public/templates/invitefriends.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/master-app.js" afterPath="$PROJECT_DIR$/public/js/master-app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/myfriends.html" afterPath="$PROJECT_DIR$/public/templates/myfriends.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/selectfriends.html" afterPath="$PROJECT_DIR$/public/templates/selectfriends.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/suitmyfriends.html" afterPath="$PROJECT_DIR$/public/templates/suitmyfriends.html" />
     </list>
     <ignored path="Web-Services-Final-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,34 +70,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="11573" max-vertical-offset="12144">
-              <caret line="563" column="66" selection-start-line="563" selection-start-column="66" selection-end-line="563" selection-end-column="66" />
-              <folding>
-                <element signature="e#146#234#0" expanded="false" />
-                <element signature="e#543#707#0" expanded="false" />
-                <element signature="e#872#5619#0" expanded="false" />
-                <element signature="e#1122#1654#0" expanded="false" />
-                <element signature="e#1799#1953#0" expanded="false" />
-                <element signature="e#2015#2563#0" expanded="false" />
-                <element signature="e#2653#3389#0" expanded="false" />
-                <element signature="e#3434#3601#0" expanded="false" />
-                <element signature="e#3651#4131#0" expanded="false" />
-                <element signature="e#6261#7281#0" expanded="false" />
-                <element signature="e#7317#8336#0" expanded="false" />
-                <element signature="e#12551#13044#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.42381787" vertical-offset="16214" max-vertical-offset="17402">
+              <caret line="748" column="57" selection-start-line="748" selection-start-column="57" selection-end-line="748" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="master-app.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="master-app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/master-app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.1190894" vertical-offset="0" max-vertical-offset="4114">
-              <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1078" max-vertical-offset="4224">
+              <caret line="55" column="15" selection-start-line="55" selection-start-column="15" selection-end-line="55" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -171,7 +173,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -432,6 +433,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -464,14 +466,6 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -482,14 +476,12 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" />
-      <option name="executablePath" />
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
       <option name="filePath" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -497,6 +489,16 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
+      <option name="filePath" />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -906,7 +908,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5276753" vertical-offset="0" max-vertical-offset="792">
           <caret line="93" column="64" selection-start-line="93" selection-start-column="64" selection-end-line="93" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -926,31 +927,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/public/js/master-app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="11573" max-vertical-offset="12144">
-          <caret line="563" column="66" selection-start-line="563" selection-start-column="66" selection-end-line="563" selection-end-column="66" />
-          <folding>
-            <element signature="e#146#234#0" expanded="false" />
-            <element signature="e#543#707#0" expanded="false" />
-            <element signature="e#872#5619#0" expanded="false" />
-            <element signature="e#1122#1654#0" expanded="false" />
-            <element signature="e#1799#1953#0" expanded="false" />
-            <element signature="e#2015#2563#0" expanded="false" />
-            <element signature="e#2653#3389#0" expanded="false" />
-            <element signature="e#3434#3601#0" expanded="false" />
-            <element signature="e#3651#4131#0" expanded="false" />
-            <element signature="e#6261#7281#0" expanded="false" />
-            <element signature="e#7317#8336#0" expanded="false" />
-            <element signature="e#12551#13044#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="1078" max-vertical-offset="4224">
+          <caret line="55" column="15" selection-start-line="55" selection-start-column="15" selection-end-line="55" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/master-app.js">
+    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1190894" vertical-offset="0" max-vertical-offset="4114">
-          <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.42381787" vertical-offset="16214" max-vertical-offset="17402">
+          <caret line="748" column="57" selection-start-line="748" selection-start-column="57" selection-end-line="748" selection-end-column="57" />
           <folding />
         </state>
       </provider>

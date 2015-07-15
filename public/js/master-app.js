@@ -1,13 +1,14 @@
-var suiteApp = angular.module('suiteApp',['ngRoute','ngAutocomplete','leaflet-directive']);
+var suiteApp = angular.module('suiteApp',['ngRoute','ngAutocomplete','leaflet-directive','angular-carousel']);
 
-var USER = null; /**/
-/*
+var USER = /* null; /**/
+/**/
 {
 
         id: "10153356515014410",
         birthday: "05/25/1989",
         email: "benari1_kutai@yahoo.com",
         first_name: "Ben Ari",
+        isNew: true,
         gender: "Male",
         hometown: {
             id: "102184499823699",
@@ -68,6 +69,10 @@ suiteApp .config(['$routeProvider','$locationProvider',
             templateUrl: 'templates/home.html',
             controller: 'homeCntrl'
     }).
+    when('/guide', {
+          templateUrl: 'templates/guide.html',
+          controller: 'guideCntrl'
+    }).
     when('/myfriends', {
            templateUrl: 'templates/myfriends.html',
            controller: 'myFriendsCntrl'
@@ -108,7 +113,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
     };
 
     $scope.angFacebookLogin = function(){
-        /**/
+        /*
         $scope.friendList = [];
         facebookLogin(function(friendList){
                 //friendList = getFacebookFriendsImages(friendList);
@@ -153,7 +158,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
 
         });/**/
 
-        /* API CALL IN LOCALHOST 
+        /* API CALL IN LOCALHOST */
         $http.post( window.location.origin + '/api/userInsert', { user:USER } ).
               success(function(data, status, headers, config) {
                 // this callback will be called asynchronously

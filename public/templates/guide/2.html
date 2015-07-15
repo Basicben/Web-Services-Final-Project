@@ -1,0 +1,54 @@
+<style type="text/css">
+
+	.template-header > h1, .template-body > span, .template-footer > span{
+		margin: 0px;
+		text-align: left;
+	}
+
+	.cateogry-guide-wrapper{
+		width: 293px;
+		height: 69px;
+		background-color:#e7d3ac;
+		border:1px solid #a19581;
+		margin:5px;
+	}
+
+	.cateogry-guide-wrapper > div:nth-child(1){
+		width: 223px;
+		height: 100%;
+		left: 0px;
+	}
+	.cateogry-guide-wrapper > div:nth-child(2){
+		width: 70px;
+		height: 100%;
+		right:0px;
+	}
+
+	#guide2 .template-body{
+		width: 305px;
+		height: 309px;
+	}
+
+	.top5{
+		top:5px;
+	}
+
+</style>
+
+<div id="guide2">
+
+	<div class="template-header margbottom30 margtop10">
+		<h1 class="block size40 marginleft32"> We role in a  </h1>
+		<h1 class="block size40 marginleft32"> different way </h1>
+	</div>
+	
+	<div class="template-body blackblue margbottom30">
+		<div class="relative top5">
+			<div ng-repeat="category in categoryList | limitTo:4" class="cateogry-guide-wrapper relative">
+				<div class="inline-block absolute"> </div>
+				<div class="inline-block absolute"> </div>
+			</div>
+		</div>
+	</div>
+
+</div>
