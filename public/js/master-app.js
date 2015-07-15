@@ -115,7 +115,7 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
                 delete friendList['summary'];
                 friendList.data.forEach(function(friend){
                     friend.profilePicture = friend.picture.data.url
-                    friend.bigProfilePicture = 'https://graph.facebook.com/'+ friend.id +'/picture?height=350&width=250';
+                    friend.bigProfilePicture = 'https://graph.facebook.com/'+ friend.id +'/picture?height=215&width=215';
                     delete friend['picture'];
                 });
 
