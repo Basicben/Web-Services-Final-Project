@@ -136,7 +136,7 @@ suiteApp
                             //$location.path('signup');
                             console.log('(data = null) in getCategories:');
                         }else{
-                            $scope.categoryList = data;
+                            $scope.categoryList = data.categoryObj;
                         }
 
                     }).
@@ -325,7 +325,7 @@ suiteApp
                     if(data == null){
                         console.log('(data = null) in getCategories:');
                     }else{
-                        $scope.categoryList = data;
+                        $scope.categoryList = data.categoryObj;
                     }
 
                 }).
@@ -487,7 +487,7 @@ suiteApp
                             //$location.path('signup');
                             console.log('(data = null) in getCategories:');
                         }else{
-                            $scope.categoryList = data;
+                            $scope.categoryList = data.categoryObj;
                         }
 
                     }).
@@ -561,7 +561,7 @@ suiteApp
                             //$location.path('signup');
                             console.log('(data = null) in getCategories:');
                         }else{
-                            $scope.categoryList = data;
+                            $scope.categoryList = data.categoryObj;
                         }
 
                     }).
