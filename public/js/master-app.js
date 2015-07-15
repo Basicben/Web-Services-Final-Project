@@ -113,10 +113,9 @@ suiteApp.controller('masterCntrl', function($scope,$http,$location,connectedUser
                 
                 delete friendList['paging'];
                 delete friendList['summary'];
-                
-                console.log('friendList 1111111111111 AFTER',friendList);
                 friendList.data.forEach(function(friend){
                     friend.profilePicture = friend.picture.data.url
+                    friend.bigProfilePicture = 'https://graph.facebook.com/'+ friend.id +'/picture?height=350&width=250';
                     delete friend['picture'];
                 });
 
