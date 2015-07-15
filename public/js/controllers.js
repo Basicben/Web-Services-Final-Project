@@ -329,6 +329,7 @@ suiteApp
                         console.log('(data = null) in getCategories:');
                     }else{
                         $scope.categoryList = data;
+                        console.log(data);
                     }
 
                 }).
@@ -760,7 +761,7 @@ suiteApp
                             //$location.path('signup');
                             console.log('(data = null) in getCategories:');
                         }else{
-                            $scope.categoryList = data;
+                            $scope.categoryList = data.categoryObj;
                         }
 
                     }).
