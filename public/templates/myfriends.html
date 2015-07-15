@@ -1,56 +1,8 @@
 <style>
 
     span{
-        color: #fff7d4;
+        color: #fff7d4 !important;
     }
-
-    .friend-select{
-        width:0px;
-        position: absolute;
-        right: 0px;
-        top:0px;
-        background-color: #36374b;
-        -webkit-transition: 0.4s ease;
-        -moz-transition: 0.4s ease;
-        -o-transition: 0.4s ease;
-        -ms-transition: 0.4s ease;
-        transition: 0.4s ease;
-    }
-
-    .width30{
-        width: 30px !important;
-    }
-
-    #uniqesearch::-webkit-input-placeholder {
-       left:0px;
-       color: #fff7d4;
-    }
-
-    #uniqesearch:-moz-placeholder { /* Firefox 18- */
-       left:0px;
-       color: #fff7d4;
-    }
-
-    #uniqesearch::-moz-placeholder {  /* Firefox 19+ */
-       left:0px;
-       color: #fff7d4;
-    }
-
-    #uniqesearch:-ms-input-placeholder {  
-       left:0px;
-       color: #fff7d4;
-    }
-
-    .noborder{
-        border:none;
-    }
-
-    .additional{
-        text-transform: initial !important;
-        font-family: Lato;
-          background-color: #171820;
-    }
-
 
 </style>
 
@@ -64,7 +16,7 @@
 
     <!--  Presenting all user's friends, sorted by categories  -->
     <div class="myfriends-body">
-        <div class="categoriesSection">
+        <div class="relative darkblue paddtb15">
             <span class="gold uppercase marginleft25 size20">person Categories</span>
             <section id="category-wrapper" class="center">
                 <div ng-repeat="category in categoryList" class="inline-block">

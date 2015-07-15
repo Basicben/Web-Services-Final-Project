@@ -7,8 +7,6 @@ suiteApp
 	$scope.facebookInsert = function(){
 		$scope.$parent.angFacebookLogin();
 	};
-
-    console.log('signupCntrl');
      
 })
 
@@ -16,8 +14,6 @@ suiteApp
  *  Home Controller
  ***************************/
 .controller('homeCntrl', function($scope,$rootScope) {
-     
-    console.log('homeCntrl');
      
 })
 
@@ -351,8 +347,8 @@ suiteApp
             value: null,
             details: {},
             options: {
-                types: 'establishment'
-                //,country: 'ca'
+                types: 'establishment',
+                country: 'isr'
             }
         };
 
@@ -360,6 +356,7 @@ suiteApp
 
         // Watch for Landmark input.
         $scope.$watch('autoComplete.details', function (n, o) {
+            console.log('n',n);
             $scope.autoComplete.value = n;
             if(!jQuery.isEmptyObject(n)){
                 var location = $scope.autoComplete.value.geometry.location;
@@ -381,8 +378,8 @@ suiteApp
 
         angular.extend($scope, {
             center: {
-                lat: 59.91,
-                lng: 10.75,
+                lat: 32.066158,
+                lng: 34.777819,
                 zoom: 12
             },
             markers: {
@@ -417,7 +414,20 @@ suiteApp
                 return;
             }
 
-            invitation.changeLocation($scope.autoComplete.value);
+            $scope.autoCompleteObj = {
+                address_components: $scope.autoComplete.value.address_components,
+                adr_address: $scope.autoComplete.value.adr_address,
+                formatted_address: $scope.autoComplete.value.formatted_address,
+                geometry: $scope.autoComplete.value.geometry,
+                name: $scope.autoComplete.value.name,
+                id: $scope.autoComplete.value.id,
+                types: $scope.autoComplete.value.types,
+                place_id: $scope.autoComplete.value.place_id,
+            }
+
+            console.log('$scope.autoCompleteObj',$scope.autoCompleteObj);
+
+            invitation.changeLocation($scope.autoCompleteObj);
             $scope.$parent.changeURL('selectfriends');
         };
 
@@ -489,11 +499,6 @@ suiteApp
         $scope.categoryList = [];
         $scope.selectedCircle = [];
         $scope.selectedUsers = [];
-
-        //Sweet alert pop-up
-        $scope.alertIfFriendNotSelected = function(){
-          
-        };
 
         //This function checks if there an object in an array
         $scope.containsObject = function(obj, list) {

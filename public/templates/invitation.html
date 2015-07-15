@@ -1,81 +1,7 @@
 <style type="text/css">
 
 	span{
-		color: #fff7d4;
-	}
-
-	h1,h2{
-		color:#e7d4ad;
-	}
-
-	.invitation-header{
-		  text-align: center;
-	}
-
-	.comejoinme{
-		width:359px;
-		height:220px;
-		background-image: url('../images/joinme.png');
-		margin:0 auto;
-	}
-
-	.w120{
-		width:120px;
-		height: 30px;
-	}
-
-	.rspov{
-		  padding-bottom: 5px;
-		  padding-top: 5px;
-		  border-top: 1px solid;
-		  border-bottom: 1px solid;
-		  letter-spacing: 2px;
-		  width: 150px;
-	}
-
-	.invitation-body{
-		width: 100%;
-	}
-
-	.invitation-footer .sendinvitation{
-		width: 60px;
-  		height: 58px;
-		border-radius: 150px;
-		background-image: url('../images/sendinvitation_purple.png');
-	}
-
-	.friendsInvited-wrapper{
-		width: 100%;
-		height: 0px;
-		position: relative;
-		-webkit-transition: 0.4s ease;
-		-moz-transition: 0.4s ease;
-		-o-transition: 0.4s ease;
-		-ms-transition: 0.4s ease;
-		transition: 0.4s ease;
-	}
-
-	section.dontinvite-wrapper{
-		position: absolute;
-  		left: 205px;
-  		top: -22px;
-  		width: 50px;
-  		height: 25px;
-  		text-align: center;
-  		border: 1px solid #fff7d4;
-	}
-
-	.px1down{
-		position: relative;
-  		top: 1px;
-	}
-
-	.maxheight66{
-		max-height: 66px;
-	}
-
-	.top-20{
-		top:-20px;
+		color: #fff7d4 !important;
 	}
 
 </style>
@@ -96,7 +22,7 @@
 				</div>
 				<div class="inline-block relative">
 					<span class="titledisplay inline-block" ng-if="friend.name"> {{friend.name}} </span>
-					<section class="dontinvite-wrapper" ng-click="dontInvite(friend)"> <span class="px1down"> &#x2715; </span> </section>
+					<section class="dontinvite-wrapper" ng-click="dontInvite(friend)"> <span class="relative px1down"> &#x2715; </span> </section>
 				</div>
 			</div>
 		</div>
