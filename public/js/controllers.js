@@ -761,7 +761,9 @@ suiteApp
                             //$location.path('signup');
                             console.log('(data = null) in getCategories:');
                         }else{
+
                             $scope.categoryList = data.categoryObj;
+                            console.log('(data = null) in getCategories:',data.categoryObj);
                         }
 
                     }).
