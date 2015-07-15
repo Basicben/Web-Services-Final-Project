@@ -66,6 +66,20 @@ suiteApp
             }
         };
 
+        $scope.addRemoveCategory = function(category,index){
+                //push into a new array the ID of the category and the userFriendId
+            category.IsSelected = !category.IsSelected;
+                // if selected is true -> push to array.
+                // if false, delete this category from array.
+            if(category.IsSelected){
+                $scope.selectedCategoryList.push(category._id);
+            }
+            else{
+                    // splice
+                $scope.selectedCategoryList.splice($scope.selectedCategoryList.indexOf(category),1);
+            }
+        };
+
         var lastIndex = -1;
         $scope.selectFriend = function(friend,index,$event){
             friend.IsSelected = !friend.IsSelected;
@@ -145,6 +159,7 @@ suiteApp
 .controller('suitmyfriendsCntrl', function($scope,$rootScope,$http,connectedUser) {
 
         $scope.friendIndex = 0;
+        $scope.lastCateogryName = '';
         $scope.friendList = [];
         $scope.categoryList = [];
         $scope.categoriazedFriend = {
@@ -225,6 +240,7 @@ suiteApp
             // if false, delete this category from array.
             if(category.IsSelected){
                 $scope.categoriazedFriend.Categories.push(category);
+                $scope.lastCateogryName = category.Name;
             }
             else{
                 $scope.categoriazedFriend.Categories.splice($scope.categoriazedFriend.Categories.indexOf(category),1);

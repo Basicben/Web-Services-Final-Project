@@ -506,6 +506,13 @@ body,html{
 
   */
 
+  .curvedName {
+    position: absolute;
+    bottom: 35px;
+    right: 0px;
+    width: 100%;
+  }
+
   .suitmyfriends-body{
         top: 74px;
     }
@@ -589,8 +596,8 @@ body,html{
     }
 
     .selectedImg.c1 {
-      right: -29px;
-      top: -21px;
+      right: -28px;
+      top: -22px;
     }
 
     .selectedImg.c2 {
