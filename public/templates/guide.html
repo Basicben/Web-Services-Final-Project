@@ -1,0 +1,29 @@
+<style type="text/css">
+	.carousel-guide-wrapper{
+		width: 305px;
+		height: 500px;
+		background-color: #d2c09e;
+	}
+
+	.template-wrapper{
+		width: 305px;
+		height: 500px;
+	}
+
+</style>
+
+
+<div class="guide-wrapper relative">
+
+	<div class="carousel-guide-wrapper center block">
+
+        <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-deep-watch rn-carousel-buffered class="carousel5 template-wrapper">
+			<li ng-repeat="template in templates track by template.id">
+				<div class="template-wrapper" ng-include=" '' + template.templateUrl + '' "></div>
+			</li>
+		</ul>
+		<div rn-carousel-indicators ng-if="templates.length > 1" slides="templates" rn-carousel-index="carouselIndex"></div>
+
+	</div>
+	
+</div>

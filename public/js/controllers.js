@@ -25,9 +25,12 @@ suiteApp
     console.log('welcomeCntrl');
 
     $scope.enterApp = function(){
-    	if(connectedUser.get() != null){
+    	if(connectedUser.get() != null && !connectedUser.get().userObject.isNew){
     		$location.path('home');
     	}
+        if(connectedUser.get().userObject.isNew){
+            $location.path('guide');
+        }
     }
      
 })
@@ -734,6 +737,46 @@ suiteApp
         
 
     }
+
+}).controller('guideCntrl', function($scope,$rootScope,$http,connectedUser){
+
+    $scope.carouselIndex = 0;
+    $scope.categoryList = [];
+    $scope.templates = [
+        { id:1, templateUrl:'../templates/guide/1.html' },
+        { id:2, templateUrl:'../templates/guide/2.html' },
+        { id:3, templateUrl:'../templates/guide/3.html' },
+        { id:4, templateUrl:'../templates/guide/4.html' },
+    ]
+
+        $(document).ready(function () {
+            $http.post(window.location.origin + '/api/getCategories').
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        
+                        // if user has signed up or not
+                        if(data == null){
+                            //$location.path('signup');
+                            console.log('(data = null) in getCategories:');
+                        }else{
+                            $scope.categoryList = data;
+                        }
+
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.log('Error : data', data);
+                        console.log('Error : status', status);
+                        console.log('Error : headers', headers);
+                        console.log('Error : config', config);
+                        // Redirect user back to login page
+                        //$location.path('signup');
+                    });
+        });
+
+    
 
 });
 

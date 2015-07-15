@@ -70,6 +70,10 @@ body,html{
   height: 568px;
 }
 
+  .blackblue{
+    background-color: #2c2d3b;
+  }
+
 .header{
     font-size: 18px !important;
     border: 2px solid #fff7d4;
@@ -91,6 +95,11 @@ body,html{
     background-image: url('../images/logo208.png');
     top:31px;
   }
+
+  .overflowx-hidden{
+    overflow-x: hidden !important;  
+  }
+  
 
   .gold{
     color: #fff7d4;
@@ -210,6 +219,18 @@ body,html{
   .maxheight245{
       height: 245px;
       max-height: 245px;
+  }
+
+  .bold{
+    font-weight: 900;
+  }
+
+  .margbottom30{
+    margin-bottom: 30px !important;
+  }
+
+  .marginleft32{
+    margin-left: 32px !important;
   }
 
   .maxheight312{

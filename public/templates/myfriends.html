@@ -25,7 +25,7 @@
                 </div>
             </section>
         </div>
-        <div id="friends_repeater" class="scroll maxheight335">
+        <div id="friends_repeater" class="scroll maxheight335 overflowx-hidden">
             <div class="paddbor height70 relative" ng-repeat="friend in friendList | filter:searchFriend | orderBy:[nullsCategoriesToBottom] | sortByCategory:selectedCategoryList" ng-init="friend.IsSelected = false" ng-click="selectFriend(friend,$index,$event);">
                 <div class="friend-details-wrapper">
 
